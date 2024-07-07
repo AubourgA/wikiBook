@@ -1,3 +1,4 @@
+import imgHero from "../assets/images/bookshop.jpg"
 
 export const itemNav = [
     {
@@ -21,3 +22,12 @@ export const itemNav = [
         url : "/Contact"
     }
 ]
+
+export const HeroSection = 
+    {
+        title : "WikiBook",
+        extraTitle: "votre librairie à portez de clics",
+        surTitle : "UN MOMENT DE PLAISIR",
+        buttonText : "Réserver un livre",
+        urlImg : imgHero
+    }

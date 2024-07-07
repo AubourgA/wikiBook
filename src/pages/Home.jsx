@@ -1,9 +1,10 @@
-
+import HeroBanner from '../components/HeroBannner'
 
 export default function Home() {
   return (
     <div>
-        Home
+       <HeroBanner />
+      
     </div>
   )
 }

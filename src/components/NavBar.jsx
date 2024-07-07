@@ -13,7 +13,7 @@ export default function NavBar() {
   const handleCloseNav = () => setIsOpenNav(false)
 
   return (
-    <nav className="w-full px-2 bg-slate-400 py-2 font-Secondary">
+    <nav className="fixed top-0 w-full px-2 bg-primary100 py-2 font-Secondary">
         <div className="flex  items-center justify-between flex-wrap">
 
             <div>
@@ -39,10 +39,10 @@ export default function NavBar() {
             </ul>
             <div  className= {`${isOpenNav ? "flex flex-col w-full items-center mt-4" : "hidden" }   md:flex md:flex-row md:items-center gap-2`}>
                 <NavLink to="/Subscribe" 
-                        className="hover:text-gray-500 duration-300"
+                        className="text-white rounded-xl border p-2 hover:text-gray-500 duration-300"
                         onClick={handleCloseNav} >Inscription</NavLink>
                 <NavLink to="/Login" 
-                         className="rounded-xl bg-orange-300 p-2 transform transition-transform duration-150 hover:translate-y-1 hover:shadow-inner"
+                         className="rounded-xl bg-white text-slate-500 p-2 transform transition-transform duration-150 hover:translate-y-1 hover:shadow-inner"
                          onClick={handleCloseNav}>Se Connecter</NavLink>
             </div>
         </div>
