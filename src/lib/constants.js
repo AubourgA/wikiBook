@@ -73,29 +73,3 @@ export const ChoiceTheme = [
 
 ]
 
-export const newsBook = [
-    {
-        id:1,
-        title: "Au nom de la chevre",
-        category : "Roman",
-        available : "Disponible"
-    },
-    {
-        id:2,
-        title: "Au nom de la chevre",
-        category : "Roman",
-        available : "Disponible"
-    },
-    {
-        id:3,
-        title: "Le petit prince",
-        category : "Roman",
-        available : "Disponible"
-    },
-    {
-        id:4,
-        title: "L'ivresse sans nom",
-        category : "Roman",
-        available : "Disponible"
-    }
-]
