@@ -13,8 +13,8 @@ export default function NavBar() {
   const handleCloseNav = () => setIsOpenNav(false)
 
   return (
-    <nav className="fixed top-0 w-full px-2 bg-primary100 py-2 font-Secondary">
-        <div className="flex  items-center justify-between flex-wrap">
+    <nav className="fixed top-0 w-full px-2 bg-primary75 py-2 font-Secondary">
+        <div className="container mx-auto flex items-center justify-between flex-wrap">
 
             <div>
                 <img src="" alt="logo" />

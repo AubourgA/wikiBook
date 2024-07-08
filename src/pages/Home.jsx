@@ -1,10 +1,13 @@
 import HeroBanner from '../components/HeroBannner'
+import ChoiceBanner from '../components/ChoiceBanner'
+
 
 export default function Home() {
   return (
-    <div>
+    <>
        <HeroBanner />
+       <ChoiceBanner />
       
-    </div>
+    </>
   )
 }

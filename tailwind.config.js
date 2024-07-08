@@ -11,9 +11,9 @@ export default {
         Secondary : [ "Raleway", "sans-serif"]
       },
       colors: {
-        primary100 : "#4793D5",
-        primary75 : "#88B8E2",
-        primary25 : "#CEE3F5"
+        primary100 : "#754C21",
+        primary75 : "#A3784A",
+        primary25 : "#D2B48C"
       },
     },
   },
