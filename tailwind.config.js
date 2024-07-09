@@ -7,12 +7,14 @@ export default {
   theme: {
     extend: {
       fontFamily: {
-        Primary : ["Roboto", "sans-serif"],
-        Secondary : [ "Raleway", "sans-serif"]
+        primary : ["Vidaloka", "serif"],
+        secondary : ["Bona Nova SC", "serif"],
+        normal : ["Nunito", "sans-serif"]
+        
       },
       colors: {
         primary100 : "#a57854",
-        primary50 : "#F6EEE0",
+        primary50 : "#f6f0e2",
         secondary : "#e46f33",
         dark : "#003060",
         light: "#ffffff"
