@@ -1,4 +1,6 @@
 import { register } from 'swiper/element/bundle';
+// import "../swiper/swiper.css";
+
 
 // register Swiper custom elements
 register()
@@ -36,7 +38,7 @@ export default function BookLatest( ) {
     fetchArticles();
 }, []); // 
 
-  console.log(lastBook)
+
 
   if (isLoading) {
     return <div>Loading...</div>;
@@ -47,24 +49,39 @@ export default function BookLatest( ) {
   }
 
   return (
-    <>
-    <swiper-container slides-per-view="3">
+ 
+    <swiper-container space-between="50" 
+                      pagination="true"
+                      slidesPerView="2"
+                      breakpoints={JSON.stringify( {
+                        640: {
+                          slidesPerView: 2,
+                        },
+                        1024: {
+                          slidesPerView: 4,
+                          }
+                      })} >
         { lastBook && 
          
                 lastBook["hydra:member"].map( ({id, title, YearPublished}) => (  
-                    <swiper-slide key={id} >
-                        <div className=' container mx-auto '>
-                        
+                
 
-                                <img src="https://placehold.co/300x400" alt="" />
-                                <h2 className='text-xl font-semibold'>{title}</h2>
-                                
-                                <p>Année de Publication : {YearPublished}</p>
+                    <swiper-slide key={id} >
+                        <div className='card hover:translate-y-1 transition-transform'>
                             
-                                <button className='rounded bg-red-300 p-2 md:w-[300px] mt-2'>Détails</button>
+                                <img src="https://placehold.co/250x250" className='h-[250px] object-cover rounded-t' alt="" />
+                             
+                                <div className='flex flex-col px-4 p-4 h-full'>
+                                  <h2 className='text md:text-md lg:text-lg  font-semibold pb-2'>{title}</h2>
+                                  
+                                  <p className='flex-grow'>Année de Publication : {YearPublished}</p>
+                              
+                                  <button className='rounded bg-secondary text-light btn-pressed p-2 w-full mt-2'>Détails</button>
+                                </div>
                             </div>
                     
                     </swiper-slide>
+                  
                 )
             )
         }
@@ -72,6 +89,6 @@ export default function BookLatest( ) {
      
     
   </swiper-container>
-    </>
+ 
   )
 }

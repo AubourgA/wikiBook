@@ -5,6 +5,10 @@ import science from "../assets/miniatures/science.png"
 import humaine from "../assets/miniatures/humaine.png"
 import hobby from "../assets/miniatures/hobby.png"
 import young from "../assets/miniatures/young.png"
+
+import { FaFacebookF, FaTwitter, FaInstagram } from "react-icons/fa";
+
+
 export const itemNav = [
     {
         id : 1,
@@ -32,7 +36,7 @@ export const HeroSection =
     {
         title : "WikiBook",
         extraTitle: "votre librairie à portez de clics",
-        surTitle : "UN MOMENT DE PLAISIR",
+        surTitle : "Votre espace detente",
         buttonText : "Réserver un livre",
         urlImg : imgHero
     }
@@ -71,5 +75,66 @@ export const ChoiceTheme = [
         icon : young
     },
 
+]
+
+export const Infos = [
+    { id:1,
+        title : "Se connecter"
+      },
+      {
+        id:2,
+        title : "Créer un compte"
+      },
+      {
+        id:3,
+        title : "Mot de passe oublié"
+      },
+      {
+        id:4,
+        title : "Mes Réservations"
+      },
+]
+
+export const About = [
+    {
+        id:1,
+        title : "Conditions Générales de Ventes",
+        url : "/cgu"
+    },
+    {
+        id:3,
+        title : "Politiques de Confidentialité",
+        url : "/cgu"
+    },
+    {
+        id:4,
+        title : "Mentions Légales",
+        url : "/cgu"
+    },
+    {
+        id:5,
+        title : "Nous contacter",
+        url : "/Contact"
+    },
+
+]
+
+export const Social = [
+
+        {
+            id:1,
+            icon: FaFacebookF,
+            url : "https://facebook.com"
+        },
+        {
+            id:2,
+            icon : FaTwitter,
+            url: "https://twitter.com"
+        },
+        {
+            id:3,
+            icon : FaInstagram,
+            url: "https://instagram.com"
+        }
 ]
 

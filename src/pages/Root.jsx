@@ -1,7 +1,7 @@
 //Root.jsx
 import {Outlet} from 'react-router-dom'
-import NavBar from '../components/NavBar'
-import Footer from '../components/Footer'
+import NavBar from '../components/ui/NavBar'
+import Footer from '../components/ui/Footer'
 
 function Root() {
   return (
@@ -12,9 +12,7 @@ function Root() {
       <main>
         <Outlet />
       </main>
-      <footer>
-        <Footer />
-      </footer>
+      <Footer />
     </>
   );
 
