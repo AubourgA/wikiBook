@@ -13,7 +13,7 @@ export default function NavBar() {
   const handleCloseNav = () => setIsOpenNav(false)
 
   return (
-    <nav className="fixed top-0 w-full px-2 bg-primary75 py-2 font-Secondary">
+    <nav className="fixed top-0 w-full px-2 bg-primary50 py-2 font-Secondary shadow-md">
         <div className="container mx-auto flex items-center justify-between flex-wrap">
 
             <div>
@@ -30,19 +30,19 @@ export default function NavBar() {
                 <NavLink key={item.id} 
                           to={item.url}
                           className={({ isActive }) =>
-                            `relative inline-block text-gray-800 hover:text-gray-500 duration-300 
-                              ${isActive ? 'border-b-2' : 'hover:after:scale-x-100'}
-                               after:absolute after:left-0 after:bottom-0 after:h-[2px] after:w-full after:scale-x-0 after:bg-white after:origin-left after:transition-transform after:duration-300 after:ease-in-out `
+                            `relative inline-block text-dark duration-300 
+                              ${isActive ? 'text-secondary font-semibold' : 'hover:after:scale-x-100'}
+                               after:absolute after:left-0 after:bottom-0 after:h-[2px] after:w-full after:scale-x-0 after:bg-secondary after:origin-left after:transition-transform after:duration-300 after:ease-in-out `
                           }
                           onClick={handleCloseNav}>{item.title}</NavLink>
                 ))}
             </ul>
             <div  className= {`${isOpenNav ? "flex flex-col w-full items-center mt-4" : "hidden" }   md:flex md:flex-row md:items-center gap-2`}>
                 <NavLink to="/Subscribe" 
-                        className="text-white rounded-xl border p-2 hover:text-gray-500 duration-300"
+                        className="text-secondary rounded-xl border border-secondary p-2 btn-pressed"
                         onClick={handleCloseNav} >Inscription</NavLink>
                 <NavLink to="/Login" 
-                         className="rounded-xl bg-white text-slate-500 p-2 transform transition-transform duration-150 hover:translate-y-1 hover:shadow-inner"
+                         className="rounded-xl bg-secondary text-light p-2 btn-pressed"
                          onClick={handleCloseNav}>Se Connecter</NavLink>
             </div>
         </div>
