@@ -16,7 +16,7 @@
 
 @layer components {
     .card {
-        @apply flex flex-col bg-white;
+        @apply flex flex-col bg-light;
         height: 450px;
         
     }

@@ -2,7 +2,7 @@ import { ChoiceTheme } from "../../lib/constants";
 
 export default function ChoiceBanner() {
   return (
-    <section className="flex items-center bg-primary25 py-8">
+    <section className="flex items-center bg-light py-8">
       <div className="container mx-auto">
         <h2 className="font-primary text-primary100 text-3xl text-center pt-10 ">
           Un large choix thématique pour tous

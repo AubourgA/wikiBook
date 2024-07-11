@@ -5,15 +5,15 @@ import Footer from '../components/ui/Footer'
 
 function Root() {
   return (
-    <>
+    <div className='flex flex-col h-screen'>
       <header>
         <NavBar />
       </header>
-      <main>
+      <main className='grow'>
         <Outlet />
       </main>
       <Footer />
-    </>
+    </div>
   );
 
 
