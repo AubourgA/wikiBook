@@ -3,6 +3,7 @@ import { NavLink } from "react-router-dom";
 import { itemNav } from "../../lib/constants";
 import { RxHamburgerMenu } from "react-icons/rx";
 import { FaTimes } from "react-icons/fa";
+import logo from "../../assets/images/logo.svg"
 
 export default function NavBar() {
   const [isOpenNav, setIsOpenNav] = useState(false);
@@ -12,10 +13,10 @@ export default function NavBar() {
   const handleCloseNav = () => setIsOpenNav(false);
 
   return (
-    <nav className="fixed top-0 w-full px-2 bg-primary50 py-2 font-Secondary shadow-md">
+    <nav className="fixed top-0 z-10 w-full px-2 bg-primary50 py-2 font-Secondary shadow-md">
       <div className="container mx-auto flex items-center justify-between flex-wrap">
         <div>
-          <img src="" alt="logo" />
+          <img src={logo} alt="logo"  className='w-[64px]'/>
         </div>
 
         <button onClick={handleOpenNav} className="cursor-pointer md:hidden">
