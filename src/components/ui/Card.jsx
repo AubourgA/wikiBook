@@ -1,4 +1,4 @@
-
+import {node} from 'prop-types'
 
 const  Card = ( {children}) => {
   return (
@@ -23,3 +23,30 @@ Card.Footer = CardFooter;
 
 
 export  default Card;
+
+Card.propTypes = {
+    children : node.isRequired,
+}
+
+CardHeader.propTypes = {
+    children : node
+}
+
+
+CardContent.propTypes = {
+    children : node
+}
+
+
+CardTitle.propTypes = {
+    children : node
+}
+
+CardDescription.propTypes = {
+    children : node
+}
+
+CardFooter.propTypes = {
+    children : node
+}
+
