@@ -1,3 +1,7 @@
+
+import Card from "../components/ui/Card"
+
+
 import { TbFilterSearch } from "react-icons/tb";
 import { IoIosArrowForward } from "react-icons/io";
 import { CiSearch } from "react-icons/ci";
@@ -104,32 +108,23 @@ const handlePaginationClick = (path) => {
                 <h2 className='border-b-2 border-primary50 '>Résultat de la rercherche : <span>{ Books["hydra:totalItems"]} livre(s) trouvé(s)</span></h2>
 
                 <div className='flex justify-center flex-wrap gap-5 p-1 pt-5'>
-                    { Books && 
-            
-                      Books["hydra:member"].map( ({id, title, YearPublished}) => (  
-            
-
-                
-                    <div key={id} className='card shadow-xl hover:translate-y-1 transition-transform flex-[0_0_80%] sm:flex-[0_0_50%] md:flex-[0_0_25%]  '>
-                        
-                            <img src="https://placehold.co/250x250" className='h-[250px] object-cover rounded-t' alt="" />
-                          
-                            <div className='flex flex-col px-4 p-4 h-full'>
-                              <h2 className='text md:text-md lg:text-lg  font-semibold pb-2'>{title}</h2>
-                              
-                              <p className='flex-grow'>Année de Publication : {YearPublished}</p>
-                              <div className='flex gap-2'>
-
-                               <button className='border-2 border-primary100 rounded text-primary100 btn-pressed p-2 w-full mt-2'>Détail</button>
-                               <button className='rounded bg-secondary text-light btn-pressed p-2 w-full mt-2'>Réserver</button>
-                              </div>
-                            </div>
-                        </div>
-              
+                    { Books && Books["hydra:member"].map( ({id, title, YearPublished}) => (  
+                          <Card key={id}>
+                                <Card.Header>
+                                <img src="https://placehold.co/250x250" className='w-full h-[250px] object-cover rounded-t' alt="" />
+                                </Card.Header>
+                                <Card.Content className='flex flex-col px-4 pt-4 h-full'>
+                                    <Card.Title  className='text md:text-md lg:text-lg  font-semibold pb-2'>{title}</Card.Title>
+                                    <Card.Description>Année : {YearPublished}</Card.Description>
+                                </Card.Content>
+                                <Card.Footer className='flex gap-2 pb-4 px-2'>
+                                    <button className='border-2 border-primary100 rounded text-primary100 btn-pressed p-2 w-full mt-2'>Détail</button>
+                                    <button className='rounded bg-secondary text-light btn-pressed p-2 w-full mt-2'>Réserver</button>
+                                </Card.Footer>
+                            </Card>
                             )
                         )
                     }
-
                 </div>
                 {/* hydra view */}
         
