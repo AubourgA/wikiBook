@@ -1,21 +1,26 @@
 
 import Card from "../components/ui/Card"
+import Filters from '../components/features/Filters';
 
-
-import { TbFilterSearch } from "react-icons/tb";
-import { IoIosArrowForward } from "react-icons/io";
-import { CiSearch } from "react-icons/ci";
-import { GrPowerReset } from "react-icons/gr";
+import { buildQueryParams } from "../utils/QueryBuilder"
 
 import { useState, useEffect } from 'react';
+
+const INITIAL_FILTERS_STATE = ({
+  title:"",
+  author:"",
+  YearPublished:"",
+  genre:""
+})
 
 export default function Catalog() {
 
   const [Books, setBooks] = useState([])
     const [isLoading, setIsLoading] = useState(true);
     const [error, setError] = useState(null);
-
+    const [filters, setFilters] = useState( INITIAL_FILTERS_STATE)
     
+
     const fetchArticles = async (url) => {
       try {
 
@@ -30,7 +35,6 @@ export default function Catalog() {
           throw new Error('Network response was not ok');
         }
         const data = await response.json();
-        console.log(data)
         setBooks(data);
       } catch (error) {
         setError(error);
@@ -40,10 +44,31 @@ export default function Catalog() {
     };
 
 
+
   useEffect(() => {
-   
     fetchArticles(`${import.meta.env.VITE_API_URL}/books`);
 }, []); 
+
+
+
+const handleInputFilter = (name, value) => {
+  setFilters( (prev) => ( {
+      ...prev,
+      [name] : value
+  }))
+}
+
+
+const handleResultFilter = async () => {
+  const queryParams = buildQueryParams(filters);
+  const apiUrl = `${import.meta.env.VITE_API_URL}/books?${queryParams}`;
+  fetchArticles(apiUrl)
+};
+
+const handleResetFilters = () =>  {
+  setFilters( INITIAL_FILTERS_STATE)
+  fetchArticles(`${import.meta.env.VITE_API_URL}/books`)
+}
 
 const handlePaginationClick = (path) => {
   if (path) {
@@ -53,6 +78,8 @@ const handlePaginationClick = (path) => {
   }
 };
 
+
+  //  result conditional
   if (isLoading) {
     return <div>Loading...</div>;
   }
@@ -69,39 +96,10 @@ const handlePaginationClick = (path) => {
           <div className='grid grid-cols-[100px_3fr] md:grid-cols-[200px_3fr] gap-10 pt-2 pb-10'>
          
             {/* filtre section */}
-            <aside className="flex flex-col gap-4"> 
-              <div className='flex justify-between items-center bg-dark text-light p-2 rounded'>
-
-                  <p className='text-sm md:text-md'>Filtres</p>
-                  <TbFilterSearch />
-              </div>
-            <div className='flex justify-between items-center bg-primary50 text-dark p-2 rounded'>
-                <p className='text-sm md:text-md'>Titre</p>
-                <IoIosArrowForward />
-              </div>
-              <div className='flex justify-between items-center bg-primary50 text-dark p-2 rounded'>
-                <p className='text-sm md:text-md'>Auteur</p>
-                <IoIosArrowForward />
-              </div>
-              <div className='flex justify-between items-center bg-primary50 text-dark p-2 rounded'>
-                <p className='text-sm md:text-md'>Année</p>
-                <IoIosArrowForward />
-              </div>
-              <div className='flex justify-between items-center bg-primary50 text-dark p-2 rounded'>
-                <p className='text-sm md:text-md'>Genre</p>
-                <IoIosArrowForward />
-              </div>
-              
-                <button className='flex justify-between items-center border border-secondary p-2 rounded btn-pressed text-secondary text-sm md:text-md'>
-                Reset
-                <GrPowerReset />
-                </button>
-
-              <button className='flex justify-between items-center bg-secondary p-2 rounded btn-pressed text-light text-sm md:text-md'>
-                Appliquer
-                <CiSearch />
-                </button>
-            </aside>
+            <Filters filters={filters}
+                    onFilterChange={handleInputFilter}
+                    onApplyFilters={handleResultFilter}
+                    onResetFilters={handleResetFilters} />
 
             {/* contenu recherche */}
             <section>
@@ -129,7 +127,7 @@ const handlePaginationClick = (path) => {
                 {/* hydra view */}
         
                 <div className='flex items-center justify-center gap-2 my-4'>
-                    <p>Page :</p>
+                   
                     {Books["hydra:view"] && Books["hydra:view"]["hydra:first"] && (
                       <button className="bg-primary50 p-1 rounded hover:bg-secondary" 
                               onClick={() => handlePaginationClick(Books["hydra:view"]["hydra:first"])}>
@@ -154,6 +152,7 @@ const handlePaginationClick = (path) => {
                   Derniere
                 </button>
               )}
+              
               </div>
             </section>
 

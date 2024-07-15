@@ -7,22 +7,22 @@ import hobby from "../assets/miniatures/hobby.png"
 import young from "../assets/miniatures/young.png"
 
 import { FaFacebookF, FaTwitter, FaInstagram } from "react-icons/fa";
-
+import { IoIosArrowForward } from "react-icons/io";
 
 export const itemNav = [
     {
         id : 1,
-        title : "Home",
+        title : "Acceuil",
         url : "/"
     },
     {
         id:2,
-        title:"Catalogs",
+        title:"Catalogue",
         url:  "/Catalogs"
     },
     {
         id:3,
-        title:"News",
+        title:"Actualité",
         url:  "/News"
     },
     {
@@ -138,3 +138,30 @@ export const Social = [
         }
 ]
 
+export const sideFilter = [
+    {
+        id:1,
+        filter:"Titre",
+        traduction:"title",
+        icon: IoIosArrowForward,
+    },
+    {
+        id:2,
+        filter:"Auteur",
+        traduction:"author",
+        icon: IoIosArrowForward
+    },
+    {
+        id:3,
+        filter:"Année",
+        traduction:"YearPublished",
+        icon: IoIosArrowForward
+    },
+    {
+        id:4,
+        filter:"Genre",
+        traduction:"genre",
+        icon: IoIosArrowForward
+    },
+
+]
