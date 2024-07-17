@@ -30,3 +30,16 @@
                 hover:translate-y-1 hover:shadow-inner;
     }
 }
+
+/* layout */
+
+@layer utilities {
+    .grid-auto-fill50 {
+      grid-template-columns: repeat(auto-fill, minmax(50px, 1fr));
+    }
+  }
+
+
+.error {
+    @apply text-red-500 text-sm mt-1
+}
