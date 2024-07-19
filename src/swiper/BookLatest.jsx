@@ -17,7 +17,8 @@ export default function BookLatest( ) {
   useEffect(() => {
     const fetchArticles = async () => {
       try {
-        // const response = await fetch("https://api-wikibook.adrienaubourg.fr/api/books", {
+       
+        // const response = await fetch(`${import.meta.env.VITE_API_URL}/books`, {
         const response = await fetch(`${import.meta.env.VITE_API_URL}/books`, {
             method: "GET",
             mode: 'cors',

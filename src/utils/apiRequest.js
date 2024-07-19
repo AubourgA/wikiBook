@@ -21,3 +21,22 @@ export const callAPI = async (url, options = {}) => {
       throw error; // Re-throw the error if you want to handle it elsewhere
     }
   };
+
+  export const sendEmail = async (url, email1, message1) => {
+    const response = await fetch(url, {
+      method: 'POST',
+      mode: 'cors',
+      headers: {
+        'Content-Type': "application/json",
+        
+      },
+      body: JSON.stringify( {email : email1, message : message1} ),
+    });
+  
+    if (response.ok) {
+      console.log('Email sent!');
+    } else {
+      const error = await response.json();
+      console.error('Error:', error);
+    }
+  };

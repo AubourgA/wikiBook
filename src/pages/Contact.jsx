@@ -1,5 +1,5 @@
 import { useState } from "react"
-
+import { sendEmail } from '../utils/apiRequest';
 // import mailPic from "../assets/images/mail.png"
 
 // import { GiPositionMarker } from "react-icons/gi";
@@ -61,7 +61,9 @@ export default function Contact() {
 
     if (Object.keys(validationErrors).length === 0) {
       // Envoi du formulaire
-      console.log('Formulaire envoyé avec succès', formData);
+   
+      sendEmail(`${import.meta.env.VITE_API_MAILER}`, formData.email, formData.message)
+   
       setFormData(INITIAL_FORM_VALUE)
       
       
