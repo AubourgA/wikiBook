@@ -22,7 +22,7 @@ export const callAPI = async (url, options = {}) => {
     }
   };
 
-  export const sendEmail = async (url, email1, message1) => {
+  export const sendEmail = async (url, lastname, firstname, email, message) => {
     const response = await fetch(url, {
       method: 'POST',
       mode: 'cors',
@@ -30,7 +30,11 @@ export const callAPI = async (url, options = {}) => {
         'Content-Type': "application/json",
         
       },
-      body: JSON.stringify( {email : email1, message : message1} ),
+      body: JSON.stringify( {
+        lastname, 
+        firstname,
+         email,
+          message} ),
     });
   
     if (response.ok) {

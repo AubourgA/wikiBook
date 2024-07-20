@@ -6,8 +6,8 @@ import { sendEmail } from '../utils/apiRequest';
 // import { BsTelephoneFill } from "react-icons/bs";
 
 const INITIAL_FORM_VALUE = {
-  lastName: '',
-  firstName: '',
+  lastname: '',
+  firstname: '',
   email: '',
   message: ''
 }
@@ -29,16 +29,16 @@ export default function Contact() {
   const validateForm = () => {
     const newErrors = {};
 
-    if (!formData.firstName) {
-      newErrors.firstName = 'Le prénom est requis';
-    } else if (!/^[a-zA-Z]+$/.test(formData.firstName)) {
-      newErrors.firstName = 'Le prénom ne doit contenir que des lettres';
+    if (!formData.firstname) {
+      newErrors.firstname = 'Le prénom est requis';
+    } else if (!/^[a-zA-Z]+$/.test(formData.firstname)) {
+      newErrors.firstname = 'Le prénom ne doit contenir que des lettres';
     }
 
-    if (!formData.lastName) {
-      newErrors.lastName = 'Le nom est requis';
-    } else if (!/^[a-zA-Z]+$/.test(formData.lastName)) {
-      newErrors.lastName = 'Le nom ne doit contenir que des lettres';
+    if (!formData.lastname) {
+      newErrors.lastname = 'Le nom est requis';
+    } else if (!/^[a-zA-Z]+$/.test(formData.lastname)) {
+      newErrors.lastname = 'Le nom ne doit contenir que des lettres';
     }
 
     if (!formData.email) {
@@ -62,7 +62,7 @@ export default function Contact() {
     if (Object.keys(validationErrors).length === 0) {
       // Envoi du formulaire
    
-      sendEmail(`${import.meta.env.VITE_API_MAILER}`, formData.email, formData.message)
+      sendEmail(`${import.meta.env.VITE_API_MAILER}`,formData.lastname, formData.firstname, formData.email, formData.message)
    
       setFormData(INITIAL_FORM_VALUE)
       
@@ -78,24 +78,24 @@ export default function Contact() {
             <form className='p-10' onSubmit={handleSubmitContact}> 
                 <h1 className='font-primary text-3xl text-dark'>Formulaire de Contact</h1>
                 <div className='flex flex-col pt-5 pb-2'>
-                  <label htmlFor="lastName">Nom</label>
+                  <label htmlFor="lastname">Nom</label>
                   <input  type="text"
-                          id="lastName"
-                          name="lastName"
-                          value={formData.lastName}
+                          id="lastname"
+                          name="lastname"
+                          value={formData.lastname}
                           onChange={handleChange}
                           className='text-sm p-2 rounded-xl' />
-                  {errors.lastName && <p className="error">{errors.lastName}</p>}
+                  {errors.lastName && <p className="error">{errors.lastname}</p>}
                 </div>
                 <div className='flex flex-col py-2'>
                   <label htmlFor="firstname">Prenom</label>
                   <input  type="text"
-                          id="firstName"
-                          name="firstName"
-                          value={formData.firstName}
+                          id="firstname"
+                          name="firstname"
+                          value={formData.firstname}
                           onChange={handleChange}
                           className='text-sm p-2 rounded-xl' />
-                  {errors.firstName && <p className="error">{errors.firstName}</p>}
+                  {errors.firstName && <p className="error">{errors.firstname}</p>}
                 </div>
                 <div className='flex flex-col py-2'>
                   <label htmlFor="email">Email</label>
