@@ -9,7 +9,8 @@ import Root from '../pages/Root';
 import Contact from '../pages/Contact';
 import Login from '../pages/Login';
 import Subscribe from '../pages/Subscribe';
-
+import Dashboard from '../pages/Admin/Dashboard';
+import PrivateRoute from './PrivateRoute';
  
 const router = createBrowserRouter([
   {
@@ -40,6 +41,14 @@ const router = createBrowserRouter([
       {
         path: "/Subscribe",
         element: <Subscribe />,
+      },
+      {
+        path: "/Dashboard",
+        element:(
+          <PrivateRoute roles={['ROLE_ADMIN']}>
+            <Dashboard />
+          </PrivateRoute>
+        ),
       },
     ],
   },
