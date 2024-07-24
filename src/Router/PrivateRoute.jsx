@@ -21,8 +21,7 @@ const PrivateRoute = ({ children, role }) => {
   
 
   if (role && !role.includes(userRole)) {
-    console.log(role)
-    return <Navigate to="/unauthorized" />;
+    return <Navigate to="/" />;
   }
 
 

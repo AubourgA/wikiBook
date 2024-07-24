@@ -27,6 +27,7 @@ const AuthProvider = ( {children }) => {
           const decoded = jwtDecode(token);
           setUser(decoded);
           setIsLogged(true);
+          return decoded;
         } catch (error) {
           console.error('Login failed', error);
         }

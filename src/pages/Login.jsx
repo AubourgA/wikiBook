@@ -1,5 +1,4 @@
 import { useState, useContext } from 'react'
-// import { authentification } from '../utils/apiRequest'
 import { useNavigate } from 'react-router-dom';
 
 import { AuthContext } from '../Context/AuthContext';
@@ -27,11 +26,13 @@ export default function Login() {
 
   const handleLogin = async (e) => {
         e.preventDefault()
-        await login(credentials)
-        navigate('/Dashboard');
-         
+        const loggedInUser = await login(credentials)
         
-
+        if (loggedInUser && loggedInUser.roles.includes('ROLE_ADMIN')) {
+          navigate('/Dashboard');
+        } else {
+          navigate('/Account');
+        }
        
   }
 

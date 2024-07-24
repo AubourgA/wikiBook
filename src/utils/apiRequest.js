@@ -63,13 +63,8 @@ export const authentification = async (url, credentials) => {
       },
       withCredentials: true
     });
-    
     const token = response.data.token;
-    // Stocker le JWT dans un cookie HTTP Only
-    localStorage.setItem('jwt-token', token)
-    // Cookies.set('token', token, { httpOnly: true });
     return token;
-
   } catch (error) {
     if (error.response) {
       // La requête a été faite et le serveur a répondu avec un code de statut

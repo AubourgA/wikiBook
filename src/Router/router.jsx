@@ -12,7 +12,7 @@ import Login from '../pages/Login';
 import Subscribe from '../pages/Subscribe';
 import Dashboard from '../pages/Admin/Dashboard';
 import PrivateRoute from './PrivateRoute';
-
+import Account from '../pages/UserAccount/Account';
 
 
 const router = createBrowserRouter([
@@ -50,6 +50,14 @@ const router = createBrowserRouter([
         element:(
           <PrivateRoute roles={['ROLE_ADMIN']}>
             <Dashboard />
+          </PrivateRoute>
+        ),
+      },
+      {
+        path: "/Account",
+        element:(
+          <PrivateRoute roles={['ROLE_USER']}>
+            <Account />
           </PrivateRoute>
         ),
       },
