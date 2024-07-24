@@ -49,25 +49,7 @@ export const callAPI = async (url, options = {}) => {
   };
 
 
-  // export const authentification = async (url,  credentials) => {
-  //   const response = await fetch(url, {
-  //     method : 'POST',
-  //     mode: 'cors',
-  //     headers : {
-  //       'Content-Type' : "application/json",
-  //     },
-  //     body: JSON.stringify( {email: credentials.email, password: credentials.password} )
-         
-        
-  //   })
-  //   if (response.ok) {
-  //     return response.json()
-  //   } 
-  //   else {
-  //     const error = await response.json();
-  //     console.error('Error:', error);
-  //   }
-  // }
+
 
   
 export const authentification = async (url, credentials) => {

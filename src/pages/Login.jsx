@@ -1,6 +1,8 @@
-import { useState } from 'react'
-import { authentification } from '../utils/apiRequest'
+import { useState, useContext } from 'react'
+// import { authentification } from '../utils/apiRequest'
 import { useNavigate } from 'react-router-dom';
+
+import { AuthContext } from '../Context/AuthContext';
 
 const INITIAL_CREDENTIAL = {
   email :"",
@@ -11,7 +13,9 @@ const INITIAL_CREDENTIAL = {
 export default function Login() {
 
   const [credentials, setCredentials] = useState( INITIAL_CREDENTIAL )
+  const { login } = useContext(AuthContext);
   const navigate = useNavigate();
+  
 
   const handleCredential = (e) => {
     const {name, value} = e.target
@@ -23,13 +27,10 @@ export default function Login() {
 
   const handleLogin = async (e) => {
         e.preventDefault()
-       
-
-         const token = await authentification(`${import.meta.env.VITE_API_AUTH}`, credentials)
+        await login(credentials)
+        navigate('/Dashboard');
+         
         
-         if (token) {
-          navigate('/Dashboard');
-        }
 
        
   }

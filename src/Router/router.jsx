@@ -1,6 +1,7 @@
 //Router.jsx
 import { createBrowserRouter } from "react-router-dom";
 
+
 import Home from '../pages/Home';
 import PageError from "../pages/PageError";
 import News from '../pages/News';
@@ -11,7 +12,9 @@ import Login from '../pages/Login';
 import Subscribe from '../pages/Subscribe';
 import Dashboard from '../pages/Admin/Dashboard';
 import PrivateRoute from './PrivateRoute';
- 
+
+
+
 const router = createBrowserRouter([
   {
     path: "/",
