@@ -52,6 +52,10 @@ const router = createBrowserRouter([
             <Dashboard />
           </PrivateRoute>
         ),
+        //ICI pour partie lien dashboard
+        // children: [
+        //   {path : "/Dashboard/user", element : <p>mon path</p>}
+        // ]
       },
       {
         path: "/Account",
