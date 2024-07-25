@@ -18,7 +18,9 @@ export default {
         primary25 : "#f1f1f1",
         secondary : "#e46f33",
         dark : "#003060",
-        light: "#ffffff"
+        light: "#ffffff",
+        error: "#842029",
+        
       },
     },
   },

@@ -1,6 +1,6 @@
 
 
-export default function SignUpForm( {value, onFormData : handleFormData, onSubmit: handleSubmitData}) {
+export default function SignUpForm( {value, onFormData : handleFormData, onSubmit: handleSubmitData, validation}) {
 
     
   return (
@@ -15,7 +15,7 @@ export default function SignUpForm( {value, onFormData : handleFormData, onSubmi
               value={value.name}
               onChange={ handleFormData}
               className='text-sm p-2 rounded-xl' />
-     
+   {validation.name && (<p className='error text-xs pt-1'><span className='bg-red-300 rounded-xl px-1 font-bold'>ERREUR</span> Le champs doit comporter des lettres</p>)}
     </div>
     <div className='flex flex-col py-2'>
       <label htmlFor="firstname">Prenom</label>
@@ -26,7 +26,7 @@ export default function SignUpForm( {value, onFormData : handleFormData, onSubmi
               value={value.firstname}
               onChange={ handleFormData}
               className='text-sm p-2 rounded-xl' />
-     
+     {validation.firstname && (<p className='error text-xs pt-1'><span className='bg-red-300 rounded-xl px-1 font-bold'>ERREUR</span> Le champs doit comporter des lettres</p>)}
     </div>
     <div className='flex flex-col py-2'>
       <label htmlFor="numPortable">Numero de téléphone</label>
@@ -38,6 +38,7 @@ export default function SignUpForm( {value, onFormData : handleFormData, onSubmi
              value={value.numPortable}
              onChange={ handleFormData}
               className='text-sm p-2 rounded-xl' />
+      {validation.numPortable && (<p className='error text-xs pt-1'><span className='bg-red-300 rounded-xl px-1 font-bold'>ERREUR</span> Le champs n'a pas le bon format</p>)}
     </div>
     <div className='flex flex-col py-2'>
       <label htmlFor="city">Ville</label>
@@ -48,26 +49,29 @@ export default function SignUpForm( {value, onFormData : handleFormData, onSubmi
               value={value.city}
               onChange={ handleFormData}
               className='text-sm p-2 rounded-xl' />
+    {validation.city && (<p className='error text-xs pt-1'><span className='bg-red-300 rounded-xl px-1 font-bold'>ERREUR</span> Le champs doit comporter des lettres</p>)}
     </div>
     <div className='flex flex-col py-2'>
-      <label htmlFor="email">ID</label>
+      <label htmlFor="email">email</label>
       <input  type="email"
               id="email"
               name="email"
-              placeholder='exemple@exemple.com'
+              placeholder='exemple@mail.com'
               value={value.email}
               onChange={ handleFormData}
               className='text-sm p-2 rounded-xl' />
+     {validation.email && (<p className='error text-xs pt-1'><span className='bg-red-300 rounded-xl px-1 font-bold'>ERREUR</span> Le champs doit etre de type email</p>)}
     </div>
     <div className='flex flex-col py-2'>
       <label htmlFor="password">Password</label>
       <input  type="password"
               id="password"
               name="password"
-              placeholder='Choissiez votre mot de passe'
+              placeholder='Choisissez votre mot de passe'
               value={value.password}
               onChange={ handleFormData}
               className='text-sm p-2 rounded-xl' />
+     {validation.email && (<p className='error text-xs pt-1'><span className='bg-red-300 rounded-xl px-1 font-bold'>ERREUR</span> Le champs doit etre de 8 carac mini et 1 special</p>)}
     </div>
 
 
