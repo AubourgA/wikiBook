@@ -1,11 +1,15 @@
 
 
-export default function SignUpForm( {value, onFormData : handleFormData, onSubmit: handleSubmitData, validation}) {
+export default function SignUpForm( {value, onFormData : handleFormData, onSubmit: handleSubmitData, validation, error}) {
 
     
   return (
     <form className='p-10' onSubmit={handleSubmitData} > 
     <h1 className='font-primary text-3xl text-dark'>Créer son espace </h1>
+
+    {error && (<p className='error bg-red-300 rounded-md p-1 text-center'>Une erreur est survenue</p>)} 
+
+
     <div className='flex flex-col pt-5 pb-2'>
       <label htmlFor="name">Nom</label>
       <input  type="text"

@@ -25,9 +25,8 @@ const INITIAL_VALIDATION = {
 export default function Subscribe() {
 
  const [formData, setFormData] = useState( INITIAL_VALUE )
- const [showValidation, setShowValidation] = useState({
-  ...INITIAL_VALIDATION
- })
+ const [showValidation, setShowValidation] = useState({...INITIAL_VALIDATION })
+ const [error, setError] = useState(null);
 
  const navigate = useNavigate();
 
@@ -86,10 +85,11 @@ export default function Subscribe() {
       setShowValidation( state => ( {...state, password : false }) )
     }
 
-  if(Object.values(areValid).every( value => value)) {
-     return true
-  } else {
-    return false
+    //verifier l'object si toutes les valeurs sont true
+    if(Object.values(areValid).every( value => value)) {
+      return true
+    } else {
+      return false
   }
     
   
@@ -106,9 +106,17 @@ export default function Subscribe() {
 
     //envoi data si formulaire est valide
      const response = await createUser(`${import.meta.env.VITE_API_CREATE_USER}`, formData)
-     if(response) {
-      navigate('/Login')
-     }
+     
+    //traitement error
+     if (response.success) {
+      navigate('/Login');
+    } else {
+      if (response.error) {
+        setError(`Erreur de connexion : ${response.error.title || response.error}`);
+      } else {
+        setError('Une erreur inconnue est survenue.');
+      }
+    }
  }
 
 
@@ -118,11 +126,12 @@ export default function Subscribe() {
   return (
     <section className='flex justify-center  items-center bg-primary50/25 h-screen'>
         <div className='grid  grid-cols-1 grid-rows-1 max-w-sm md:max-w-5xl gap-2 shadow-xl bg-primary50 rounded  sm:grid-cols-2'>
-
+          {/* {error && (<p>Une erreur est survenue</p>)} */}
           <SignUpForm  value={formData} 
                        onFormData={handleSubscribeValue}
                        onSubmit={(e)=>handleSubmitSignUp(e)}
-                       validation={showValidation} />
+                       validation={showValidation}
+                       error={error} />
         </div>
       </section>
   )

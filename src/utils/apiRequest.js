@@ -88,14 +88,16 @@ export const createUser = async (url, formData) => {
       },
     });
 
-    if (response.status === 201) {
-      // Rediriger l'utilisateur vers la page de connexion ou autre
-     return true
-    } else {
-      // Gérer les erreurs de la réponse de l'API
-      console.error('Error:', response.data);
-    }
-  } catch (error) {
-    console.error('Error:', error.response ? error.response.data : error.message);
+    //Gestion error
+  if (response.status === 201) {
+    // Rediriger l'utilisateur vers la page de connexion ou autre
+    return { success: true };
+  } else {
+    // Gérer les erreurs de la réponse de l'API
+    return { success: false, data: response.data };
   }
+} catch (error) {
+  const errorMsg = error.response ? error.response.data : error.message;
+  return { success: false, error: errorMsg };
+}
 };
