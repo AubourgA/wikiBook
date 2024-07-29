@@ -43,7 +43,7 @@ export const HeroSection =
 
 
 
-export const ChoiceTheme = [
+export const subjects = [
     {
         id:1,
         title: "Litérature",
@@ -138,7 +138,7 @@ export const Social = [
         }
 ]
 
-export const sideFilter = [
+export const sideFilters = [
     {
         id:1,
         filter:"Titre",

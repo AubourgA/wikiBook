@@ -71,14 +71,14 @@ export default function NavBar() {
                     >
                       <NavLink
                         to="/Subscribe"
-                        className="text-secondary rounded-xl border border-secondary p-2 btn-pressed"
+                        className="text-secondary rounded-xl border border-secondary px-4 py-2 btn-pressed"
                         onClick={handleCloseNav}
                       >
                         Inscription
                       </NavLink>
                       <NavLink
                         to="/Login"
-                        className="rounded-xl bg-secondary text-light p-2 btn-pressed"
+                        className="rounded-xl bg-secondary text-light px-4 py-2 btn-pressed"
                         onClick={handleCloseNav}
                       >
                         Se Connecter

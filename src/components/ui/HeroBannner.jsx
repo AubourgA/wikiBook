@@ -24,7 +24,7 @@ export default function HeroBannner() {
             </p>
             <Link
               to="/Catalogs"
-              className="inline-block mt-4 p-2 rounded-xl bg-secondary text-light btn-pressed"
+              className="inline-block mt-4 py-2 px-4 rounded-xl bg-secondary text-light btn-pressed"
             >
               Réserver un livre
             </Link>

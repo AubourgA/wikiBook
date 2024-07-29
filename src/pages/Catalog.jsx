@@ -96,7 +96,7 @@ const handlePaginationClick = (path) => {
           <div className='grid grid-cols-[100px_3fr] md:grid-cols-[200px_3fr] gap-10 pt-2 pb-10'>
          
             {/* filtre section */}
-            <Filters filters={filters}
+            <Filters values={filters}
                     onFilterChange={handleInputFilter}
                     onApplyFilters={handleResultFilter}
                     onResetFilters={handleResetFilters} />
