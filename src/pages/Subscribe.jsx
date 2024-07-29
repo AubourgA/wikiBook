@@ -30,7 +30,7 @@ export default function Subscribe() {
 
  const navigate = useNavigate();
 
- const handleSubscribeValue = (e) => {
+ const handleSubscribeValue = () => (e) => {
     const { name, value} = e.target
     setFormData( {...formData,
       [name] : value
