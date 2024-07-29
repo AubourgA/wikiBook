@@ -8,6 +8,7 @@ import { CiSearch } from "react-icons/ci";
 import { GrPowerReset } from "react-icons/gr";
 // import { IoIosArrowDown } from "react-icons/io";
 import SideFilters from './SideFilters';
+import Button from '../ui/Button';
 
 
 
@@ -40,18 +41,15 @@ const handleInputFilter = () => (e)  => {
                 onFilterChange={handleInputFilter}
                 />
 
-    
-      <button className='flex justify-between items-center border border-secondary p-2 rounded btn-pressed text-secondary text-sm md:text-md'
-              onClick={onResetFilters}>
-      Reset
-      <GrPowerReset />
-      </button>
-
-    <button className='flex justify-between items-center bg-secondary p-2 rounded btn-pressed text-light text-sm md:text-md'
-            onClick={onApplyFilters}>
-      Appliquer
-      <CiSearch />
-      </button>
+     <Button title="Reset" 
+              className="border-secondary text-secondary"
+              icon={GrPowerReset}
+              onButtonClick={onResetFilters}/>
+     <Button title="Appliquer" 
+              className="bg-secondary text-light"
+              icon={CiSearch}
+              onButtonClick={onApplyFilters}/>
+      
   </aside>
 
   )

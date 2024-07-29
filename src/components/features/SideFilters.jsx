@@ -1,7 +1,7 @@
 import { IoIosArrowDown } from 'react-icons/io';
 import {  sideFilters } from '../../lib/constants';
 import InputText from '../ui/InputText';
-
+import { object, func, string } from 'prop-types';
 
 export default function SideFilters( {selectedFilter,
                                       values,
@@ -36,3 +36,10 @@ export default function SideFilters( {selectedFilter,
   )
 }
 
+SideFilters.propTypes = {
+  selectedFilter : string,
+  values : object.isRequired,
+  onFilterClick : func.isRequired,
+  onInputClick: func.isRequired,
+  onFilterChange: func.isRequired
+}

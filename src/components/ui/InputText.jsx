@@ -1,4 +1,4 @@
-
+import { func, string } from 'prop-types';
 
 export default function InputText( {name, 
                                     values,
@@ -16,4 +16,11 @@ export default function InputText( {name,
     className="p-1 border rounded w-full text-sm mt-2 transition"
   />
   )
+}
+
+InputText.propTypes = {
+  name : string.isRequired,
+  values : string.isRequired,
+  onChangeFilter : func.isRequired,
+  onInputClick : func.isRequired
 }
