@@ -1,5 +1,5 @@
 import { IoIosArrowDown } from 'react-icons/io';
-import {  sideFilters } from '../../lib/constants';
+import {  sideFilters } from '../../Constants/filters.content';
 import InputText from '../ui/InputText';
 import { object, func, string } from 'prop-types';
 

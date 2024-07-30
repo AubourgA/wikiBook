@@ -3,11 +3,12 @@ import { AuthContext } from '../../Context/AuthContext';
 import { useNavigate } from 'react-router-dom';
 
 import { NavLink } from "react-router-dom";
-import { itemNav } from "../../lib/constants";
+
 import { RxHamburgerMenu } from "react-icons/rx";
 import { FaTimes } from "react-icons/fa";
 import logo from "../../assets/images/logo.svg"
 import { RiLogoutCircleRLine } from "react-icons/ri";
+import { itemNavs } from '../../Constants/nav.content';
 
 export default function NavBar() {
   const { isLogged, logout, user } = useContext(AuthContext);
@@ -37,7 +38,7 @@ export default function NavBar() {
               : "hidden"
           }   transition-all duration-300 ease-in-out md:flex  md:flex-row gap-2`}
         >
-          {itemNav.map((item) => (
+          {itemNavs.map((item) => (
             <NavLink
               key={item.id}
               to={item.url}

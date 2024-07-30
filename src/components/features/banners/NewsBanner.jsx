@@ -1,4 +1,4 @@
-import BookLatest from "../../swiper/BookLatest";
+import BookLatest from "../../../swiper/BookLatest";
 import { FaArrowRight } from "react-icons/fa6";
 
 function NewsBanner() {

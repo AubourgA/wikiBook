@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { HeroSection } from "../../lib/constants";
+import { HeroSection } from "../../../Constants/banner.content";
 
 export default function HeroBannner() {
   return (

@@ -1,5 +1,5 @@
 
-import Subjects from '../features/Subjects';
+import Subjects from '../Subjects';
 
 export default function ChoiceBanner() {
   return (
