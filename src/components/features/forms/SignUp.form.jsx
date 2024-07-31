@@ -1,5 +1,5 @@
-import InputForm from './InputForm';
-import MessageForm from './MessageForm';
+import InputForm from '../../ui/InputForm';
+import MessageForm from '../../ui/MessageForm';
 import { string, func} from "prop-types";
 
 export default function SignUpForm( {value, onFormData : handleFormData, onSubmit: handleSubmitData, validation, error}) {

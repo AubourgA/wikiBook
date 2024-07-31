@@ -1,6 +1,6 @@
 
 import Card from "../components/ui/Card"
-import Filters from '../components/features/Filters';
+import Filters from '../components/features/filters/Filters';
 
 import { buildQueryParams } from "../utils/QueryBuilder"
 

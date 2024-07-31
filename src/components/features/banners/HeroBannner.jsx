@@ -1,22 +1,23 @@
 import { Link } from "react-router-dom";
-import { HeroSection } from "../../../Constants/banner.content";
+import { heroSection } from "../../../Constants/banner.content";
+import Image from "../../ui/Image";
 
 export default function HeroBannner() {
   return (
     <section className="h-screen flex items-center bg-primary50">
       <div className="container mx-auto  flex justify-center ">
         <div className="grid grid-cols-1 p-10 sm:grid-cols-2  md:p-0  place-items-center min-h-[600px]">
-          {/* content */}
+        
           <div>
             <p className="font-secondary text-xl italic">
-              {HeroSection.surTitle}
+              {heroSection.surTitle}
             </p>
             <h1 className="font-primary leading-10 text-4xl md:text-6xl py-4 text-dark">
-              {" "}
+           
               <span className="text-primary75 font-bold">
-                {HeroSection.title}
+                {heroSection.title}
               </span>
-              , {HeroSection.extraTitle}
+              , {heroSection.extraTitle}
             </h1>
             <p className="mt-2 text-primary100">
               Lorem ipsum dolor sit, amet consectetur adipisicing elit. Corrupti
@@ -29,14 +30,10 @@ export default function HeroBannner() {
               Réserver un livre
             </Link>
           </div>
-
-          {/* image */}
           <div>
-            <img
-              src={HeroSection.urlImg}
-              alt="image bibio"
-              className="w-50 md:w-30"
-            />
+            <Image img={heroSection.urlImg}
+                  text="image biblio"
+                  className="w-50 md:w-30"/>
           </div>
         </div>
       </div>

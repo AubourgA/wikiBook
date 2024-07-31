@@ -14,21 +14,30 @@ const AuthProvider = ( {children }) => {
     useEffect( ()=> {
         const token = localStorage.getItem('jwt-token')
         if(token) {
-            const decoded = jwtDecode(token)
-            setUser(decoded)
+            try {
+                const decoded = jwtDecode(token)
+                setUser(decoded)
+                setIsLogged(true)
+            }catch (error) {
+                console.error('Invalid token', error);
+                localStorage.removeItem('jwt-token');
+            }
         }
     },[])
 
     const login = async (userData) => {
         try {
           const token = await authentification(`${import.meta.env.VITE_API_AUTH}`, userData);
-        
-          localStorage.setItem('jwt-token', token);
-          const decoded = jwtDecode(token);
-          setUser(decoded);
-          setIsLogged(true);
-          return decoded;
-        } catch (error) {
+          if (token && token !== 'undefined') {
+            localStorage.setItem('jwt-token', token);
+            const decoded = jwtDecode(token);
+            setUser(decoded);
+            setIsLogged(true);
+            return decoded;
+          } else {
+            throw new Error('Invalid token received');
+          } 
+        }catch (error) {
           console.error('Login failed', error);
         }
       };

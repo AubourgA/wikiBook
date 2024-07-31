@@ -1,7 +1,9 @@
 import { useState, useContext } from 'react'
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 import { AuthContext } from '../Context/AuthContext';
+import SignIn from '../components/features/forms/SignIn.form';
+import Image from '../components/ui/Image'
 
 const INITIAL_CREDENTIAL = {
   email :"",
@@ -38,39 +40,18 @@ export default function Login() {
 
   return (
     <section className='flex justify-center  items-center bg-primary50/25 h-screen'>
-    <div className='grid  grid-cols-1 grid-rows-1 max-w-sm md:max-w-5xl gap-2 shadow-xl bg-primary50 rounded  sm:grid-cols-2'>
+    <div className='grid grid-cols-1 grid-rows-1 p-8 max-w-sm md:max-w-5xl gap-2 shadow-xl bg-primary50 rounded  sm:grid-cols-2'>
+      <div>
+        <SignIn onSubmit={handleLogin}
+               onChange={handleCredential} datas={credentials} />
+        <div className='flex flex-col place-items-center p-2'>
+            <p className='text-gray-400'>Vous n'étes pas encore client ?</p>
+            <Link to="/Subscribe" className='text-sm border border-primary100 rounded px-4 py-1 text-primary100'>Créer un compte</Link>
+        </div>
+      </div>
+      {/* Imge a metre ici*/}
+    <Image />
 
-        <form className='p-10' onSubmit={handleLogin} > 
-            <h1 className='font-primary text-3xl text-dark'>Déja client</h1>
-            <div className='flex flex-col pt-5 pb-2'>
-              <label htmlFor="id">ID</label>
-              <input  type="email"
-                      id="email"
-                      name="email"
-                      value={credentials.email}
-                      onChange={handleCredential}
-                      className='text-sm p-2 rounded-xl' />
-              {/* {errors.lastName && <p className="error">{errors.lastname}</p>} */}
-            </div>
-            <div className='flex flex-col py-2'>
-              <label htmlFor="password">Password</label>
-              <input  type="password"
-                      id="password"
-                      name="password"
-                      value={credentials.password}
-                      onChange={handleCredential}
-                      className='text-sm p-2 rounded-xl' />
-              {/* {errors.firstName && <p className="error">{errors.firstname}</p>} */}
-            </div>
-      
-     
-            <button type="submit" className='rounded-xl p-2 bg-primary100 w-full mt-2 text-light'>Se Connecter</button>
-            <div>
-              <p className=''>Vous n'étes pas encore client ?</p>
-              <p><a href="">Créer votre espace client</a></p>
-            </div>
-        </form>
-       
     </div>
     
 </section>

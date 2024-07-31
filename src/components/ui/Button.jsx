@@ -1,16 +1,17 @@
 import { string,elementType,func } from 'prop-types';
 
-export default function Button( {title, className, icon:Icon, onButtonClick:handleResetFilter}) {
+export default function Button( {title, className, icon:Icon, onButtonClick, type}) {
   return (
-    <button className={ `${className} flex justify-between items-center border  p-2 rounded btn-pressed  text-sm md:text-md` }
-            onClick={()=>handleResetFilter()}>
+    <button type={type} className={ ` flex  items-center border  p-2 rounded btn-pressed  text-sm ${className} md:text-md` }
+            onClick={onButtonClick}>
         {title}
-        <Icon />
+        {Icon && <Icon />}
     </button>
   )
 }
 
 Button.propTypes = {
+   type:string.isRequired,
     title: string.isRequired,
     className: string.isRequired,
     icon: elementType,

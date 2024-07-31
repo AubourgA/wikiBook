@@ -1,5 +1,5 @@
 import {useState} from "react";
-import SignUpForm from '../components/ui/SignUp.form';
+import SignUpForm from '../components/features/forms/SignUp.form';
 import { createUser } from '../utils/apiRequest';
 import { useNavigate } from 'react-router-dom';
 import { isAlphabetic, isValidEmail, isValidFrenchPhoneNumber,isValidPassword } from '../utils/validation';
