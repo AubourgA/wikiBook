@@ -15,6 +15,5 @@ Button.propTypes = {
     title: string.isRequired,
     className: string.isRequired,
     icon: elementType,
-    onButtonClick:func.isRequired
-
+    onButtonClick:func
 }

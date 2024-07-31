@@ -1,3 +1,4 @@
+import Button from '../../ui/Button';
 import InputForm from '../../ui/InputForm';
 import MessageForm from '../../ui/MessageForm';
 import { string, func} from "prop-types";
@@ -16,8 +17,9 @@ export default function SignUpForm( {value, onFormData : handleFormData, onSubmi
 
 
     <div className='flex flex-col pt-5 pb-2'>
-      <label htmlFor="name">Nom</label>
+     
        <InputForm type="text"
+                  label="Nom"
                   id="name" 
                     name="name"
                    placeholder="Votre nom"
@@ -30,8 +32,8 @@ export default function SignUpForm( {value, onFormData : handleFormData, onSubmi
                             styleMessage="text-red-500"/>)}
     </div>
     <div className='flex flex-col py-2'>
-      <label htmlFor="firstname">Prenom</label>
         <InputForm  type="text"
+                    label="Prénom"
                     id="firstname" 
                     name="firstname"
                    placeholder="Votre prenom"
@@ -44,8 +46,8 @@ export default function SignUpForm( {value, onFormData : handleFormData, onSubmi
     </div>
 
     <div className='flex flex-col py-2'>
-      <label htmlFor="numPortable">Numero de téléphone</label>
         <InputForm type="tel"
+                    label="Numéro de téléphone"
                     id="numPortable" 
                     name="numPortable"
                    placeholder='0600000000'
@@ -58,10 +60,10 @@ export default function SignUpForm( {value, onFormData : handleFormData, onSubmi
                             styleMessage="text-red-500"/>)}
     </div>
     <div className='flex flex-col py-2'>
-      <label htmlFor="city">Ville</label>
        <InputForm type="text"
-                    id="city" 
-                    name="city"
+                  label="Ville"
+                  id="city" 
+                  name="city"
                    placeholder='Votre ville'
                    value={value.city}
                    onChange={ handleFormData} /> 
@@ -71,34 +73,35 @@ export default function SignUpForm( {value, onFormData : handleFormData, onSubmi
                             styleMessage="text-red-500"/>)}
     </div>
     <div className='flex flex-col py-2'>
-      <label htmlFor="email">email</label>
+     
       <InputForm type="email"
-          id="email" 
-          name="email"
-          placeholder='exemple@mail.com'
-          value={value.email}
-          onChange={ handleFormData} />
+                  label="Email"
+                  id="email" 
+                  name="email"
+                  placeholder='exemple@mail.com'
+                  value={value.email}
+                  onChange={ handleFormData} />
      {validation.email && (<MessageForm type="ERREUR" 
                             message="Le champs doit du type email"
                             styleType="error bg-red-300"
                             styleMessage="text-red-500"/>)}
     </div>
     <div className='flex flex-col py-2'>
-      <label htmlFor="password">Password</label>
       <InputForm type="password"
-          id="password" 
-          name="password"
-          placeholder='Choisissez votre mot de passe'
-          value={value.password}
-          onChange={ handleFormData} />
+                  label="Password"
+                  id="password" 
+                  name="password"
+                  placeholder='Choisissez votre mot de passe'
+                  value={value.password}
+                  onChange={ handleFormData} />
      {validation.email && (<MessageForm type="ERREUR" 
                             message="Le champs doit comporter 8 carac et 1 spécial"
                             styleType="error bg-red-300"
                             styleMessage="text-red-500"/>)}
     </div>
 
-
-    <button type="submit" className='rounded-xl p-2 bg-primary100 w-full mt-2 text-light'>S'inscire</button>
+      <Button title="S'inscire" type="submit" className="justify-center rounded-xl p-2 bg-primary100 w-full mt-2 text-light" />
+   
     
 </form>
 

@@ -19,3 +19,5 @@ export const isValidPassword = (str) => {
     const regex = /^(?=.*[!@#$%^&*(),.?":{}|<>])[A-Za-z\d!@#$%^&*(),.?":{}|<>]{8,}$/;
     return regex.test(str);
     };
+
+
