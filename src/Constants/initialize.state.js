@@ -18,3 +18,9 @@ export const INITIAL_SIGN_IN_VALUE = {
     password: false
   };
   
+  export const INITIAL_CONTACT_VALUE = {
+    lastname: "",
+    firstname: "",
+    email: "",
+    message: ""
+  }
