@@ -4,7 +4,7 @@ import { RiLogoutCircleRLine } from 'react-icons/ri';
 
 const AuthButtons = ({ isLogged, user, logout, navigate, handleCloseNav, isOpenNav }) => (
   isLogged ? (
-    <div className='flex items-center gap-2'>
+    <div className={`${isOpenNav ? "flex flex-col w-full items-center mt-4" : "hidden"  } md:flex items-center gap-2`}>
       <NavLink to={user?.roles.includes('ROLE_ADMIN') ? "/Dashboard" : "/Account"}>Mon Espace</NavLink>
       <Button
         type="button"
