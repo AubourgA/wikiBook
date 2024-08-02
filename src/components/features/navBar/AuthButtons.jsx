@@ -1,5 +1,5 @@
 import { NavLink } from 'react-router-dom';
-import Button from './Button';
+import Button from '../../ui/Button';
 import { RiLogoutCircleRLine } from 'react-icons/ri';
 
 const AuthButtons = ({ isLogged, user, logout, navigate, handleCloseNav, isOpenNav }) => (

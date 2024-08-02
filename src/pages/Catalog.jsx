@@ -7,6 +7,7 @@ import Loader from '../components/ui/Loader'
 
 import { buildQueryParams } from "../utils/QueryBuilder"
 import { getBooks } from '../api';
+import { API_ENDPOINTS } from '../Constants/api.endspoints';
 import { INITIAL_FILTERS_VALUE, PAGINATION_CATALOGS_BUTTONS } from '../Constants';
 import Error from '../components/ui/Error/Error';
 import Button from '../components/ui/Button';
@@ -24,7 +25,7 @@ export default function Catalog() {
      const fetchBooks = async () => {
             setIsLoading(true);
             try {
-              const booksData = await getBooks(`${import.meta.env.VITE_API_URL}/books`);
+              const booksData = await getBooks();
               setBooks(booksData);
             } catch (error) {
               setError(error);
@@ -47,7 +48,7 @@ const handleInputFilter = (name, value) => {
 
 const handleResultFilter = async () => {
   const queryParams = buildQueryParams(filters);
-  const apiUrl = `${import.meta.env.VITE_API_URL}/books?${queryParams}`;
+  const apiUrl = `${API_ENDPOINTS.BOOKS}?${queryParams}`;
   setIsLoading(true);
   try {
     const booksData = await getBooks(apiUrl);
@@ -64,7 +65,7 @@ const handleResetFilters = async () => {
   setFilters(INITIAL_FILTERS_VALUE);
   setIsLoading(true);
   try {
-    const booksData = await getBooks(`${import.meta.env.VITE_API_URL}/books`);
+    const booksData = await getBooks();
     setBooks(booksData);
   } catch (error) {
     setError(error);
@@ -76,8 +77,7 @@ const handleResetFilters = async () => {
 
 const handlePaginationClick = async (path) => {
   if (path) {
-    const apiUrl = import.meta.env.VITE_API_BASE; 
-    const fullUrl = new URL(path, apiUrl).toString();
+    const fullUrl = new URL(path, API_ENDPOINTS.BASE).toString();
     setIsLoading(true);
     try {
       const booksData = await getBooks(fullUrl);
@@ -112,17 +112,15 @@ const handlePaginationClick = async (path) => {
                 <div className='flex justify-center flex-wrap gap-5 p-1 pt-5'>
                     { Books && Books["hydra:member"].map( ({id, title, YearPublished}) => (  
                           <Card key={id}>
-                                <Card.Header>
-                                <img src="https://placehold.co/250x250" className='w-full h-[250px] object-cover rounded-t' alt="" />
-                                </Card.Header>
+                                <Card.Header pic="https://placehold.co/250x250" />
+                             
                                 <Card.Content className='flex flex-col px-4 pt-4 h-full'>
                                     <Card.Title  className='text md:text-md lg:text-lg  font-semibold pb-2'>{title}</Card.Title>
                                     <Card.Description>Année : {YearPublished}</Card.Description>
                                 </Card.Content>
-                                <Card.Footer className='flex gap-2 pb-4 px-2'>
-                                    <button className='border-2 border-primary100 rounded text-primary100 btn-pressed p-2 w-full mt-2'>Détail</button>
-                                    <button className='rounded bg-secondary text-light btn-pressed p-2 w-full mt-2'>Réserver</button>
-                                </Card.Footer>
+                                <Card.Footer />
+    
+                               
                             </Card>
                             )
                         )

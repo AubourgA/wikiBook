@@ -1,4 +1,4 @@
-import { string,elementType,func } from 'prop-types';
+import { string,elementType,func, oneOfType, element } from 'prop-types';
 
 export default function Button( {title, className, icon:Icon, onButtonClick, type}) {
   return (
@@ -12,7 +12,10 @@ export default function Button( {title, className, icon:Icon, onButtonClick, typ
 
 Button.propTypes = {
    type:string.isRequired,
-    title: string.isRequired,
+   title: oneOfType([
+    string,
+    element
+  ]).isRequired,
     className: string.isRequired,
     icon: elementType,
     onButtonClick:func

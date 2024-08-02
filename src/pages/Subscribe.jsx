@@ -1,10 +1,9 @@
 import {useState} from "react";
 import SignUpForm from '../components/features/forms/SignUp.form';
-import { createUser } from '../utils/apiRequest';
+import { createUser } from '../api';
 import { useNavigate } from 'react-router-dom';
 import { checkValidationSignUp } from '../utils/checkDataForms';
-
-import {INITIAL_SIGN_IN_VALUE, INITIAL_VALIDATION_VALUE} from '../Constants/initialize.state'
+import {INITIAL_SIGN_IN_VALUE, INITIAL_VALIDATION_VALUE} from '../Constants'
 
 
 export default function Subscribe() {
@@ -28,7 +27,7 @@ export default function Subscribe() {
    
     if (!checkValidationSignUp(formData, setShowValidation)) return;
  
-    const response = await createUser(`${import.meta.env.VITE_API_CREATE_USER}`, formData)
+    const response = await createUser(formData)
      
     response.success
       ? navigate('/Login')

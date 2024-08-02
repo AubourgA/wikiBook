@@ -1,6 +1,6 @@
 import { createContext, useEffect, useState } from 'react';
 import { jwtDecode } from 'jwt-decode';
-import { authentification } from '../utils/apiRequest';
+import { authentification } from '../api';
 
 
 const AuthContext = createContext();
@@ -17,7 +17,6 @@ const AuthProvider = ( {children }) => {
             try {
                 const decoded = jwtDecode(token)
                 setUser(decoded)
-                setIsLogged(true)
             }catch (error) {
                 console.error('Invalid token', error);
                 localStorage.removeItem('jwt-token');
@@ -27,7 +26,8 @@ const AuthProvider = ( {children }) => {
 
     const login = async (userData) => {
         try {
-          const token = await authentification(`${import.meta.env.VITE_API_AUTH}`, userData);
+         
+          const token = await authentification(userData);
           if (token && token !== 'undefined') {
             localStorage.setItem('jwt-token', token);
             const decoded = jwtDecode(token);

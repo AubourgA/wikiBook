@@ -52,6 +52,8 @@ export const checkValidationSignUp = (formData, setShowValidation) => {
   return Object.values(areValid).every(value => value);
 };
 
+
+
 export const validateContactForm = (formData) => {
   const newErrors = {};
 

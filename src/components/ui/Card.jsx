@@ -1,4 +1,6 @@
 import {node} from 'prop-types'
+import Image from '../ui/Image'
+import Button from '../ui/Button'
 
 const  Card = ( {children}) => {
   return (
@@ -8,11 +10,18 @@ const  Card = ( {children}) => {
   )
 }
 
-const CardHeader = ( {children}) => <div>{children}</div>
+
+const CardHeader = ( {pic} ) => <div> <Image img={pic} alt="cover" className='w-full h-[250px] object-cover rounded-t' /></div>
 const CardContent = ( {children, ...htmlProps}) => <div {...htmlProps}>{children}</div>
 const CardTitle = ( {children,...htmlProps}) => <h2 {...htmlProps}>{children}</h2>
 const CardDescription = ( {children}) => <div>{children}</div>
-const CardFooter = ( {children,...htmlProps}) => <div {...htmlProps}>{children}</div>
+const CardFooter = ( ) =>  { return(
+
+<div className='flex gap-2 pb-4 px-2'>
+<Button type="button" title="Détail" onButtonClick={()=>{}} className='border-2 justify-center border-primary100 rounded text-primary100  w-full mt-2 text-base' />
+<Button type="button" title="Réserver" onButtonClick={()=>{}} className='justify-center bg-secondary text-light  w-full mt-2 text-base' />
+</div> 
+)}
 
 
 Card.Header = CardHeader;

@@ -1,5 +1,5 @@
 import { useState } from "react"
-import { sendEmail } from '../utils/apiRequest';
+import { sendEmail } from '../api';
 import { INITIAL_CONTACT_VALUE } from '../Constants/initialize.state';
 import { validateContactForm } from '../utils/checkDataForms';
 import ContactForm from '../components/features/forms/Contact.form';
@@ -21,7 +21,7 @@ export default function Contact() {
     setErrors(validationErrors);
 
     if (Object.keys(validationErrors).length === 0) {
-      sendEmail(`${import.meta.env.VITE_API_MAILER}`,formData.lastname, formData.firstname, formData.email, formData.message)
+      sendEmail(formData.lastname, formData.firstname, formData.email, formData.message)
       setFormData(INITIAL_CONTACT_VALUE)
     }
   };

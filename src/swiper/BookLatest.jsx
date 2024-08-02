@@ -1,5 +1,4 @@
 import { register } from 'swiper/element/bundle';
-// import "../swiper/swiper.css";
 
 
 // register Swiper custom elements
@@ -7,51 +6,41 @@ register()
 
 
 import { useEffect, useState } from 'react';
+import Card from '../components/ui/Card';
+import Loader from '../components/ui/Loader';
+import Error from '../components/ui/Error/Error';
+import { getBooks } from '../api';
 
 export default function BookLatest( ) {
 
-    const [lastBook, setLastBook] = useState([])
+    const [lastBooks, setLastBooks] = useState([])
     const [isLoading, setIsLoading] = useState(true);
     const [error, setError] = useState(null);
 
-  useEffect(() => {
-    const fetchArticles = async () => {
-      try {
-       
-        // const response = await fetch(`${import.meta.env.VITE_API_URL}/books`, {
-        const response = await fetch(`${import.meta.env.VITE_API_URL}/books`, {
-            method: "GET",
-            mode: 'cors',
-            headers: {
-                Accept: "application/ld+json"
-            }
-        });
-        if (!response.ok) {
-          throw new Error('Network response was not ok');
-        }
-        const data = await response.json();
-        setLastBook(data);
-      } catch (error) {
-        setError(error);
-      } finally {
-        setIsLoading(false);
-      }
-    };
-    fetchArticles();
-}, []); // 
+
+useEffect(() => {
+   
+  const fetchLastBooks = async () => {
+         setIsLoading(true);
+         try {
+           setLastBooks(await getBooks());
+         } catch (error) {
+           setError(error);
+         } finally {
+           setIsLoading(false);
+         }
+     }
+   fetchLastBooks()
+ }, []);
 
 
 
-  if (isLoading) {
-    return <div>Loading...</div>;
-  }
+
+if (isLoading)  return <Loader />;
   
-  if (error) {
-    return <div>Error: {error.message}</div>;
-  }
+if (error) return <Error title="Oups..." message={error.message} />;
 
   return (
- 
     <swiper-container space-between="50" 
                       pagination="true"
                       slidesPerView="2"
@@ -63,34 +52,21 @@ export default function BookLatest( ) {
                           slidesPerView: 4,
                           }
                       })} >
-        { lastBook && 
-         
-                lastBook["hydra:member"].map( ({id, title, YearPublished}) => (  
-                
-
+        { lastBooks && 
+                lastBooks["hydra:member"].map( ({id, title, YearPublished}) => (  
                     <swiper-slide key={id} >
-                        <div className='card hover:translate-y-1 transition-transform'>
-                            
-                                <img src="https://placehold.co/250x250" className='h-[250px] object-cover rounded-t' alt="" />
-                             
-                                <div className='flex flex-col px-4 p-4 h-full'>
-                                  <h2 className='text md:text-md lg:text-lg  font-semibold pb-2'>{title}</h2>
-                                  
-                                  <p className='flex-grow'>Année de Publication : {YearPublished}</p>
-                              
-                                  <button className='rounded bg-secondary text-light btn-pressed p-2 w-full mt-2'>Détails</button>
-                                </div>
-                            </div>
-                    
+                             <Card key={id}>
+                                <Card.Header pic="https://placehold.co/250x250" />
+                                <Card.Content className='flex flex-col px-4 pt-4 h-full'>
+                                    <Card.Title  className='text md:text-md lg:text-lg  font-semibold pb-2'>{title}</Card.Title>
+                                    <Card.Description>Année : {YearPublished}</Card.Description>
+                                </Card.Content>
+                                <Card.Footer />
+                            </Card>
                     </swiper-slide>
-                  
                 )
             )
         }
-
-     
-    
   </swiper-container>
- 
   )
 }
