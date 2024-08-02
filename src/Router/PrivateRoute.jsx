@@ -3,11 +3,6 @@ import { Navigate } from 'react-router-dom';
 import {jwtDecode} from 'jwt-decode';
 
 
-
-
-
-
-
 const PrivateRoute = ({ children, role }) => {
 
   const token = localStorage.getItem('jwt-token');
@@ -23,8 +18,6 @@ const PrivateRoute = ({ children, role }) => {
   if (role && !role.includes(userRole)) {
     return <Navigate to="/" />;
   }
-
-
 
   return children;
 };

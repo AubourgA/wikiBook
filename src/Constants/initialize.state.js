@@ -24,3 +24,10 @@ export const INITIAL_SIGN_IN_VALUE = {
     email: "",
     message: ""
   }
+
+  export const INITIAL_FILTERS_VALUE = ({
+    title:"",
+    author:"",
+    YearPublished:"",
+    genre:""
+  })

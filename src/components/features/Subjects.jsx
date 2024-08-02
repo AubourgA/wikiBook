@@ -1,4 +1,4 @@
-import { subjects } from "../../Constants/banner.content";
+import { subjects } from "../../Constants";
 
 export default function Subjects() {
   return (

@@ -1,7 +1,7 @@
 //Root.jsx
 import { Outlet } from "react-router-dom";
-import NavBar from "../components/ui/NavBar";
-import Footer from "../components/ui/Footer/Footer";
+import NavBar from "../components/features/navBar/NavBar";
+import Footer from "../components/features/footer/Footer";
 
 function Root() {
   return (

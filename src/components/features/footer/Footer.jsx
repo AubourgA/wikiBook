@@ -1,16 +1,10 @@
-import {
-  Adresse,
-  Horaires,
-  Infos,
-  Social,
-  About,
-} from "../../../Constants/footer.content";
+import { Adresse, Horaires, Infos, Social, About } from "../../../Constants";
 
 import { Link } from "react-router-dom";
 import logo from "../../../assets/images/logo.svg";
-import Article from "./Article";
-import Image from "../Image";
-import List from "./List";
+import Article from "../../ui/Footer/Article";
+import Image from "../../ui/Image";
+import List from "../../ui/Footer/List";
 
 export default function Footer({ text }) {
   return (
@@ -37,8 +31,7 @@ export default function Footer({ text }) {
           classNameLi="md:text-2xl hover:bg-light rounded-full hover:text-dark transition duration-300 p-2"
           renderItem={({ icon: Icon, url }) => (
             <Link to={url}>
-              {" "}
-              <Icon />{" "}
+              <Icon />
             </Link>
           )}
         />

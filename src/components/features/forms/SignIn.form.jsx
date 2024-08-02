@@ -1,3 +1,5 @@
+import { object, func } from "prop-types";
+
 import Button from '../../ui/Button';
 
 
@@ -38,3 +40,11 @@ export default function SignIn({onSubmit : handleLogin, datas, onChange : handle
 </form>
   )
 }
+
+
+SignIn.propTypes = {
+        onSubmit : func.isRequired,
+        onChange : func.isRequired,
+        error: object,
+        datas : object.isRequired,
+    }

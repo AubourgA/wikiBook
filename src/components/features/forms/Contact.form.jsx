@@ -1,3 +1,5 @@
+import { object, func } from "prop-types";
+
 import InputForm from '../../ui/InputForm';
 import MessageForm from '../../ui/MessageForm'
 import TextArea from '../../ui/TextArea'
@@ -70,4 +72,11 @@ export default function ContactForm( {onSubmit : handleSubmitContact,
     
     </form>
   )
+}
+
+ContactForm.propTypes = {
+    onSubmit : func.isRequired,
+    onChange : func.isRequired,
+    error: object,
+    datas : object.isRequired,
 }
