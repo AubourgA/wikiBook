@@ -9,7 +9,7 @@ function Root() {
       <header>
         <NavBar />
       </header>
-      <main className="grow">
+      <main className="grow pt-[74px] ">
         <Outlet />
       </main>
       <Footer text="WIKIBOOK" />

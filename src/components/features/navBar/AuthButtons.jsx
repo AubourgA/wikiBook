@@ -2,7 +2,7 @@ import { NavLink } from 'react-router-dom';
 import Button from '../../ui/Button';
 import { RiLogoutCircleRLine } from 'react-icons/ri';
 
-import { bool,func, oneOfType, array, string } from 'prop-types';
+import { bool,func, object } from 'prop-types';
 
 
 const AuthButtons = ({ isLogged, user, logout, navigate, handleCloseNav, isOpenNav }) => (
@@ -49,11 +49,9 @@ export default AuthButtons;
 
 AuthButtons.propTypes = {
   isLogged:bool.isRequired,
-  user: oneOfType([
-   array
- ]).isRequired,
+  user: object,
    logout: func.isRequired,
-    navigate:string,
+    navigate:func,
    handleCloseNav:func,
    isOpenNav: bool
   

@@ -1,19 +1,19 @@
 //Router.jsx
 import { createBrowserRouter } from "react-router-dom";
 
-
-import Home from '../pages/Home';
+import Home from "../pages/Home";
 import PageError from "../pages/PageError";
-import News from '../pages/News';
-import Catalog from '../pages/Catalog';
-import Root from '../pages/Root';
-import Contact from '../pages/Contact';
-import Login from '../pages/Login';
-import Subscribe from '../pages/Subscribe';
-import Dashboard from '../pages/Admin/Dashboard';
-import PrivateRoute from './PrivateRoute';
-import Account from '../pages/UserAccount/Account';
-
+import News from "../pages/News";
+import Catalog from "../pages/Catalog";
+import Root from "../pages/Root";
+import Contact from "../pages/Contact";
+import Login from "../pages/Login";
+import Subscribe from "../pages/Subscribe";
+import Dashboard from "../pages/Admin/Dashboard/Dashboard";
+import PrivateRoute from "./PrivateRoute";
+import Account from "../pages/UserAccount/Account";
+import AdminBooks from "../pages/Admin/AdminBooks";
+import AdminHome from '../pages/Admin/AdminHome';
 
 const router = createBrowserRouter([
   {
@@ -47,20 +47,21 @@ const router = createBrowserRouter([
       },
       {
         path: "/Dashboard",
-        element:(
-          <PrivateRoute roles={['ROLE_ADMIN']}>
+        element: (
+          <PrivateRoute roles={["ROLE_ADMIN"]}>
             <Dashboard />
           </PrivateRoute>
         ),
-        //ICI pour partie lien dashboard
-        // children: [
-        //   {path : "/Dashboard/user", element : <p>mon path</p>}
-        // ]
+
+        children: [
+          { path: "/Dashboard/Home", element: <AdminHome /> },
+          { path: "/Dashboard/Books", element: <AdminBooks /> },
+        ],
       },
       {
         path: "/Account",
-        element:(
-          <PrivateRoute roles={['ROLE_USER']}>
+        element: (
+          <PrivateRoute roles={["ROLE_USER"]}>
             <Account />
           </PrivateRoute>
         ),

@@ -6,7 +6,7 @@ export default function HeroBannner() {
   return (
     <section className="h-screen flex items-center bg-primary50">
       <div className="container mx-auto  flex justify-center ">
-        <div className="grid grid-cols-1 p-10 sm:grid-cols-2  md:p-0  place-items-center min-h-[600px]">
+        <div className="grid grid-cols-1 px-10 sm:grid-cols-2  md:p-0  place-items-center min-h-[600px]">
         
           <div>
             <p className="font-secondary text-xl italic">
