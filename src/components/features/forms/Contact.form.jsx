@@ -68,7 +68,10 @@ export default function ContactForm( {onSubmit : handleSubmitContact,
                                             styleType="error bg-red-300"
                                             styleMessage="text-red-500 pt-2"/>}
         </div>
-        <Button title="Envoyer" type="submit" className="justify-center rounded-xl p-2 bg-primary100 w-full mt-2 text-light"/>
+        <Button title="Envoyer" 
+                type="submit" 
+                category="forms"/>
+              
     
     </form>
   )

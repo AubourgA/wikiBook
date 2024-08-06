@@ -81,3 +81,20 @@ export const validateContactForm = (formData) => {
 
   return newErrors;
 };
+
+export const validateLoginForm = (formData) => {
+  const newErrors = {};
+
+  if (!formData.email) {
+    newErrors.email = 'L\'email est requis';
+  } else if (!isValidEmail(formData.email)) {
+    newErrors.email = 'L\'email est invalide';
+  }
+
+  if (!formData.password) {
+    newErrors.password = 'Le password est requis';
+  }
+
+  return newErrors;
+};
+

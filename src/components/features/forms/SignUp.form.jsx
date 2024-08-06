@@ -100,7 +100,10 @@ export default function SignUpForm( {value, onFormData : handleFormData, onSubmi
                             styleMessage="text-red-500"/>)}
     </div>
 
-      <Button title="S'inscire" type="submit" className="justify-center rounded-xl p-2 bg-primary100 w-full mt-2 text-light" />
+      <Button title="S'inscire" 
+              type="submit" 
+              category="forms"
+              className="justify-center rounded-xl p-2 bg-primary100 w-full mt-2 text-light" />
    
     
 </form>

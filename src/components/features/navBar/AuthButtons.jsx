@@ -2,15 +2,25 @@ import { NavLink } from 'react-router-dom';
 import Button from '../../ui/Button';
 import { RiLogoutCircleRLine } from 'react-icons/ri';
 
+import { bool,func, oneOfType, array, string } from 'prop-types';
+
+
 const AuthButtons = ({ isLogged, user, logout, navigate, handleCloseNav, isOpenNav }) => (
   isLogged ? (
     <div className={`${isOpenNav ? "flex flex-col w-full items-center mt-4" : "hidden"  } md:flex items-center gap-2`}>
-      <NavLink to={user?.roles.includes('ROLE_ADMIN') ? "/Dashboard" : "/Account"}>Mon Espace</NavLink>
+      <NavLink to={user?.roles.includes('ROLE_ADMIN') ? "/Dashboard" : "/Account"}
+              className={({ isActive }) =>
+                `relative inline-block text-dark duration-300 
+                 ${isActive
+                    ? "text-secondary font-semibold"
+                    : "hover:after:scale-x-100"}
+                 after:absolute after:left-0 after:bottom-0 after:h-[2px] after:w-full after:scale-x-0 after:bg-secondary after:origin-left after:transition-transform after:duration-300 after:ease-in-out `} >Mon Espace</NavLink>
+     
       <Button
         type="button"
         title="Se déconnecter"
         onButtonClick={() => logout(navigate)}
-        className="flex-row-reverse gap-1 text-secondary rounded-xl border border-secondary md:text-base"
+        category="nav-user"
         icon={RiLogoutCircleRLine}
       />
     </div>
@@ -35,3 +45,16 @@ const AuthButtons = ({ isLogged, user, logout, navigate, handleCloseNav, isOpenN
 );
 
 export default AuthButtons;
+
+
+AuthButtons.propTypes = {
+  isLogged:bool.isRequired,
+  user: oneOfType([
+   array
+ ]).isRequired,
+   logout: func.isRequired,
+    navigate:string,
+   handleCloseNav:func,
+   isOpenNav: bool
+  
+}

@@ -40,14 +40,14 @@ function Filters({ values, onFilterChange, onApplyFilters, onResetFilters }) {
       <Button
       type="button"
         title="Reset"
-        className="border-secondary text-secondary justify-between"
+        category='filter-secondary'
         icon={GrPowerReset}
         onButtonClick={onResetFilters}
       />
       <Button
       type="button"
         title="Appliquer"
-        className="bg-secondary text-light justify-between"
+        category='filter-primary'
         icon={CiSearch}
         onButtonClick={onApplyFilters}
       />

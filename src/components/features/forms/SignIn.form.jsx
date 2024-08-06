@@ -1,41 +1,53 @@
 import { object, func } from "prop-types";
 
 import Button from '../../ui/Button';
+import InputForm from '../../ui/InputForm';
+import MessageForm from '../../ui/MessageForm';
 
 
-export default function SignIn({onSubmit : handleLogin, datas, onChange : handleCredential}) {
+export default function SignIn({onSubmit : handleLogin, datas, onChange : handleCredential, errors}) {
   
   
   
     return (
 
     <form className='p-2' onSubmit={handleLogin} > 
-            <h1 className='font-primary text-3xl text-dark'>Déja client</h1>
+            <h1 className='font-primary text-3xl text-dark'>Déja client ?</h1>
             <div className='flex flex-col pt-5 pb-2'>
-            <label htmlFor="id">ID</label>
-            <input  type="email"
+         
+                <InputForm label="Email"
+                    type="email"
                     id="email"
                     name="email"
+                    placeholder="Indiquer votre email"
                     value={datas.email}
                     onChange={handleCredential}
-                    className='text-sm p-2 rounded-xl' />
-            {/* {errors.lastName && <p className="error">{errors.lastname}</p>} */}
+                    className="text-sm p-2 rounded-xl" />
+            {errors?.email && <MessageForm type="ERROR"
+                                            message={errors.email}
+                                            styleType="error bg-red-300"
+                                            styleMessage="text-red-500 pt-2"/>}
             </div>
             <div className='flex flex-col py-2'>
-            <label htmlFor="password">Password</label>
-            <input  type="password"
+         
+                     <InputForm label="Password"
+                    type="password"
                     id="password"
                     name="password"
+                    placeholder="Indiquer votre password"
                     value={datas.password}
                     onChange={handleCredential}
-                    className='text-sm p-2 rounded-xl' />
-            {/* {errors.firstName && <p className="error">{errors.firstname}</p>} */}
+                    className="text-sm p-2 rounded-xl" />
+           {errors?.password && <MessageForm type="ERROR"
+                                            message={errors.password}
+                                            styleType="error bg-red-300"
+                                            styleMessage="text-red-500 pt-2"/>}
             </div>
 
             <Button title="Se Connecter"
-                        type="submit"
-                        className="justify-center rounded-xl p-2 bg-primary100 w-full mt-2 text-light" />
-            {/* <button type="submit" className='rounded-xl p-2 bg-primary100 w-full mt-2 text-light'>Se Connecter</button> */}
+                        category="forms"
+                        type="submit"  />
+           
            
 </form>
   )

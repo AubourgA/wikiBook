@@ -133,9 +133,10 @@ const handlePaginationClick = async (path) => {
                             <Button
                               key={key}
                               title={title}
+                              category='paginate'
                               type="button"
                               onButtonClick={() => handlePaginationClick(Books["hydra:view"][key])}
-                              className='bg-primary50 p-1 rounded hover:bg-secondary'
+                              
                             />
                           )
                         ))}   

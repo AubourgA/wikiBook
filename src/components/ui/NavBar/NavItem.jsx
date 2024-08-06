@@ -1,9 +1,9 @@
 import { NavLink } from 'react-router-dom';
 
-const NavItem = ({ item, onClick }) => (
+const NavItem = ({ item, onClick, defaultTo }) => (
   <NavLink
     key={item.id}
-    to={item.url}
+    to={item.url || defaultTo}
     className={({ isActive }) =>
       `relative inline-block text-dark duration-300 
        ${isActive

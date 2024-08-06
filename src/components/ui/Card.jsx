@@ -18,8 +18,8 @@ const CardDescription = ( {children}) => <div>{children}</div>
 const CardFooter = ( ) =>  { return(
 
 <div className='flex gap-2 pb-4 px-2'>
-<Button type="button" title="Détail" onButtonClick={()=>{}} className='border-2 justify-center border-primary100 rounded text-primary100  w-full mt-2 text-base' />
-<Button type="button" title="Réserver" onButtonClick={()=>{}} className='justify-center bg-secondary text-light  w-full mt-2 text-base' />
+<Button type="button" category="secondary" title="Détail" onButtonClick={()=>{}}  />
+<Button type="button" category="primary" title="Réserver" onButtonClick={()=>{}}  />
 </div> 
 )}
 

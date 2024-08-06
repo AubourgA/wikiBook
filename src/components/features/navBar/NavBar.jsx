@@ -24,9 +24,9 @@ export default function NavBar() {
         <Image img={logo} alt="logo" className="w-[64px]" />
         <Button
           type="button"
+          category="nav"
           title={isOpenNav ? <FaTimes size={25} /> : <RxHamburgerMenu size={25} />}
           onButtonClick={handleOpenNav}
-          className="cursor-pointer border-none md:hidden"
         />
         <ul className={`${isOpenNav ? "flex flex-col w-full items-center transition-all duration-300" : "hidden"} transition-all duration-300 ease-in-out md:flex md:flex-row gap-2`}>
           {itemNavs.map((item) => (
