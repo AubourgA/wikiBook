@@ -98,7 +98,7 @@ const handlePaginationClick = async (path) => {
   return (
     <div className='bg-light' >
       <div className='container h-full mx-auto mt-20 relative px-2 md:px-0'>
-          {/* <h1 className='font-primary text-2xl md:text-5xl text-dark py-8'>Trouvez votre pochain livre </h1> */}
+          
           <Title text1="Trouvez votre pochain livre" level={1} custom1="font-light"/>
           <div className='grid grid-cols-[100px_3fr] md:grid-cols-[200px_3fr] gap-10 pt-2 pb-10'>
          
@@ -117,7 +117,7 @@ const handlePaginationClick = async (path) => {
                                 <Card.Header pic="https://placehold.co/250x250" />
                              
                                 <Card.Content className='flex flex-col px-4 pt-4 h-full'>
-                                    <Card.Title  className='text md:text-md lg:text-lg  font-semibold pb-2'>{title}</Card.Title>
+                                    <Card.Title  className='text md:text-md lg:text-lg  font-semibold pb-2'text1={title} level={4} />
                                     <Card.Description>Année : {YearPublished}</Card.Description>
                                 </Card.Content>
                                 <Card.Footer />

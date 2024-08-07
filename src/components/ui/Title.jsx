@@ -12,6 +12,8 @@ const Title = ({ text1, text2, level = 1, custom1 = "", custom2="" }) => {
             return 'font-primary text-primary100 text-3xl text-center pt-10 ';
           case 3:
             return 'text-dark font-primary text-2xl py-4';
+          case 4 :
+             return 'text md:text-md lg:text-lg  font-semibold pb-2'
           default:
             return '';
         }

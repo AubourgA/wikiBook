@@ -58,7 +58,7 @@ if (error) return <Error title="Oups..." message={error.message} />;
                              <Card key={id}>
                                 <Card.Header pic="https://placehold.co/250x250" />
                                 <Card.Content className='flex flex-col px-4 pt-4 h-full'>
-                                    <Card.Title  className='text md:text-md lg:text-lg  font-semibold pb-2'>{title}</Card.Title>
+                                <Card.Title  className='text md:text-md lg:text-lg  font-semibold pb-2'text1={title} level={4} />
                                     <Card.Description>Année : {YearPublished}</Card.Description>
                                 </Card.Content>
                                 <Card.Footer />

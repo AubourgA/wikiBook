@@ -1,6 +1,7 @@
-import {node} from 'prop-types'
+import {node, number, string} from 'prop-types'
 import Image from '../ui/Image'
 import Button from '../ui/Button'
+import Title from './Title'
 
 const  Card = ( {children}) => {
   return (
@@ -13,7 +14,8 @@ const  Card = ( {children}) => {
 
 const CardHeader = ( {pic} ) => <div> <Image img={pic} alt="cover" className='w-full h-[250px] object-cover rounded-t' /></div>
 const CardContent = ( {children, ...htmlProps}) => <div {...htmlProps}>{children}</div>
-const CardTitle = ( {children,...htmlProps}) => <h2 {...htmlProps}>{children}</h2>
+// const CardTitle = ( {children,...htmlProps}) => <h2 {...htmlProps}>{children}</h2>
+const CardTitle = ( {text, level, ...htmlProps}) => <Title text1={text} level={level} {...htmlProps}/>
 const CardDescription = ( {children}) => <div>{children}</div>
 const CardFooter = ( ) =>  { return(
 
@@ -48,7 +50,8 @@ CardContent.propTypes = {
 
 
 CardTitle.propTypes = {
-    children : node
+    text1 : string,
+    level : number
 }
 
 CardDescription.propTypes = {
