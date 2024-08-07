@@ -11,6 +11,7 @@ import { API_ENDPOINTS } from '../Constants/api.endspoints';
 import { INITIAL_FILTERS_VALUE, PAGINATION_CATALOGS_BUTTONS } from '../Constants';
 import Error from '../components/ui/Error/Error';
 import Button from '../components/ui/Button';
+import Title from '../components/ui/Title';
 
 
 export default function Catalog() {
@@ -97,7 +98,8 @@ const handlePaginationClick = async (path) => {
   return (
     <div className='bg-light' >
       <div className='container h-full mx-auto mt-20 relative px-2 md:px-0'>
-          <h1 className='font-primary text-2xl md:text-5xl text-dark py-8'>Trouvez votre pochain livre </h1>
+          {/* <h1 className='font-primary text-2xl md:text-5xl text-dark py-8'>Trouvez votre pochain livre </h1> */}
+          <Title text1="Trouvez votre pochain livre" level={1} custom1="font-light"/>
           <div className='grid grid-cols-[100px_3fr] md:grid-cols-[200px_3fr] gap-10 pt-2 pb-10'>
          
             

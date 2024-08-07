@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import { heroSection } from "../../../Constants";
 import Image from "../../ui/Image";
+import Title from '../../ui/Title';
 
 export default function HeroBannner() {
   return (
@@ -12,13 +13,19 @@ export default function HeroBannner() {
             <p className="font-secondary text-xl italic">
               {heroSection.surTitle}
             </p>
-            <h1 className="font-primary leading-10 text-4xl md:text-6xl py-4 text-dark">
+            {/* <h1 className="font-primary leading-10 text-4xl md:text-6xl py-4 text-dark">
            
               <span className="text-primary75 font-bold">
                 {heroSection.title}
               </span>
               , {heroSection.extraTitle}
-            </h1>
+            </h1> */}
+            <Title  level={1}
+                    text1={`${heroSection.title}, `}
+                    text2={`${heroSection.extraTitle}`}
+                    custom1="font-bold"
+                    custom2='font-light'/>
+            
             <p className="mt-2 text-primary100">
               Lorem ipsum dolor sit, amet consectetur adipisicing elit. Corrupti
               veniam exercitationem labore!

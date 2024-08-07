@@ -12,9 +12,9 @@ export default function Dashboard() {
 
   return (
     <div className="container mx-auto py-5 flex items-stretch h-full gap-2">
-      <>
+
        <SideMenu />
-      </>
+      
       <div className='w-full' >
           <UserBar user={user}/>
           <Outlet />

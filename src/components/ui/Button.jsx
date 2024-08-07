@@ -1,31 +1,31 @@
 import { string,elementType,func, oneOfType, element } from 'prop-types';
 
-export default function Button( {title, icon:Icon, onButtonClick, type, category}) {
+export default function Button( {title, icon:Icon, onButtonClick, type, category, custom=""}) {
 
   const getCategoryClass = (category) => {
     switch (category) {
       case 'primary':
-        return 'flex-1  justify-center bg-secondary text-light w-full ';
+        return 'flex-1  justify-center bg-secondary border text-light w-full ';
       case 'secondary':
-        return 'flex-1 flex-row-reverse items-center justify-center gap-2 text-secondary border-secondary  ';
+        return 'flex-1 flex-row-reverse items-center justify-center gap-2 border text-secondary border-secondary  ';
       case 'nav':
         return 'cursor-pointer border-none md:hidden';
       case 'paginate':
-        return 'bg-primary50 px-4 py-1 rounded hover:bg-primary100 hover:text-light';
+        return 'bg-primary50 px-4 py-1 rounded border hover:bg-primary100 hover:text-light';
       case 'nav-user':
-        return 'flex-row-reverse items-center justify-center gap-2 text-secondary border-secondary';
+        return 'flex-row-reverse items-center border justify-center gap-2 text-secondary border-secondary';
       case 'filter-primary':
-        return 'bg-secondary text-light items-center justify-between';
+        return 'bg-secondary text-light items-center border justify-between';
       case 'filter-secondary':
-        return 'border-secondary text-secondary justify-between items-center';
+        return 'border-secondary text-secondary border justify-between items-center';
       case 'forms':
-        return 'bg-primary100 justify-center mt-4 text-white';
+        return 'bg-primary100 justify-center border mt-4 text-white';
       default:
         return '';
     }
   };
 
-  const buttonClass = `flex rounded-xl px-4 py-2 btn-pressed border text-sm md:text-base ${getCategoryClass(category)} `;
+  const buttonClass = `flex rounded-xl px-4 py-2 btn-pressed  text-sm md:text-base ${getCategoryClass(category)} ${custom} `;
 
   return (
     <button type={type} 
@@ -42,9 +42,9 @@ Button.propTypes = {
    title: oneOfType([
     string,
     element
-  ]).isRequired,
+  ]),
     category: string.isRequired,
     icon: elementType,
     onButtonClick:func,
-   
+   custom:string
 }

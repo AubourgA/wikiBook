@@ -10,13 +10,8 @@ export default function AdminBooks() {
   const [books, setBooks] = useState({ 'hydra:member': [] })
  useEffect( ()=> {
   const fetchBooks = async ()=> {
-
-    
       const response = await axiosInstance.get('/api/books');
       setBooks(response.data)
-     return response.data
-    
-
  }
 fetchBooks()
 },[])
