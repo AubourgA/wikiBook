@@ -8,5 +8,5 @@ export const API_ENDPOINTS = {
     USERS:  `${URL_API}/users`,
     MAILER:`${URL_API}/send-email`,
     AUTH: `${URL_BASE}/auth`
-    // Ajouter d'autres endpoints ici si nécessaire
+ 
   };

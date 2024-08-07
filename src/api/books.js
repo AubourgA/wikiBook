@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { API_ENDPOINTS } from '../Constants/api.endspoints';
+import { API_ENDPOINTS } from '../Constants/';
 
 export const getBooks = async (url = API_ENDPOINTS.BOOKS) => {
     try {

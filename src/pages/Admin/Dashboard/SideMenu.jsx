@@ -5,7 +5,7 @@ import { MdDashboard } from "react-icons/md";
 
 export default function SideMenu() {
   return (
-    <aside className="relative flex flex-col justify-between bg-primary50 rounded p-4 ">
+    <aside className="relative flex flex-col justify-between bg-primary50 rounded p-4 max-h-96 ">
       <h1 className="hidden sm:block font-primary text-3xl text-dark font-bold">WIKIBOOK </h1>
       <div>
           <p className='hidden sm:flex items-center gap-2 font-bold'><MdDashboard /><span>Dashboard</span> </p>
