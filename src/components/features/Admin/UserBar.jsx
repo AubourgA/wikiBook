@@ -1,5 +1,5 @@
 import { FaCalendarAlt } from "react-icons/fa";
-import DisplayDate from '../../../components/features/displayDate/DisplayDate'
+import DisplayDate from '../displayDate/DisplayDate'
 export default function UserBar( {user}) {
   return (
     <section className='flex justify-between items-center bg-primary50 rounded-lg p-3 '>

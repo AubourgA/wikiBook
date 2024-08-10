@@ -1,4 +1,4 @@
-export const PAGINATION_CATALOGS_BUTTONS = [
+export const PAGINATION_BUTTONS = [
     { key: "hydra:first", title: "1" },
     { key: "hydra:previous", title: "Précédente" },
     { key: "hydra:next", title: "Suivante" },

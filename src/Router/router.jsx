@@ -12,7 +12,7 @@ import Subscribe from "../pages/Subscribe";
 import Dashboard from "../pages/Admin/Dashboard/Dashboard";
 import PrivateRoute from "./PrivateRoute";
 import Account from "../pages/UserAccount/Account";
-import AdminBooks from "../pages/Admin/AdminBooks";
+import AdminBooks from "../components/features/Admin/AdminBooks";
 import AdminHome from '../pages/Admin/AdminHome';
 
 const router = createBrowserRouter([

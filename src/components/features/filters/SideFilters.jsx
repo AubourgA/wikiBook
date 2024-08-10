@@ -26,7 +26,7 @@ export default function SideFilters({
             {selectedFilter === traduction && (
               <InputText
                 name={traduction}
-                values={values[traduction]}
+                values={values[traduction] || ""}
                 onChangeFilter={handleInputFilter}
                 onInputClick={handleInputClick}
               />

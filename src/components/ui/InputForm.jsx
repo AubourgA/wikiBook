@@ -7,7 +7,8 @@ export default function InputForm( {label,
                                     placeholder,
                                     value,
                                     pattern,
-                                    onChange:handleInputForm
+                                    onChange:handleInputForm,
+                                    customClass=""
                                 }) {
   return (
     <>
@@ -19,7 +20,7 @@ export default function InputForm( {label,
          value={value}
          pattern={pattern}
          onChange={handleInputForm()}
-         className='text-sm p-2 rounded-xl'
+         className={`text-sm p-2 rounded-xl ${customClass}`}
    />
     </>
   )

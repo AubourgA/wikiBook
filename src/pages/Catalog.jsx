@@ -8,15 +8,15 @@ import Loader from '../components/ui/Loader'
 import { buildQueryParams } from "../utils/QueryBuilder"
 import { getBooks } from '../api';
 import { API_ENDPOINTS } from '../Constants/api.endspoints';
-import { INITIAL_FILTERS_VALUE, PAGINATION_CATALOGS_BUTTONS } from '../Constants';
+import { INITIAL_FILTERS_VALUE, PAGINATION_BUTTONS } from '../Constants';
 import Error from '../components/ui/Error/Error';
-import Button from '../components/ui/Button';
+// import Button from '../components/ui/Button';
 import Title from '../components/ui/Title';
-
+import Pagination from '../components/ui/Pagination';
 
 export default function Catalog() {
 
-  const [Books, setBooks] = useState([])
+  const [books, setBooks] = useState([])
     const [isLoading, setIsLoading] = useState(true);
     const [error, setError] = useState(null);
     const [filters, setFilters] = useState( INITIAL_FILTERS_VALUE)
@@ -78,11 +78,13 @@ const handleResetFilters = async () => {
 
 const handlePaginationClick = async (path) => {
   if (path) {
+    
     const fullUrl = new URL(path, API_ENDPOINTS.BASE).toString();
     setIsLoading(true);
     try {
       const booksData = await getBooks(fullUrl);
       setBooks(booksData);
+      console.log(books)
     } catch (error) {
       setError(error);
     } finally {
@@ -109,10 +111,10 @@ const handlePaginationClick = async (path) => {
                     onResetFilters={handleResetFilters} />
 
             <section>
-                <p className='border-b-2 border-primary50 '>Résultat de la rercherche : <span>{ Books["hydra:totalItems"]} livre(s) trouvé(s)</span></p>
+                <p className='border-b-2 border-primary50 '>Résultat de la rercherche : <span>{ books["hydra:totalItems"]} livre(s) trouvé(s)</span></p>
 
                 <div className='flex justify-center flex-wrap gap-5 p-1 pt-5'>
-                    { Books && Books["hydra:member"].map( ({id, title, YearPublished}) => (  
+                    { books && books["hydra:member"].map( ({id, title, YearPublished}) => (  
                           <Card key={id}>
                                 <Card.Header pic="https://placehold.co/250x250" />
                              
@@ -129,20 +131,30 @@ const handlePaginationClick = async (path) => {
                     }
                 </div>
            
-                <div className='flex items-center justify-center gap-2 my-4'>  
+                {/* <div className='flex items-center justify-center gap-2 my-4'>  
                   {PAGINATION_CATALOGS_BUTTONS.map(({ key, title }) => (
-                          Books["hydra:view"] && Books["hydra:view"][key] && (
+                          books["hydra:view"] && books["hydra:view"][key] && (
                             <Button
                               key={key}
                               title={title}
                               category='paginate'
                               type="button"
-                              onButtonClick={() => handlePaginationClick(Books["hydra:view"][key])}
+                              onButtonClick={() => handlePaginationClick(books["hydra:view"][key])}
                               
                             />
                           )
                         ))}   
-                </div>
+                </div> */}
+                 <Pagination paginationButtons={PAGINATION_BUTTONS.map(({ key, title }) => ({
+                key,
+                title,
+                url: books["hydra:view"] && books["hydra:view"][key]
+              }))}
+              onPageChange={handlePaginationClick}
+              page={books}
+            />
+       
+
             </section>
 
           </div>

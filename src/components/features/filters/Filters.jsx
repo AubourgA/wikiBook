@@ -19,6 +19,7 @@ function Filters({ values, onFilterChange, onApplyFilters, onResetFilters }) {
 
   const handleInputFilter = () => (e) => {
     const { name, value } = e.target;
+  
     onFilterChange(name, value);
   };
 
@@ -58,6 +59,7 @@ function Filters({ values, onFilterChange, onApplyFilters, onResetFilters }) {
 export default Filters;
 
 Filters.propTypes = {
+  values : object,
   filters: object,
   onFilterChange: func,
   onApplyFilters: func,

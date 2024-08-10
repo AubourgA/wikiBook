@@ -25,7 +25,7 @@ export default function Button( {title, icon:Icon, onButtonClick, type, category
     }
   };
 
-  const buttonClass = `flex rounded-xl px-4 py-2 btn-pressed  text-sm md:text-base ${getCategoryClass(category)} ${custom} `;
+  const buttonClass = `flex rounded-lg px-4 py-2 btn-pressed  text-sm md:text-base ${getCategoryClass(category)} ${custom} `;
 
   return (
     <button type={type} 

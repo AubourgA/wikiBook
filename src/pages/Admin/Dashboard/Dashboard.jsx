@@ -3,7 +3,7 @@ import { useContext } from "react";
 import { Outlet } from "react-router-dom";
 
 import SideMenu from "./SideMenu";
-import UserBar from './UserBar';
+import UserBar from '../../../components/features/Admin/UserBar';
 
 export default function Dashboard() {
   const { user } = useContext(AuthContext);

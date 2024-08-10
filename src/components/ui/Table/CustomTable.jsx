@@ -7,32 +7,32 @@ const CustomTable = ({ data, columns, actions }) => {
 
   <div className="overflow-x-auto">
     <div className="hidden md:block">
-      <table className="min-w-full bg-white border">
+      <table className="min-w-full bg-white  text-center">
         <thead>
           <tr>
             {columns.map((column) => (
-              <th key={column.key} className="px-4 py-2 border">
+              <th key={column.key} className="px-4 py-2  border-b-2">
                 {column.header}
               </th>
             ))}
-            {actions && <th className="px-4 py-2 border">Actions</th>}
+            {actions && <th className="px-4 py-2 border-b-2">Actions</th>}
           </tr>
         </thead>
         <tbody>
           {data.map((item) => (
-            <tr key={item.id} className="border-t">
+            <tr key={item.id} className="even:bg-slate-100">
               {columns.map((column) => (
-                <td key={column.key} className="text-center px-4 py-2 border">
+                <td key={column.key} className="text-center px-4 py-2">
                   {column.render ? column.render(item[column.key]) : item[column.key]}
                 </td>
               ))}
               {actions && (
-                <td className="px-4 py-2 border">
+                <td className="px-4 py-2 ">
                   <div className="flex justify-center space-x-2">
                     {actions.map((action, index) => (
                
                         <Button key={index} 
-                                onClick={ ()=> action.onClick(item)}
+                                onButtonClick={ ()=> action.onClick(item)}
                                 type="button" 
                                 icon={action.icon} 
                                 category="action"

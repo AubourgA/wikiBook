@@ -9,7 +9,7 @@ const Title = ({ text1, text2, level = 1, custom1 = "", custom2="" }) => {
           case 1:
             return 'font-primary leading-10 text-4xl  md:text-6xl py-4 text-dark';
           case 2:
-            return 'font-primary text-primary100 text-3xl text-center pt-10 ';
+            return 'font-primary text-primary100 text-3xl py-4 ';
           case 3:
             return 'text-dark font-primary text-2xl py-4';
           case 4 :

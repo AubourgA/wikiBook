@@ -9,7 +9,6 @@ function Root() {
 
   const { user } = useContext(AuthContext);
 
-  console.log(user)
   return (
     <div className="flex flex-col h-screen">
       <header>

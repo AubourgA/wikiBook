@@ -1,7 +1,7 @@
 import { func, string } from 'prop-types';
 
 export default function InputText( {name, 
-                                    values,
+                                    values="",
                                     onChangeFilter:handleInputFilter,
                                     onInputClick: handleInputClick}) {
   
@@ -20,7 +20,7 @@ export default function InputText( {name,
 
 InputText.propTypes = {
   name : string.isRequired,
-  values : string.isRequired,
+  values : string,
   onChangeFilter : func.isRequired,
   onInputClick : func.isRequired
 }

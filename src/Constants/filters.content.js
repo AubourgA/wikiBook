@@ -10,7 +10,7 @@ export const sideFilters = [
     {
         id:2,
         filter:"Auteur",
-        traduction:"author",
+        traduction:"author.name",
         icon: IoIosArrowForward
     },
     {
@@ -22,7 +22,7 @@ export const sideFilters = [
     {
         id:4,
         filter:"Genre",
-        traduction:"genre",
+        traduction:"genre.name",
         icon: IoIosArrowForward
     },
 
