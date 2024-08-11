@@ -4,6 +4,7 @@ const initialState = {
   datas: undefined,
   loading: false,
   error: false,
+  pagination: {}
 };
 
 export const booksSlice = createSlice({
@@ -14,6 +15,7 @@ export const booksSlice = createSlice({
       state.datas = action.payload
       state.loading= false
       state.error = false;
+      state.pagination = action.payload['hydra:view']
     },
     addLoader(state) {
         state.loading= true
@@ -25,14 +27,15 @@ export const booksSlice = createSlice({
     }
 
     // Ajoutez d'autres reducers pour gérer les actions de CRUD
+    
   },
 });
 
-export function getData() {
+export function getData(url) {
     return async function(dispatch) {
             dispatch(addLoader())
             try {
-                const resp =  await fetchBooks();
+                const resp =  await fetchBooks(url);
                 dispatch(addData(resp))
             } catch( err) {
                 dispatch(addError())

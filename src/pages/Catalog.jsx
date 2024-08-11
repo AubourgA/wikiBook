@@ -78,7 +78,6 @@ const handleResetFilters = async () => {
 
 const handlePaginationClick = async (path) => {
   if (path) {
-    
     const fullUrl = new URL(path, API_ENDPOINTS.BASE).toString();
     setIsLoading(true);
     try {
@@ -130,33 +129,10 @@ const handlePaginationClick = async (path) => {
                         )
                     }
                 </div>
-           
-                {/* <div className='flex items-center justify-center gap-2 my-4'>  
-                  {PAGINATION_CATALOGS_BUTTONS.map(({ key, title }) => (
-                          books["hydra:view"] && books["hydra:view"][key] && (
-                            <Button
-                              key={key}
-                              title={title}
-                              category='paginate'
-                              type="button"
-                              onButtonClick={() => handlePaginationClick(books["hydra:view"][key])}
-                              
-                            />
-                          )
-                        ))}   
-                </div> */}
-                 <Pagination paginationButtons={PAGINATION_BUTTONS.map(({ key, title }) => ({
-                key,
-                title,
-                url: books["hydra:view"] && books["hydra:view"][key]
-              }))}
-              onPageChange={handlePaginationClick}
-              page={books}
-            />
-       
-
+                 <Pagination paginationButtons={PAGINATION_BUTTONS.map(({ key, title }) => ({key,title }))}
+                             onPageChange={handlePaginationClick}
+                             page={books['hydra:view']}/>
             </section>
-
           </div>
       </div>    
     </div>

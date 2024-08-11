@@ -29,14 +29,10 @@ export const getBooks = async (url = API_ENDPOINTS.BOOKS) => {
 //AFFICHAGE ENSEMNLE LIBRE ADMIN
 
 
-export const fetchBooks = async () => {
+export const fetchBooks = async (url =`${API_ENDPOINTS.BOOKS}`) => {
   try {
-   
-    const url = `${API_ENDPOINTS.BOOKS}`;
     const response = await axiosInstance.get(url);
     return response.data;
-
-
   } catch (error) {
     console.error('Error fetching books:', error.response ? error.response.data : error.message);
     throw error;

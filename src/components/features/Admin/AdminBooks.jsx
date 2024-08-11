@@ -3,12 +3,12 @@ import { getData } from '../../../store/bookSlice'
 import { useEffect, useState } from 'react'
 
 import CustomTable from '../../ui/Table/CustomTable'
-import { columnsBooks, createActionsBooks,   } from '../../../Constants'
+import { columnsBooks, createActionsBooks, PAGINATION_BUTTONS,   } from '../../../Constants'
 import Title from '../../ui/Title'
 import SearchBar from '../filters/SearchBar'
 import Button from '../../ui/Button'
 import { IoMdAddCircle } from "react-icons/io";
-// import Pagination from '../../ui/Pagination'
+import Pagination from '../../ui/Pagination'
 import Loader from "../../ui/Loader"
 import Error from '../../ui/Error/Error'
 // import BookForm from './Forms/BookForm'
@@ -20,8 +20,8 @@ export default function AdminBooks() {
 
   const [search, setSearch] = useState("")
   const dispatch = useDispatch()
-  const { datas, loading, error }= useSelector( state => state.books)
-
+  const { datas, loading, error, pagination }= useSelector( state => state.books)
+ console.log("pagination" +pagination)
 
  useEffect(() => {
   dispatch(getData());
@@ -33,20 +33,19 @@ if (error) return <Error title="Oups..." message={error.message} />;
 
 if (!datas || !datas['hydra:member']) return <Error title="Données manquantes" message="Impossible de récupérer la liste des livres." />;
 
-//  const [isFormVisible, setIsFormVisible] = useState(false)
-//  const [selectedBook, setSelectedBook] = useState(null);
+
 
 const handleChangeSearch = () => (e) => {
      setSearch(e.target.value)
 }
 
- // Filtrage par titre ou ISBN
+ //Filtrage par titre ou ISBN
  const filteredBooks = datas['hydra:member'].filter(book =>
   book.title.toLowerCase().includes(search.toLowerCase()) || 
   book.ISBN.toLowerCase().includes(search.toLowerCase())
 );
 
-console.log(datas)
+
 
 // const handleAddBook = () => {
 //   setSelectedBook(null);
@@ -72,15 +71,14 @@ console.log(datas)
 //   }
 // }
 
-// const handlePaginationClick = async () => console.log("A DERTERMINER")
+const handlePaginationClick = async (url) =>   dispatch(getData(url));
 
 // const handleFormClose = () => setIsFormVisible(false)
 
 const handleEdit = (e) => console.log(e)
 const handleDelete = (e) => console.log(e)
+
 const actionsBooks = createActionsBooks(handleEdit, handleDelete);
-
-
 
   return (
     <div>
@@ -109,15 +107,10 @@ const actionsBooks = createActionsBooks(handleEdit, handleDelete);
              
           <CustomTable data={filteredBooks} columns={columnsBooks} actions={actionsBooks} />
         
-         {/* <Pagination
-              paginationButtons={PAGINATION_BUTTONS.map(({ key, title }) => ({
-                key,
-                title,
-                url: books["hydra:view"] && books["hydra:view"][key]
-              }))}
-              onPageChange={()=>{}}
-              page={books}
-            /> */}
+         <Pagination
+              paginationButtons={PAGINATION_BUTTONS.map(({ key, title }) => ({key,title }))}
+              onPageChange={handlePaginationClick}
+              page={pagination}/>
         </section>
        
     </div>
