@@ -2,22 +2,25 @@
 import  { useState, useEffect } from 'react';
 
 // Composant pour ajouter ou éditer un livre
-const AddBookForm = ({ onClose, book }) => {
+const BookForm = ({ onClose, book }) => {
+  const [isCreateMode, setIsCreateMode] = useState(false)
   const [formData, setFormData] = useState({
     title: '',
     author: '',
-    // Ajoutez d'autres champs selon vos besoins
+   
   });
 
   // Effet pour pré-remplir le formulaire en cas d'édition
   useEffect(() => {
     if (book) {
+      setIsCreateMode(false)
       setFormData({
         title: book.title || '',
-        author: book.author || '',
+        author: book.author.firstname || '',
         // Préremplir d'autres champs si nécessaire
       });
     } else {
+      setIsCreateMode(true)
       setFormData({
         title: '',
         author: '',
@@ -73,7 +76,7 @@ const AddBookForm = ({ onClose, book }) => {
         />
       </label>
       {/* Ajoutez d'autres champs ici */}
-      <button type="submit">Submit</button>
+      <button type="submit">{isCreateMode ? "Submit" : "Update"}</button>
       <button type="button" onClick={onClose}>Cancel</button>
     </form>
   );
@@ -90,4 +93,4 @@ const updateBook = async (id, data) => {
   console.log('Updating book with id:', id, 'Data:', data);
 };
 
-export default AddBookForm;
+export default BookForm;

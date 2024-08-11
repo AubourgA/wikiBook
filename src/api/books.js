@@ -1,7 +1,7 @@
 import axios from 'axios';
 import { API_ENDPOINTS } from '../Constants/';
 import { axiosInstance } from '../api';
-import { buildQueryParams } from '../utils/QueryBuilder';
+
 
 
 
@@ -26,18 +26,13 @@ export const getBooks = async (url = API_ENDPOINTS.BOOKS) => {
 
 
 //AUTHENTIFICATED
-export const fetchBooks = async (query = "") => {
+//AFFICHAGE ENSEMNLE LIBRE ADMIN
+
+
+export const fetchBooks = async () => {
   try {
-    let filters = {};
-
-    if (/^\d+$/.test(query)) {
-      filters.ISBN = query;
-    } else {
-      filters.title = query;
-    }
-
-    const queryParams = buildQueryParams(filters);
-    const url = `${API_ENDPOINTS.BOOKS}?${queryParams}`;
+   
+    const url = `${API_ENDPOINTS.BOOKS}`;
     const response = await axiosInstance.get(url);
     return response.data;
 
