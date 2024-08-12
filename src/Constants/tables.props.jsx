@@ -1,4 +1,4 @@
-import { FaTrash, FaEdit } from 'react-icons/fa';
+import { FaTrash, FaEdit, FaEye  } from 'react-icons/fa';
 
 export const columnsBooks = [
     { key: 'id', header: '#' },
@@ -11,7 +11,8 @@ export const columnsBooks = [
     ) }
   ];
 
-  export const createActionsBooks = (handleEdit, handleDelete) => [
+  export const createActionsBooks = (handleWatch, handleEdit, handleDelete) => [
+    { icon: FaEye  , onClick: handleWatch , style: "text-blue-500 hover:bg-yellow-100"},
     { icon: FaEdit , onClick: handleEdit , style: "text-yellow-500 hover:bg-yellow-100"},
     { icon: FaTrash, onClick: handleDelete, style: "text-red-500 hover:bg-red-100" },
   ];

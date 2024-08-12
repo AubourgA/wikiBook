@@ -27,8 +27,8 @@ const CustomTable = ({ data, columns, actions }) => {
                 </td>
               ))}
               {actions && (
-                <td className="px-4 py-2 ">
-                  <div className="flex justify-center space-x-2">
+                <td>
+                  <div className="flex justify-center">
                     {actions.map((action, index) => (
                
                         <Button key={index} 

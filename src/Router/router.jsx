@@ -14,6 +14,7 @@ import PrivateRoute from "./PrivateRoute";
 import Account from "../pages/UserAccount/Account";
 import AdminBooks from "../components/features/Admin/AdminBooks";
 import AdminHome from '../pages/Admin/AdminHome';
+import BookForm from '../components/features/Admin/Forms/BookForm';
 
 const router = createBrowserRouter([
   {
@@ -56,6 +57,9 @@ const router = createBrowserRouter([
         children: [
           { path: "/Dashboard/Home", element: <AdminHome /> },
           { path: "/Dashboard/Books", element: <AdminBooks /> },
+          { path: "/Dashboard/Books/New", element: <BookForm /> },
+          { path: "/Dashboard/Books/Edit/:id", element: <BookForm /> },
+
         ],
       },
       {

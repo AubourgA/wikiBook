@@ -12,6 +12,7 @@ import Pagination from '../../ui/Pagination'
 import Loader from "../../ui/Loader"
 import Error from '../../ui/Error/Error'
 import { API_ENDPOINTS } from '../../../Constants'
+import { useNavigate } from 'react-router-dom';
 // import BookForm from './Forms/BookForm'
 // import { deleteBook, fetchBookById } from '../../../api'
 
@@ -23,7 +24,7 @@ export default function AdminBooks() {
   const dispatch = useDispatch()
   const { datas, loading, error, pagination }= useSelector( state => state.books)
   const debouncedSearch = useDebounce(search, 500);
-
+  const navigate = useNavigate()
 
 
 useEffect(() => {
@@ -45,15 +46,7 @@ const handleChangeSearch = () => (e) => setSearch(e.target.value)
 //   setIsFormVisible(true)
 // }
 
-// const handleEdit = async ({id}) => {
-//   try {
-//     const bookDetails = await fetchBookById(id);
-//     setSelectedBook(bookDetails);
-//     setIsFormVisible(true);
-//   } catch (error) {
-//     console.error('Failed to fetch book details:', error.message);
-//   }
-// };
+
 
 // const handleDelete = async (book) => {
 //   try {
@@ -68,11 +61,12 @@ const handlePaginationClick = async (url) =>    {
   dispatch(getData({endpoint : url, search : debouncedSearch}))};
 
 // const handleFormClose = () => setIsFormVisible(false)
-
-const handleEdit = (e) => console.log(e)
+const handleCreateBook = () => navigate('/Dashboard/Books/New')
+const handleEdit = (e) =>  navigate(`/Dashboard/Books/Edit/${e.id}`);
 const handleDelete = (e) => console.log(e)
+const handleWatch = (e) => console.log(e)
 
-const actionsBooks = createActionsBooks(handleEdit, handleDelete);
+const actionsBooks = createActionsBooks(handleWatch, handleEdit, handleDelete);
 
   return (
     <div>
@@ -91,7 +85,7 @@ const actionsBooks = createActionsBooks(handleEdit, handleDelete);
                       title="Ajouter un ouvrage"
                       category='forms'
                       icon= {IoMdAddCircle}
-                      onButtonClick={()=>{}}
+                      onButtonClick={handleCreateBook}
                       custom='items-center flex-row-reverse gap-2 mb-4' />
              
 
