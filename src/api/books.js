@@ -1,12 +1,7 @@
 import axios from 'axios';
 import { API_ENDPOINTS } from '../Constants/';
 import { axiosInstance } from '../api';
-
-
-
-
-
-
+import { buildFullURL } from '../utils/QueryBuilder';
 
 
 // PUBLIC
@@ -26,22 +21,13 @@ export const getBooks = async (url = API_ENDPOINTS.BOOKS) => {
 
 
 //AUTHENTIFICATED
-//AFFICHAGE ENSEMNLE LIBRE ADMIN
 
 
-// export const fetchBooks = async (url =`${API_ENDPOINTS.BOOKS}`) => {
-//   try {
-//     const response = await axiosInstance.get(url);
-//     return response.data;
-//   } catch (error) {
-//     console.error('Error fetching books:', error.response ? error.response.data : error.message);
-//     throw error;
-//   }
-// };
-
-export const fetchBooks = async (url =`${API_ENDPOINTS.BOOKS}`) => {
+//RECUPERE LIVRES
+export const fetchBooks = async (url, search = "") => {
   try {
-    const response = await axiosInstance.get(url);
+    const fullURL = buildFullURL(url, search);
+    const response = await axiosInstance.get(fullURL);
     return response.data;
   } catch (error) {
     console.error('Error fetching books:', error.response ? error.response.data : error.message);

@@ -11,6 +11,7 @@ import { IoMdAddCircle } from "react-icons/io";
 import Pagination from '../../ui/Pagination'
 import Loader from "../../ui/Loader"
 import Error from '../../ui/Error/Error'
+import { API_ENDPOINTS } from '../../../Constants'
 // import BookForm from './Forms/BookForm'
 // import { deleteBook, fetchBookById } from '../../../api'
 
@@ -21,28 +22,23 @@ export default function AdminBooks() {
   const [search, setSearch] = useState("")
   const dispatch = useDispatch()
   const { datas, loading, error, pagination }= useSelector( state => state.books)
-  const debouncedSearch = useDebounce(search, 800);
+  const debouncedSearch = useDebounce(search, 500);
 
- useEffect(() => {
-  dispatch(getData(undefined,debouncedSearch));
+
+
+useEffect(() => {
+  dispatch(getData({ endpoint: API_ENDPOINTS.BOOKS, search: debouncedSearch }));
 }, [dispatch, debouncedSearch]);
 
-console.log(error)
 if (loading) return <Loader />;
 
-if (error) return <Error title="Oups..." message="Une erreur est survenue" />;
+if (error) return <Error title="Oups..." message={error} />;
 
 if (!datas || !datas['hydra:member']) return <Error title="Données manquantes" message="Impossible de récupérer la liste des livres." />;
 
 
 
-const handleChangeSearch = () => (e) => {
-     setSearch(e.target.value)
-}
-
-
-
-
+const handleChangeSearch = () => (e) => setSearch(e.target.value)
 
 // const handleAddBook = () => {
 //   setSelectedBook(null);
@@ -68,7 +64,8 @@ const handleChangeSearch = () => (e) => {
 //   }
 // }
 
-const handlePaginationClick = async (url) =>   dispatch(getData(url));
+const handlePaginationClick = async (url) =>    {
+  dispatch(getData({endpoint : url, search : debouncedSearch}))};
 
 // const handleFormClose = () => setIsFormVisible(false)
 
@@ -79,9 +76,6 @@ const actionsBooks = createActionsBooks(handleEdit, handleDelete);
 
   return (
     <div>
-    
-      
-
         <section className='bg-blue-100 p-4 rounded my-2'>
               <div className='flex justify-between items-center border-light border-b-2'>
                    <Title level={2} text1="Liste des ouvrages" />

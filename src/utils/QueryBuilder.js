@@ -1,4 +1,5 @@
 import { isNumeric } from './validation';
+import { API_ENDPOINTS } from '../Constants';
 
 export const getSearchParams = (search) => {
    // Vérifie si la recherche est uniquement composée de chiffres
@@ -21,3 +22,14 @@ export const buildQueryParams = (filters) => {
   };
 
   
+
+  export const buildFullURL = (url = API_ENDPOINTS.BOOKS, search = "") => {
+    let fullURL = url;
+
+    if (search) {
+        const params = buildQueryParams(getSearchParams(search));
+        fullURL = `${url}?${params}`;
+    }
+
+    return fullURL;
+};
