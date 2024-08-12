@@ -3,6 +3,10 @@ export const isAlphabetic = (str) => {
   return regex.test(str);
 }
 
+export const isNumeric = (str) => {
+    const regex = /^\d+$/;
+    return regex.test(str);
+  };
 
 export const isValidEmail = (str) => {
     const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;

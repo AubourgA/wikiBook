@@ -1,5 +1,8 @@
 import { createSlice } from '@reduxjs/toolkit';
 import { fetchBooks } from '../api';
+import { buildQueryParams, getSearchParams } from '../utils/QueryBuilder';
+import { API_ENDPOINTS } from '../Constants';
+
 const initialState = {
   datas: undefined,
   loading: false,
@@ -31,11 +34,19 @@ export const booksSlice = createSlice({
   },
 });
 
-export function getData(url) {
+export function getData(url= `${API_ENDPOINTS.BOOKS}`, search="") {
     return async function(dispatch) {
             dispatch(addLoader())
+            let fullURL = url;
+            console.log(fullURL)
             try {
-                const resp =  await fetchBooks(url);
+                  if(search) {
+
+                    const params = buildQueryParams( getSearchParams(search))
+                    fullURL = `${url}?${params}`
+                  }
+                console.log(fullURL)
+                const resp =  await fetchBooks(fullURL);
                 dispatch(addData(resp))
             } catch( err) {
                 dispatch(addError())

@@ -1,7 +1,7 @@
 import { useSelector, useDispatch } from 'react-redux'
 import { getData } from '../../../store/bookSlice'
 import { useEffect, useState } from 'react'
-
+import {useDebounce} from '../../../hooks/useDebounce'
 import CustomTable from '../../ui/Table/CustomTable'
 import { columnsBooks, createActionsBooks, PAGINATION_BUTTONS,   } from '../../../Constants'
 import Title from '../../ui/Title'
@@ -21,15 +21,16 @@ export default function AdminBooks() {
   const [search, setSearch] = useState("")
   const dispatch = useDispatch()
   const { datas, loading, error, pagination }= useSelector( state => state.books)
- console.log("pagination" +pagination)
+  const debouncedSearch = useDebounce(search, 800);
 
  useEffect(() => {
-  dispatch(getData());
-}, [dispatch]);
+  dispatch(getData(undefined,debouncedSearch));
+}, [dispatch, debouncedSearch]);
 
+console.log(error)
 if (loading) return <Loader />;
 
-if (error) return <Error title="Oups..." message={error.message} />;
+if (error) return <Error title="Oups..." message="Une erreur est survenue" />;
 
 if (!datas || !datas['hydra:member']) return <Error title="Données manquantes" message="Impossible de récupérer la liste des livres." />;
 
@@ -39,11 +40,7 @@ const handleChangeSearch = () => (e) => {
      setSearch(e.target.value)
 }
 
- //Filtrage par titre ou ISBN
- const filteredBooks = datas['hydra:member'].filter(book =>
-  book.title.toLowerCase().includes(search.toLowerCase()) || 
-  book.ISBN.toLowerCase().includes(search.toLowerCase())
-);
+
 
 
 
@@ -105,7 +102,7 @@ const actionsBooks = createActionsBooks(handleEdit, handleDelete);
              
 
              
-          <CustomTable data={filteredBooks} columns={columnsBooks} actions={actionsBooks} />
+          <CustomTable data={datas["hydra:member"]} columns={columnsBooks} actions={actionsBooks} />
         
          <Pagination
               paginationButtons={PAGINATION_BUTTONS.map(({ key, title }) => ({key,title }))}
