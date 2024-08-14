@@ -6,6 +6,7 @@ import SignIn from '../components/features/forms/SignIn.form';
 import Image from '../components/ui/Image'
 import { validateLoginForm } from '../utils/checkDataForms';
 
+
 const INITIAL_CREDENTIAL = {
   email :"",
   password :""
@@ -38,19 +39,24 @@ export default function Login() {
 
        const loggedInUser = await login(credentials)
        
-        if (loggedInUser && loggedInUser.roles.includes('ROLE_ADMIN')) {
-          navigate('/Dashboard/Home');
-        } else {
-          navigate('/Account');
-        }
+       if(loggedInUser) {
+
+            if (loggedInUser.roles.includes('ROLE_ADMIN')) {
+              navigate('/Dashboard/Home');
+            } else {
+              navigate('/Account');
+            }
+       } else {
+        setErrors({ general: 'Connexion échouée. Veuillez vérifier vos identifiants.' });
+       }
        
   }
-
 
   return (
     <section className='flex justify-center  items-center bg-primary50/25 py-20'>
         <div className='grid grid-cols-1 grid-rows-1 p-8 max-w-sm md:max-w-5xl gap-2 shadow-xl bg-primary50 rounded  sm:grid-cols-2'>
           <div>
+    
             <SignIn onSubmit={handleLogin}
                   onChange={handleCredential} datas={credentials} errors={errors} />
             <div className='flex flex-col place-items-center p-2'>

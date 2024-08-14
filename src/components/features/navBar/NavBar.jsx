@@ -30,7 +30,7 @@ export default function NavBar() {
         />
         <ul className={`${isOpenNav ? "flex flex-col w-full items-center transition-all duration-300" : "hidden"} transition-all duration-300 ease-in-out md:flex md:flex-row gap-2`}>
           {itemNavs.map((item) => (
-            <NavItem key={item.id} item={item} onClick={handleCloseNav} />
+            <NavItem key={item.id} item={item} onClick={handleCloseNav}  />
           ))}
         </ul>
         <AuthButtons

@@ -59,7 +59,7 @@ const CustomTable = ({ data, columns, actions }) => {
             <div className="flex justify-end space-x-2 pt-2">
               {actions.map((action, index) => (
                 <Button key={index} 
-                       onClick={ ()=> action.onClick(item)} 
+                       onButtonClick={ ()=> action.onClick(item)} 
                        type="button" 
                        icon={action.icon} 
                        category="action"

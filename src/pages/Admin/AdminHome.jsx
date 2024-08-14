@@ -1,4 +1,5 @@
-import StatCard from '../../components/features/Admin/StatCard';
+import StatCard from '../../components/features/Admin/Home/StatCard';
+import Title from '../../components/ui/Title';
 import { statCards } from '../../Constants';
 import { FaArrowRight } from "react-icons/fa6";
 
@@ -8,7 +9,7 @@ export default function AdminHome( ) {
     <div className='' >
       <section className='bg-blue-100 p-2 rounded-lg my-2'>
         <div className='flex justify-between py-2'>
-        <h2>Statistiques </h2>
+        <Title text1="Statistique" level={2}/>
         <p className='flex items-center gap-2'>Voir plus <FaArrowRight /> </p>
         </div>
         <div className='flex flex-wrap gap-2'>

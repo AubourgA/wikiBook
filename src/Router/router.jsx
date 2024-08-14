@@ -9,12 +9,13 @@ import Root from "../pages/Root";
 import Contact from "../pages/Contact";
 import Login from "../pages/Login";
 import Subscribe from "../pages/Subscribe";
-import Dashboard from "../pages/Admin/Dashboard/Dashboard";
+import Dashboard from "../pages/Admin/Dashboard";
 import PrivateRoute from "./PrivateRoute";
 import Account from "../pages/UserAccount/Account";
-import AdminBooks from "../components/features/Admin/AdminBooks";
-import AdminHome from '../pages/Admin/AdminHome';
-import BookForm from '../components/features/Admin/Forms/BookForm';
+import AdminBooks from "../pages/Admin/Books/AdminBooks";
+import AdminHome from "../pages/Admin/AdminHome";
+
+import AdminBooksAction from '../pages/Admin/Books/AdminBooksAction';
 
 const router = createBrowserRouter([
   {
@@ -57,9 +58,8 @@ const router = createBrowserRouter([
         children: [
           { path: "/Dashboard/Home", element: <AdminHome /> },
           { path: "/Dashboard/Books", element: <AdminBooks /> },
-          { path: "/Dashboard/Books/New", element: <BookForm /> },
-          { path: "/Dashboard/Books/Edit/:id", element: <BookForm /> },
-
+          { path: "/Dashboard/Books/New", element: <AdminBooksAction title="Créer un ouvrage"/> },
+          { path: "/Dashboard/Books/Update/:id", element: <AdminBooksAction title="Modifier un ouvrage" /> },
         ],
       },
       {
