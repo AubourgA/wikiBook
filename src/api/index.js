@@ -1,4 +1,5 @@
 export * from './books'
+export * from './genres'
 export * from './email'
 export * from './users'
 export * from './auth'

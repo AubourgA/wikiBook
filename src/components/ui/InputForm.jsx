@@ -1,4 +1,4 @@
-import { string, func} from "prop-types"
+import { string, func, oneOfType, number} from "prop-types"
 
 export default function InputForm( {label,
                                     type,
@@ -32,7 +32,7 @@ InputForm.propTypes = {
     id: string.isRequired,
     name: string.isRequired,
     placeholder: string,
-    value: string.isRequired,
+    value: oneOfType([string, number]).isRequired,
     pattern: string,
     onChange: func.isRequired
 

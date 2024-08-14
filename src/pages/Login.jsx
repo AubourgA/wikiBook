@@ -37,17 +37,23 @@ export default function Login() {
        
        if(Object.keys(validationErrors).length > 0) return;
 
-       const loggedInUser = await login(credentials)
-       
-       if(loggedInUser) {
+       try {
 
-            if (loggedInUser.roles.includes('ROLE_ADMIN')) {
-              navigate('/Dashboard/Home');
-            } else {
-              navigate('/Account');
-            }
-       } else {
-        setErrors({ general: 'Connexion échouée. Veuillez vérifier vos identifiants.' });
+         const loggedInUser = await login(credentials)
+         
+         if(loggedInUser) {
+  
+              if (loggedInUser.roles.includes('ROLE_ADMIN')) {
+                navigate('/Dashboard/Home');
+              } else {
+                navigate('/Account');
+              }
+         } else {
+          setErrors({ general: 'Connexion échouée. Veuillez vérifier vos identifiants.' });
+         }
+       } catch (error) {
+        console.error('Erreur de connexion', error);
+        setErrors({ general: 'Une erreur est survenue lors de la connexion.' });
        }
        
   }
