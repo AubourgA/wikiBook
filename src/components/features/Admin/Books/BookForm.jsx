@@ -1,7 +1,7 @@
 
 import  { useState, useEffect } from 'react';
 import {Link, useParams } from 'react-router-dom';
-import { fetchBookById, fetchGenres } from '../../../../api';
+import { fetchBookById, fetchAuthors, fetchEditors, fetchGenres, fetchLanguages, createBook } from '../../../../api';
 import Button from '../../../ui/Button';
 import InputForm from '../../../ui/InputForm';
 import TextareaForm from '../../../ui/TextArea';
@@ -10,12 +10,15 @@ import SelectForm from '../../../ui/SelectForm';
 
 const BOOK_INITIAL_VALUE = {
   title: '',
-  // authorF : '',
-  // authorN : '',
   synopsys : '',
-  ISBN :'',
-  genre :'',
   YearPublished:'',
+  ISBN :'',
+  nbPage: '',
+ author:'',
+  genre :'',
+  editor:'',
+  language:'',
+  isOnLine:false
 }
 
 
@@ -24,7 +27,11 @@ const BookForm = () => {
   const { id } = useParams();
   const [isCreateMode, setIsCreateMode] = useState(false)
   const [formData, setFormData] = useState( BOOK_INITIAL_VALUE);
+  const [authors, setAuthors] = useState([]);
   const [genres, setGenres] = useState([]);
+  const [editors, setEditors] = useState([]);
+  const [languages, setLanguages] = useState([]);
+
 
   // Effet pour pré-remplir le formulaire en cas d'édition
   useEffect(() => {
@@ -33,18 +40,38 @@ const BookForm = () => {
         if (id) {
             setIsCreateMode(false);
             const book = await fetchBookById(id); //
-        
+           
             setFormData({
               title: book.title || '',
-              // authorF: book.author.firstname || '',
-              // authorN: book.author.name || '',
               synopsys : book.synopsys || '',
-              ISBN: book.ISBN || '',
               YearPublished: book.YearPublished || '',
+              ISBN: book.ISBN || '',
+              nbPage: book.nbPage || '',
+              author: book.author ? `${book.author.name} ${book.author.firstname}` : '',
+           
               genre: book.genre ? book.genre.name : '',
+              editor : book.editor ? book.editor.name : '',
+              language : book.language ? book.language.name : '',
+              isOnLine : book.isOnLine !== undefined ? book.isOnLine : false
             });
         } else {
             setIsCreateMode(true);
+            }
+            // const authorsList = await fetchAuthors();
+            // if (Array.isArray(authorsList['hydra:member'])) {
+            //   setAuthors(authorsList['hydra:member']); // Assurez-vous que genreList est bien un tableau
+            // } else {
+            //   console.error("La réponse de l'API n'est pas un tableau:", authorsList);
+            // }
+            const authorsList = await fetchAuthors();
+            if (Array.isArray(authorsList['hydra:member'])) {
+              const authorsWithFullName = authorsList['hydra:member'].map(author => ({
+                ...author,
+                fullName: `${author.name} ${author.firstname}`,
+              }));
+              setAuthors(authorsWithFullName);
+            } else {
+              console.error("La réponse de l'API n'est pas un tableau:", authorsList);
             }
 
             const genreList = await fetchGenres();
@@ -52,6 +79,18 @@ const BookForm = () => {
               setGenres(genreList['hydra:member']); // Assurez-vous que genreList est bien un tableau
             } else {
               console.error("La réponse de l'API n'est pas un tableau:", genreList);
+            }
+            const editorsList = await fetchEditors();
+            if (Array.isArray(editorsList['hydra:member'])) {
+              setEditors(editorsList['hydra:member']); // Assurez-vous que genreList est bien un tableau
+            } else {
+              console.error("La réponse de l'API n'est pas un tableau:", editorsList);
+            }
+            const languagesList = await fetchLanguages();
+            if (Array.isArray(languagesList['hydra:member'])) {
+              setLanguages(languagesList['hydra:member']); // Assurez-vous que genreList est bien un tableau
+            } else {
+              console.error("La réponse de l'API n'est pas un tableau:", languagesList);
             }
       
       } catch (error) {
@@ -63,33 +102,69 @@ const BookForm = () => {
     fetchData(); // Appel de la fonction fetchData
   }, [id]);
 
- 
-  // Gestion des changements de champs
+
+  // const handleChange = () => (e) => {
+  //   const { name, type, value, checked } = e.target;
+    
+  //   setFormData((prev) => ({
+  //     ...prev,
+  //     [name]: type === 'checkbox' ? checked : type === 'number' ? parseInt(value, 10) : value, // Utilise 'checked' si c'est une checkbox, sinon 'value'
+  //   }));
+  // };
+
   const handleChange = () => (e) => {
-    const { name, value } = e.target;
+    const { name, type, value, checked } = e.target;
+    let finalValue;
+  
+    switch (type) {
+      case 'checkbox':
+        finalValue = checked;
+        break;
+      case 'number':
+        finalValue = parseInt(value, 10) || parseInt(13);
+        break;
+      case 'text':
+      default:
+        finalValue = value;
+        break;
+    }
+  
+    console.log(finalValue)
     setFormData((prev) => ({
       ...prev,
-      [name]: value,
+      [name]: finalValue,
     }));
-  };
 
-
+   
+  };  
   // // Gestion de la soumission du formulaire
-  // const handleSubmit = async (e) => {
-  //   e.preventDefault();
-  //   try {
-  //     if (book) {
-  //       // Si un livre est fourni, nous effectuons une mise à jour
-  //       await updateBook(book.id, formData);
-  //     } else {
-  //       // Sinon, nous créons un nouveau livre
-  //       await createBook(formData);
-  //     }
-  //    // Fermer le formulaire après soumission
-  //   } catch (error) {
-  //     console.error('Failed to save book:', error);
-  //   }
-  // };
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    console.log(formData)
+    try {
+
+      if(isCreateMode) {
+        const newBook = await createBook(formData);
+        console.log('livre a été crré avec succes',newBook)
+      } else {
+        console.log("a venir")
+      }
+    } catch (error) {
+      console.error("Failted to save book", error)
+    }
+    // try {
+    //   if (book) {
+    //     // Si un livre est fourni, nous effectuons une mise à jour
+    //     await updateBook(book.id, formData);
+    //   } else {
+    //     // Sinon, nous créons un nouveau livre
+    //     await createBook(formData);
+    //   }
+    //  // Fermer le formulaire après soumission
+    // } catch (error) {
+    //   console.error('Failed to save book:', error);
+    // }
+  };
   // Gestion des changements de genre
   // const handleChange = () => (e) => {
   //   const { name, value } = e.target;
@@ -103,7 +178,7 @@ const BookForm = () => {
 
   return (
      
-          <form onSubmit={()=>{}}  >
+          <form onSubmit={handleSubmit}  >
             <div className='flex flex-col pt-5 pb-2'> 
             <InputForm id="title"
                       name='title'
@@ -121,25 +196,20 @@ const BookForm = () => {
                             onChange={handleChange}
                             className="text-sm p-2 rounded-xl" />
 
-               {/* <InputForm id="authorN"
-                          name='authorN'
+               <SelectForm id="authors"
+                          name='author'
                           label="Auteur"
                           onChange={ handleChange}
                           type='text'
-                          placeholder="Nom"
-                          value={formData.authorN}/>
-                <InputForm id="authorF"
-                      name='authorF'
-                      label="Auteur"
-                      onChange={ handleChange}
-                      type='text'
-                      placeholder="Prénom"
-                      value={formData.authorF}/> */}
+                          value={formData.author}
+                          options= {authors}
+                          labelKey="fullName"/>
+            
                 <InputForm id="YearPublished"
                       name='YearPublished'
                       label="Année de publication"
                       onChange={ handleChange}
-                      type='text'
+                      type='number'
                       placeholder="Année de publication"
                       value={formData.YearPublished}/>
         
@@ -150,13 +220,40 @@ const BookForm = () => {
                       type='text'
                       placeholder="ISBN 11 ou 13 chiffre"
                       value={formData.ISBN}/>
+                  <InputForm id="nbPage"
+                      name='nbPage'
+                      label="Pages"
+                      onChange={ handleChange}
+                      type='number'
+                      placeholder="Nombre de page"
+                      value={formData.nbPage}/>
                   <SelectForm label="Genre"
                               name="genre"
                               value={formData.genre}
                               onChange={handleChange}
                               options= {genres}
                               labelKey='name'/>
-          
+                  <SelectForm label="Editeur"
+                              name="editor"
+                              value={formData.editor}
+                              onChange={handleChange}
+                              options= {editors}
+                              labelKey='name'/>
+                  <SelectForm label="Langue"
+                              name="language"
+                              value={formData.language}
+                              onChange={handleChange}
+                              options= {languages}
+                              labelKey='name'/>
+                {/* <label htmlFor='isOnLine'>IsonLine:</label>
+               <input type="checkbox" name="isOnLine" onChange={handleChange()} id="isOnLine" checked={formData.isOnLine} /> */}
+           <InputForm id="isOnLine"
+                      name='isOnLine'
+                      label="Disponible"
+                      onChange={ handleChange}
+                      type='checkbox'
+                  
+                      checked={formData.isOnLine}/>
       
             <div className='flex items-center gap-2'>
                 <Button type='submit' title={isCreateMode ? "Créer" : "Mise a jour"} category="forms" onButtonClick={ ()=> {}} />

@@ -5,6 +5,9 @@ import { FaArrowRight } from "react-icons/fa6";
 
 
 export default function AdminHome( ) {
+
+ 
+
   return (
     <div className='' >
       <section className='bg-blue-100 p-2 rounded-lg my-2'>

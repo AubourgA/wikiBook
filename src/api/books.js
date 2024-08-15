@@ -37,7 +37,15 @@ export const fetchBooks = async (url, search = "") => {
 
 
 //CREER UN LIVRE
-
+export const createBook = async (bookData) => {
+  try {
+    const response = await axiosInstance.post(API_ENDPOINTS.BOOKS, bookData);
+    return response.data; // Retourne la réponse de l'API (le livre créé, ou autre message de succès)
+  } catch (error) {
+    console.error('Failed to create book:', error);
+    throw error; // Vous pouvez lever l'erreur pour la gérer dans votre composant formulaire
+  }
+};
 
 
 //EDITER UN LIVRE

@@ -6,7 +6,7 @@ export default function SelectForm( {label ="",
                                       onChange:handleChange,
                                       options=[],
                                       labelKey = "name", 
-                                      valueKey = "id" }) {
+                                      valueKey = "@id" }) {
 
     return (
     <>
