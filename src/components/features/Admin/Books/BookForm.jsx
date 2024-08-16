@@ -1,38 +1,27 @@
 
 import  { useState, useEffect } from 'react';
-import {Link, useParams } from 'react-router-dom';
-import { fetchBookById, fetchAuthors, fetchEditors, fetchGenres, fetchLanguages, createBook } from '../../../../api';
+import {Link, useParams, useNavigate } from 'react-router-dom';
+import { fetchBookById, fetchAuthors, fetchEditors, fetchGenres, fetchLanguages, createBook, updateBook } from '../../../../api';
 import Button from '../../../ui/Button';
 import InputForm from '../../../ui/InputForm';
 import TextareaForm from '../../../ui/TextArea';
 import SelectForm from '../../../ui/SelectForm';
-
-
-const BOOK_INITIAL_VALUE = {
-  title: '',
-  synopsys : '',
-  YearPublished:'',
-  ISBN :'',
-  nbPage: '',
- author:'',
-  genre :'',
-  editor:'',
-  language:'',
-  isOnLine:false
-}
-
+import { validateBookForm} from '../../../../utils/checkDataForms'
+import { BOOK_INITIAL_VALUE } from '../../../../Constants';
+import MessageForm from '../../../ui/MessageForm';
 
 
 const BookForm = () => {
   const { id } = useParams();
   const [isCreateMode, setIsCreateMode] = useState(false)
+  const [errors, setErrors] = useState({});
   const [formData, setFormData] = useState( BOOK_INITIAL_VALUE);
   const [authors, setAuthors] = useState([]);
   const [genres, setGenres] = useState([]);
   const [editors, setEditors] = useState([]);
   const [languages, setLanguages] = useState([]);
 
-
+ const navigate = useNavigate()
   // Effet pour pré-remplir le formulaire en cas d'édition
   useEffect(() => {
     const fetchData = async () => {
@@ -41,28 +30,36 @@ const BookForm = () => {
             setIsCreateMode(false);
             const book = await fetchBookById(id); //
            
+            // setFormData({
+            //   title: book.title || '',
+            //   synopsys : book.synopsys || '',
+            //   YearPublished: book.YearPublished || '',
+            //   ISBN: book.ISBN || '',
+            //   nbPage: book.nbPage || '',
+            //   author: book.author ? `${book.author.name} ${book.author.firstname}` : '',
+           
+            //   genre: book.genre ? book.genre.name : '',
+            //   editor : book.editor ? book.editor.name : '',
+            //   language : book.language ? book.language.name : '',
+            //   isOnLine : book.isOnLine ? book.isOnLine : false
+            // });
             setFormData({
               title: book.title || '',
-              synopsys : book.synopsys || '',
+              synopsys: book.synopsys || '',
               YearPublished: book.YearPublished || '',
               ISBN: book.ISBN || '',
               nbPage: book.nbPage || '',
-              author: book.author ? `${book.author.name} ${book.author.firstname}` : '',
-           
-              genre: book.genre ? book.genre.name : '',
-              editor : book.editor ? book.editor.name : '',
-              language : book.language ? book.language.name : '',
-              isOnLine : book.isOnLine !== undefined ? book.isOnLine : false
-            });
+              author: book.author ? book.author['@id'] : '', // Utilisation de l'IRI
+              genre: book.genre ? book.genre['@id'] : '', // Utilisation de l'IRI
+              editor: book.editor ? book.editor['@id'] : '', // Utilisation de l'IRI
+              language: book.language ? book.language['@id'] : '', // Utilisation de l'IRI
+              isOnLine: book.isOnLine ? book.isOnLine : false,
+          });
+            
         } else {
             setIsCreateMode(true);
             }
-            // const authorsList = await fetchAuthors();
-            // if (Array.isArray(authorsList['hydra:member'])) {
-            //   setAuthors(authorsList['hydra:member']); // Assurez-vous que genreList est bien un tableau
-            // } else {
-            //   console.error("La réponse de l'API n'est pas un tableau:", authorsList);
-            // }
+       
             const authorsList = await fetchAuthors();
             if (Array.isArray(authorsList['hydra:member'])) {
               const authorsWithFullName = authorsList['hydra:member'].map(author => ({
@@ -98,19 +95,12 @@ const BookForm = () => {
       } 
     };
 
-    // setIsCreateMode(true)
+
     fetchData(); // Appel de la fonction fetchData
   }, [id]);
 
 
-  // const handleChange = () => (e) => {
-  //   const { name, type, value, checked } = e.target;
-    
-  //   setFormData((prev) => ({
-  //     ...prev,
-  //     [name]: type === 'checkbox' ? checked : type === 'number' ? parseInt(value, 10) : value, // Utilise 'checked' si c'est une checkbox, sinon 'value'
-  //   }));
-  // };
+
 
   const handleChange = () => (e) => {
     const { name, type, value, checked } = e.target;
@@ -129,7 +119,6 @@ const BookForm = () => {
         break;
     }
   
-    console.log(finalValue)
     setFormData((prev) => ({
       ...prev,
       [name]: finalValue,
@@ -140,41 +129,31 @@ const BookForm = () => {
   // // Gestion de la soumission du formulaire
   const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log(formData)
+    
+    const validationErrors = validateBookForm(formData);
+    if (Object.keys(validationErrors).length > 0) {
+      setErrors(validationErrors);
+      return;
+    }
+
     try {
 
       if(isCreateMode) {
-        const newBook = await createBook(formData);
-        console.log('livre a été crré avec succes',newBook)
+        await createBook(formData);
+        //envoyer notification
+        navigate('/Dashboard/Books')
       } else {
-        console.log("a venir")
+     
+        await updateBook(id,formData)
+        //envoyer notification
+        navigate('/Dashboard/Books')
       }
     } catch (error) {
       console.error("Failted to save book", error)
     }
-    // try {
-    //   if (book) {
-    //     // Si un livre est fourni, nous effectuons une mise à jour
-    //     await updateBook(book.id, formData);
-    //   } else {
-    //     // Sinon, nous créons un nouveau livre
-    //     await createBook(formData);
-    //   }
-    //  // Fermer le formulaire après soumission
-    // } catch (error) {
-    //   console.error('Failed to save book:', error);
-    // }
+   
   };
-  // Gestion des changements de genre
-  // const handleChange = () => (e) => {
-  //   const { name, value } = e.target;
-  //   const [key, nestedKey] = name.split('.'); // Gestion des champs imbriqués
-  //   setFormData((prev) => ({
-  //     ...prev,
-  //     [key]: nestedKey ? { ...prev[key], [nestedKey]: value } : value,
-  //   }));
-  //   console.log(formData)
-  // };
+
 
   return (
      
@@ -187,14 +166,15 @@ const BookForm = () => {
                       type='text'
                       placeholder="Titre de l'ouvrage"
                       value={formData.title}/>
-
-              <TextareaForm label="Message"
+            {errors.title && <MessageForm type="ERROR" message={errors.title} />}
+              <TextareaForm label="Synopsys"
                             id="synopsys"
                             name="synopsys"
                             placeholder="Quelque mot sur le sujet de l'ouvrage"
                             value={formData.synopsys}
                             onChange={handleChange}
                             className="text-sm p-2 rounded-xl" />
+               {errors.synopsys && <MessageForm type="ERROR" message={errors.synopsys} />}
 
                <SelectForm id="authors"
                           name='author'
@@ -203,7 +183,9 @@ const BookForm = () => {
                           type='text'
                           value={formData.author}
                           options= {authors}
-                          labelKey="fullName"/>
+                          labelKey="fullName"
+                          valueKey='@id'/>
+                  {errors.synopsys && <MessageForm type="ERROR" message={errors.synopsys} />}
             
                 <InputForm id="YearPublished"
                       name='YearPublished'
@@ -212,6 +194,7 @@ const BookForm = () => {
                       type='number'
                       placeholder="Année de publication"
                       value={formData.YearPublished}/>
+                {errors.synopsys && <MessageForm type="ERROR" message={errors.synopsys} />}
         
                  <InputForm id="ISBN"
                       name='ISBN'
@@ -220,6 +203,7 @@ const BookForm = () => {
                       type='text'
                       placeholder="ISBN 11 ou 13 chiffre"
                       value={formData.ISBN}/>
+                  {errors.ISBN && <MessageForm type="ERROR" message={errors.ISBN} />}
                   <InputForm id="nbPage"
                       name='nbPage'
                       label="Pages"
@@ -227,36 +211,38 @@ const BookForm = () => {
                       type='number'
                       placeholder="Nombre de page"
                       value={formData.nbPage}/>
+                   {errors.nbPage && <MessageForm type="ERROR" message={errors.nbPage} />}
                   <SelectForm label="Genre"
                               name="genre"
                               value={formData.genre}
                               onChange={handleChange}
                               options= {genres}
                               labelKey='name'/>
+                  {errors.genre && <MessageForm type="ERROR" message={errors.genre} />}
                   <SelectForm label="Editeur"
                               name="editor"
                               value={formData.editor}
                               onChange={handleChange}
                               options= {editors}
                               labelKey='name'/>
+                  {errors.editor && <MessageForm type="ERROR" message={errors.editor} />}
                   <SelectForm label="Langue"
                               name="language"
                               value={formData.language}
                               onChange={handleChange}
                               options= {languages}
                               labelKey='name'/>
-                {/* <label htmlFor='isOnLine'>IsonLine:</label>
-               <input type="checkbox" name="isOnLine" onChange={handleChange()} id="isOnLine" checked={formData.isOnLine} /> */}
+              {errors.language && <MessageForm type="ERROR" message={errors.language} />}
            <InputForm id="isOnLine"
                       name='isOnLine'
                       label="Disponible"
                       onChange={ handleChange}
                       type='checkbox'
                   
-                      checked={formData.isOnLine}/>
+                      value={formData.isOnLine}/>
       
             <div className='flex items-center gap-2'>
-                <Button type='submit' title={isCreateMode ? "Créer" : "Mise a jour"} category="forms" onButtonClick={ ()=> {}} />
+                <Button type='submit' title={isCreateMode ? "Créer" : "Mise a jour"} category="forms"  />
                 <Link to="/Dashboard/Books" className=' btn-pressed border-primary100 rounded-lg text-primary100 justify-center border px-4 py-2 mt-4'>Annuler </Link>
               </div>          
             </div>

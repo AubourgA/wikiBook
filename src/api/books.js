@@ -59,6 +59,42 @@ export const fetchBookById = async (id) => {
   }
 };
 
+//UPDATE UN LIVRE
+// export const updateBook = async (id, data) => {
+//   try {
+//     const response = await axiosInstance.patch(
+//       `${API_ENDPOINTS.BOOKS}/${id}`,
+//       data,
+//     {
+//       headers: {
+//         'Content-Type': 'application/merge-patch+json',  // Spécifie le type de contenu attendu
+//       },
+//     })
+//     return response.data
+//   } catch (error) {
+//     console.error('FAiled to update book', error)
+//     throw error;
+//   }
+// }
+
+export const updateBook = async (id, data) => {
+  try {
+    const response = await axiosInstance.put(
+      `${API_ENDPOINTS.BOOKS}/${id}`,  // URL incluant l'ID du livre
+      data,  // Données complètes du livre
+      {
+        headers: {
+          'Content-Type': 'application/json',  // Type de contenu pour JSON
+        },
+      }
+    );
+    return response.data;  // Retourne les données de la réponse
+  } catch (error) {
+    console.error('Failed to update book', error);
+    throw error;  // Lance une erreur en cas de problème
+  }
+};
+
 //SUPRIMER UN LIVRE
 export const deleteBook = async (bookId) => {
   try {

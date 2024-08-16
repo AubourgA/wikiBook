@@ -1,4 +1,4 @@
-import { string, func, arrayOf, shape, number } from 'prop-types';
+import { string, func, arrayOf, shape } from 'prop-types';
 
 export default function SelectForm( {label ="", 
                                     name,
@@ -14,12 +14,17 @@ export default function SelectForm( {label ="",
         <select name={name} 
                 id={name}
                 onChange={handleChange()}
+                value={value}
+                className='text-sm p-2 rounded-xl'
                 >
-             <option value="">{value}</option>
+            
              {Array.isArray(options) && options.map((option) => (
-          <option key={option[valueKey]} value={option[valueKey]}>
-          {option[labelKey]}
+          <option key={option[valueKey]} 
+                  value={option[valueKey]}>
+            {option[labelKey]} 
           </option>
+          
+         
         ))}
         </select>
     </>
@@ -32,10 +37,10 @@ SelectForm.propTypes = {
     value: string, 
     onChange: func.isRequired, 
     options: arrayOf(shape({ 
-        id: number.isRequired, 
+        '@id': string.isRequired, 
         name: string.isRequired 
     })).isRequired, 
     labelKey: string, 
-    valueKey: number
+    valueKey: string
 };
 

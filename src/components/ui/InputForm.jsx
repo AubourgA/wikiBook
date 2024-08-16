@@ -17,7 +17,6 @@ export default function InputForm( {label,
          id={id}
          name={name}
          placeholder={placeholder}
-        //  value={value}
         value={type === "checkbox" ? undefined : value} // Pas de valeur pour checkbox, on utilise checked à la place
         checked={type === "checkbox" ? value : undefined} // Utilise checked si c'est une checkbox
          pattern={pattern}

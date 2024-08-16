@@ -67,18 +67,14 @@ export default function AdminBooks() {
     dispatch(getData({ endpoint: url, search: debouncedSearch }));
   };
 
-  // const handleFormClose = () => setIsFormVisible(false)
+
   const handleCreateBook = () => navigate("/Dashboard/Books/New");
   const handleUpdate = (e) => navigate(`/Dashboard/Books/Update/${e.id}`);
 
   const handleDelete = (e) => console.log(e);
   const handleWatch = (e) => console.log(e);
 
-  const actionsBooks = createActionsBooks(
-    handleWatch,
-    handleUpdate,
-    handleDelete
-  );
+  const actionsBooks = createActionsBooks(handleWatch,handleUpdate, handleDelete);
 
   return (
     <div>

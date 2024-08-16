@@ -24,4 +24,7 @@ export const isValidPassword = (str) => {
     return regex.test(str);
     };
 
+export const isBool = (value) => {
+  return typeof value === 'boolean'
+}
 

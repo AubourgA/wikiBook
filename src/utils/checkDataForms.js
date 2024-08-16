@@ -1,5 +1,5 @@
 
-import { isAlphabetic, isValidEmail, isValidFrenchPhoneNumber, isValidPassword } from './validation';
+import { isAlphabetic, isValidEmail, isValidFrenchPhoneNumber, isValidPassword, isBool } from './validation';
 import { INITIAL_VALIDATION_VALUE,  } from '../Constants/initialize.state'
 
 export const checkValidationSignUp = (formData, setShowValidation) => {
@@ -98,3 +98,56 @@ export const validateLoginForm = (formData) => {
   return newErrors;
 };
 
+
+
+export const validateBookForm = (formData) => {
+  const newErrors = {};
+
+  if (!formData.title) {
+    newErrors.title = "Le titre est requis";
+  }
+
+  if (!formData.synopsys) {
+    newErrors.synopsys = "Le synopsys est requis";
+  }
+
+  if (!formData.YearPublished) {
+    newErrors.YearPublished = "L'année de publication est requise";
+  } else if (!/^\d{4}$/.test(formData.YearPublished)) {
+    newErrors.YearPublished = "L'année de publication doit être une année valide";
+  }
+
+  if (!formData.ISBN) {
+    newErrors.ISBN = "L'ISBN est requis";
+  } else if (!/^\d{10,13}$/.test(formData.ISBN)) {
+    newErrors.ISBN = "L'ISBN doit être un nombre de 10 ou 13 chiffres";
+  }
+
+  if (!formData.nbPage) {
+    newErrors.nbPage = "Le nombre de pages est requis";
+  } else if (isNaN(formData.nbPage) || formData.nbPage <= 0) {
+    newErrors.nbPage = "Le nombre de pages doit être un nombre positif";
+  }
+
+  if (!formData.author) {
+    newErrors.author = "L'auteur est requis";
+  }
+
+  if (!formData.genre) {
+    newErrors.genre = "Le genre est requis";
+  }
+
+  if (!formData.editor) {
+    newErrors.editor = "L'éditeur est requis";
+  }
+
+  if (!formData.language) {
+    newErrors.language = "La langue est requise";
+  }
+
+  if(!isBool(formData.isOnLine)) {
+    newErrors.isOnLine = "La disponibilité est requis"
+  }
+
+  return newErrors;
+};

@@ -31,3 +31,16 @@ export const INITIAL_SIGN_IN_VALUE = {
     YearPublished:"",
     genre:""
   })
+
+  export const BOOK_INITIAL_VALUE = {
+    title: '',
+    synopsys : '',
+    YearPublished:'',
+    ISBN :'',
+    nbPage: '',
+   author:'',
+    genre :'',
+    editor:'',
+    language:'',
+    isOnLine:false
+  }
