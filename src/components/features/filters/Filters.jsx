@@ -7,7 +7,7 @@ import { CiSearch } from "react-icons/ci";
 import { GrPowerReset } from "react-icons/gr";
 
 import SideFilters from "./SideFilters";
-import Button from "../../ui/Button";
+import Button from "../../ui/Forms/Button";
 
 function Filters({ values, onFilterChange, onApplyFilters, onResetFilters }) {
   const [selectedFilter, setSelectedFilter] = useState();

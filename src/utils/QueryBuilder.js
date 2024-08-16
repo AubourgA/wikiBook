@@ -33,3 +33,16 @@ export const buildQueryParams = (filters) => {
 
     return fullURL;
 };
+
+export const fetchGenericData = async (fetchFunction, setState, errorMessage) => {
+  try {
+    const response = await fetchFunction();
+    if (Array.isArray(response["hydra:member"])) {
+      setState(response["hydra:member"]);
+    } else {
+      console.error(errorMessage, response);
+    }
+  } catch (error) {
+    console.error(errorMessage, error);
+  }
+};

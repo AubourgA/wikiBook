@@ -5,7 +5,7 @@ import { MdDashboard } from "react-icons/md";
 
 export default function SideMenu() {
   return (
-    <aside className="fixed w-full sm:w-auto flex  sm:relative bottom-0 sm:flex-col justify-between bg-primary50 rounded p-4 max-h-[450px] ">
+    <aside className="fixed z-10 flex w-full sm:w-auto   sm:relative bottom-0 sm:flex-col justify-between bg-primary50 rounded p-4 max-h-[450px] ">
       <h1 className="hidden sm:block font-primary text-3xl text-dark font-bold">
         WIKIBOOK
       </h1>
@@ -21,7 +21,7 @@ export default function SideMenu() {
         </ul>
       </div>
       <div>
-        <p className="hidden sm:flex gap-2 items-center font-bold">
+        <p className="hidden  sm:flex gap-2 items-center font-bold">
           <IoMdSettings /> Parametres
         </p>
         <ul className="flex sm:flex-col text-md gap-2">

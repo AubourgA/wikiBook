@@ -1,5 +1,5 @@
 import { NavLink } from 'react-router-dom';
-import Button from '../../ui/Button';
+import Button from '../../ui/Forms/Button';
 import { RiLogoutCircleRLine } from 'react-icons/ri';
 
 import { bool,func, object } from 'prop-types';

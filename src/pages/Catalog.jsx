@@ -12,7 +12,7 @@ import { INITIAL_FILTERS_VALUE, PAGINATION_BUTTONS } from '../Constants';
 import Error from '../components/ui/Error/Error';
 // import Button from '../components/ui/Button';
 import Title from '../components/ui/Title';
-import Pagination from '../components/ui/Pagination';
+import Pagination from '../components/ui/Table/Pagination';
 
 export default function Catalog() {
 

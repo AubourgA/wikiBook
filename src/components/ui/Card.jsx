@@ -1,6 +1,6 @@
 import {node, number, string} from 'prop-types'
 import Image from '../ui/Image'
-import Button from '../ui/Button'
+import Button from '../ui/Forms/Button'
 import Title from './Title'
 
 const  Card = ( {children}) => {

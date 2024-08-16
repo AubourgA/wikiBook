@@ -1,6 +1,6 @@
 import { IoIosArrowDown } from "react-icons/io";
 import { sideFilters } from "../../../Constants";
-import InputText from "../../ui/InputText";
+import InputText from "../../ui/Forms/InputText";
 import { object, func, string } from "prop-types";
 
 export default function SideFilters({

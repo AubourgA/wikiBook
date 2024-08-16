@@ -6,7 +6,7 @@ import { FaTimes } from "react-icons/fa";
 import logo from "../../../assets/images/logo.svg";
 import { itemNavs } from '../../../Constants';
 import Image from '../../ui/Image';  
-import Button from '../../ui/Button';  
+import Button from '../../ui/Forms/Button';  
 import NavItem from '../../ui/NavBar/NavItem';  
 import AuthButtons from './AuthButtons';  
 

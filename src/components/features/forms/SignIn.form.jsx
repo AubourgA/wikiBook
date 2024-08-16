@@ -1,8 +1,8 @@
 import { object, func } from "prop-types";
 
-import Button from '../../ui/Button';
-import InputForm from '../../ui/InputForm';
-import MessageForm from '../../ui/MessageForm';
+import Button from '../../ui/Forms/Button';
+import InputForm from '../../ui/Forms/InputForm';
+import MessageForm from '../../ui/Forms/MessageForm';
 import Error from '../../../components/ui/Error/Error'
 
 export default function SignIn({onSubmit : handleLogin, datas, onChange : handleCredential, errors}) {

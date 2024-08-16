@@ -1,9 +1,9 @@
 import { object, func } from "prop-types";
 
-import InputForm from '../../ui/InputForm';
-import MessageForm from '../../ui/MessageForm'
-import TextArea from '../../ui/TextArea'
-import Button from '../../ui/Button';
+import InputForm from '../../ui/Forms/InputForm';
+import MessageForm from '../../ui/Forms/MessageForm'
+import TextArea from '../../ui/Forms/TextArea'
+import Button from '../../ui/Forms/Button';
 
 export default function ContactForm( {onSubmit : handleSubmitContact, 
                                      datas,

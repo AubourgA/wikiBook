@@ -10,9 +10,9 @@ import {
 } from "../../../Constants";
 import Title from "../../../components/ui/Title";
 import SearchBar from "../../../components/features/filters/SearchBar";
-import Button from "../../../components/ui/Button";
+import Button from "../../../components/ui/Forms/Button";
 import { IoMdAddCircle } from "react-icons/io";
-import Pagination from "../../../components/ui/Pagination";
+import Pagination from "../../../components/ui/Table/Pagination";
 import Loader from "../../../components/ui/Loader";
 import Error from "../../../components/ui/Error/Error";
 import { API_ENDPOINTS } from "../../../Constants";
@@ -49,24 +49,9 @@ export default function AdminBooks() {
 
   const handleChangeSearch = () => (e) => setSearch(e.target.value);
 
-  // const handleAddBook = () => {
-  //   setSelectedBook(null);
-  //   setIsFormVisible(true)
-  // }
-
-  // const handleDelete = async (book) => {
-  //   try {
-  //     await deleteBook(book.id)
-  //     refetch()
-  //   } catch (err) {
-  //     console.error("Failed to delete book :", err.message)
-  //   }
-  // }
-
   const handlePaginationClick = async (url) => {
     dispatch(getData({ endpoint: url, search: debouncedSearch }));
   };
-
 
   const handleCreateBook = () => navigate("/Dashboard/Books/New");
   const handleUpdate = (e) => navigate(`/Dashboard/Books/Update/${e.id}`);
@@ -74,7 +59,11 @@ export default function AdminBooks() {
   const handleDelete = (e) => console.log(e);
   const handleWatch = (e) => console.log(e);
 
-  const actionsBooks = createActionsBooks(handleWatch,handleUpdate, handleDelete);
+  const actionsBooks = createActionsBooks(
+    handleWatch,
+    handleUpdate,
+    handleDelete
+  );
 
   return (
     <div>
