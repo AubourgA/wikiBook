@@ -1,4 +1,5 @@
 import { Link } from 'react-router-dom'
+import PropTypes from 'prop-types';
 
 export default function Article({ datas, title, renderItem, className = '', classNameLi = '' }) {
   return (
@@ -16,3 +17,17 @@ export default function Article({ datas, title, renderItem, className = '', clas
     </article>
   )
 }
+
+Article.propTypes = {
+  datas: PropTypes.arrayOf(
+    PropTypes.shape({
+      id: PropTypes.string.isRequired,  
+      title: PropTypes.string.isRequired, 
+      url: PropTypes.string,  
+    })
+  ).isRequired,  
+  title: PropTypes.string.isRequired,  
+  renderItem: PropTypes.func,  
+  className: PropTypes.string,  
+  classNameLi: PropTypes.string, 
+};

@@ -1,4 +1,5 @@
 import Button from "../Forms/Button"; //
+import PropTypes from 'prop-types';
 
 const Pagination = ({ paginationButtons, onPageChange, page }) => {
   return (
@@ -17,6 +18,17 @@ const Pagination = ({ paginationButtons, onPageChange, page }) => {
       )}
     </div>
   );
+};
+
+Pagination.propTypes = {
+  paginationButtons: PropTypes.arrayOf(
+    PropTypes.shape({
+      key: PropTypes.string.isRequired,  
+      title: PropTypes.string.isRequired, 
+    })
+  ).isRequired,  
+  onPageChange: PropTypes.func.isRequired,  
+  page: PropTypes.object.isRequired,  
 };
 
 export default Pagination;

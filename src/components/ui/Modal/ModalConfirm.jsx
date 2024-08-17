@@ -1,6 +1,6 @@
 import Button from '../Forms/Button';
 import Title from '../Title';
-
+import PropTypes from 'prop-types';
 
 export default function ModalConfirm( {title, message, onButConfirm: handleDelete, onButCancel : handleClose}) {
     
@@ -21,3 +21,10 @@ export default function ModalConfirm( {title, message, onButConfirm: handleDelet
     </div>
   )
 }
+
+ModalConfirm.propTypes = {
+    title: PropTypes.string.isRequired,           
+    message: PropTypes.string.isRequired,        
+    onButConfirm: PropTypes.func.isRequired,      
+    onButCancel: PropTypes.func.isRequired,   
+   }

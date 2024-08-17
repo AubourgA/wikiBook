@@ -1,5 +1,5 @@
 import { NavLink } from 'react-router-dom';
-
+import PropTypes from 'prop-types'
 const NavItem = ({ item, onClick, defaultTo }) => (
 
 
@@ -17,5 +17,15 @@ const NavItem = ({ item, onClick, defaultTo }) => (
     {item.title}
   </NavLink>
 );
+
+NavItem.propTypes = {
+  item: PropTypes.shape({
+    id: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired, // ID de l'élément, requis et peut être une chaîne ou un nombre
+    url: PropTypes.string,    // URL de l'élément, optionnelle
+    title: PropTypes.string.isRequired  // Titre de l'élément, obligatoire
+  }).isRequired,
+  onClick: PropTypes.func,  // Fonction de rappel, optionnelle
+  defaultTo: PropTypes.string.isRequired  // URL par défaut à utiliser si item.url n'est pas fourni, obligatoire
+};
 
 export default NavItem;

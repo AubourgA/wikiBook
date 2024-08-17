@@ -1,4 +1,4 @@
-
+import PropTypes from 'prop-types';
 
 
 const Title = ({ text1, text2, level = 1, custom1 = "", custom2="" }) => {
@@ -23,4 +23,12 @@ const Title = ({ text1, text2, level = 1, custom1 = "", custom2="" }) => {
     return <Tag className={`${getLevel(level)} ${custom1}` }>{text1} {text2 && <span className={custom2}>{text2}</span>}</Tag>;
   };
   
+  Title.propTypes = {
+    text1: PropTypes.string.isRequired,    
+    text2: PropTypes.string,                
+    level: PropTypes.oneOf([1, 2, 3, 4]),  
+    custom1: PropTypes.string,              
+    custom2: PropTypes.string,             
+  };
+
   export default Title;

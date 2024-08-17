@@ -1,4 +1,5 @@
 import { NavLink } from 'react-router-dom';
+import PropTypes from 'prop-types';
 
 const MenuItem = ({ item }) => (
   <NavLink
@@ -14,5 +15,13 @@ const MenuItem = ({ item }) => (
     <span className='hidden sm:block'>{item.title}</span>
   </NavLink>
 );
+
+MenuItem.propTypes = {
+  item: PropTypes.shape({
+    url: PropTypes.string.isRequired,    // URL de l'élément, obligatoire
+    title: PropTypes.string.isRequired,  // Titre de l'élément, obligatoire
+    icon: PropTypes.elementType.isRequired // Icône de l'élément, doit être un composant React, obligatoire
+  }).isRequired
+};
 
 export default MenuItem;

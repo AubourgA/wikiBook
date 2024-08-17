@@ -1,4 +1,4 @@
-
+import PropTypes from 'prop-types';
 
 export default function List({datas}) {
   return (
@@ -9,3 +9,12 @@ export default function List({datas}) {
     </ul>
   )
 }
+
+List.propTypes = {
+  datas: PropTypes.arrayOf(
+    PropTypes.shape({
+      id: PropTypes.string.isRequired,  // Identifiant unique de l'élément, requis
+      text: PropTypes.string.isRequired, // Texte de l'élément, requis
+    })
+  ).isRequired,  // Tableau d'éléments, requis
+};

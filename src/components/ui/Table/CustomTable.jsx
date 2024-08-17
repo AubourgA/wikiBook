@@ -1,4 +1,5 @@
 import Button from "../Forms/Button";
+import PropTypes from 'prop-types'
 
 const CustomTable = ({ data, columns, actions }) => {
   return (
@@ -81,6 +82,29 @@ const CustomTable = ({ data, columns, actions }) => {
       </div>
     </div>
   );
+};
+
+CustomTable.propTypes = {
+  data: PropTypes.arrayOf(
+    PropTypes.shape({
+      id: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired, 
+    
+    })
+  ).isRequired, 
+  columns: PropTypes.arrayOf(
+    PropTypes.shape({
+      key: PropTypes.string.isRequired,   
+      header: PropTypes.string.isRequired,  
+      render: PropTypes.func 
+    })
+  ).isRequired,  
+  actions: PropTypes.arrayOf(
+    PropTypes.shape({
+      icon: PropTypes.elementType,   
+      onClick: PropTypes.func.isRequired,  
+      style: PropTypes.string  
+    })
+  )  // Tableau d'actions, optionnel
 };
 
 export default CustomTable;

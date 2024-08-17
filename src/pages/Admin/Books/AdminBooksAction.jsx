@@ -1,6 +1,6 @@
 import BookForm from '../../../components/features/Admin/Books/BookForm';
 import Title from '../../../components/ui/Title';
-
+import {string} from 'prop-types'
 
 
 
@@ -14,3 +14,8 @@ export default function AdminBooksAction( {title}) {
 </section>
   )
 }
+
+AdminBooksAction.propTypes={
+    title: string.isRequired
+}
+
