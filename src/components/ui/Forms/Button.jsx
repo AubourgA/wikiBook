@@ -20,6 +20,10 @@ export default function Button( {title, icon:Icon, onButtonClick, type, category
         return 'border-secondary text-secondary border justify-between items-center';
       case 'forms':
         return 'bg-primary100 justify-center border mt-4 text-white';
+        case 'confirm':
+          return 'bg-green-500 justify-center border mt-4 text-white';
+          case 'danger':
+            return 'bg-red-500 justify-center border mt-4 text-white';
       default:
         return '';
     }
