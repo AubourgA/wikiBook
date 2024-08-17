@@ -19,6 +19,15 @@ export const getBooks = async (url = API_ENDPOINTS.BOOKS) => {
     }
   };
 
+  export const getTotalBooks = async () => {
+    try {
+      const response = await getBooks();  
+      return response['hydra:totalItems'];  
+    } catch (error) {
+      console.error('Error fetching total books:', error.response ? error.response.data : error.message);
+      throw error;
+    }
+  };
 
 //AUTHENTIFICATED
 

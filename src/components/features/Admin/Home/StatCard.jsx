@@ -1,9 +1,9 @@
 
 
-const StatCard = ({ title, value, icon: Icon }) => {
+const StatCard = ({ title, value, icon: Icon, iconStyle }) => {
   return (
     <article className=" bg-white flex-1 gap-2 shadow-md rounded-lg p-4 flex items-center">
-      <div className="p-3 rounded-full bg-blue-500 text-white mr-4">
+      <div className={`p-3 rounded-full  text-white mr-4 ${iconStyle}`}>
         <Icon className="text-2xl" />
       </div>
       <div>

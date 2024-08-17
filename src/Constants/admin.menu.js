@@ -48,24 +48,27 @@ export const adminParams = [
 ]
 
 //pour exemple
-export const statCards = [
+export const statCards = (users, books, loans) => [
     {
         id:1,
         title: "Client Enregistrés",
-        value:40,
-        icon : FaUsers
+        value: users !==null ? users : 'Loading...',
+        icon : FaUsers,
+        color : 'bg-green-400'
     },
     {
         id:2,
         title: "Ouvrages disponibles",
-        value:20,
-        icon : PiBooksLight
+        value: books !== null ? books : 'Loading...',
+        icon : PiBooksLight,
+        color : 'bg-violet-400'
     },
     {
         id:3,
-        title: "Transaction du mois",
-        value:40,
-        icon : GrTransaction
+        title: "Transactions",
+        value: loans !== null ? loans : 'Loading...',
+        icon : GrTransaction,
+        color : 'bg-cyan-400'
     },
 
 ]
