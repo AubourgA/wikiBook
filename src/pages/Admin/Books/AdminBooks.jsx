@@ -1,5 +1,5 @@
 import { useSelector, useDispatch } from "react-redux";
-import { getData } from "../../../store/bookSlice";
+import { deleteBookThunk, getData } from "../../../store/bookSlice";
 import { useEffect, useState } from "react";
 import { useDebounce } from "../../../hooks/useDebounce";
 import CustomTable from "../../../components/ui/Table/CustomTable";
@@ -18,7 +18,7 @@ import Error from "../../../components/ui/Error/Error";
 import { useNavigate } from "react-router-dom";
 import ModalConfirm from '../../../components/ui/Modal/ModalConfirm';
 import { createPortal } from 'react-dom';
-import { deleteBook } from '../../../api'
+// import { deleteBook } from '../../../api'
 // import BookForm from './Forms/BookForm'
 
 export default function AdminBooks() {
@@ -38,9 +38,45 @@ export default function AdminBooks() {
     );
   }, [dispatch, debouncedSearch]);
 
+  
+  const handleChangeSearch = () => (e) => setSearch(e.target.value);
+  
+  const handlePaginationClick = async (url) => {
+    dispatch(getData({ endpoint: url, search: debouncedSearch }));
+  };
+  
+  const handleCreateBook = () => navigate("/Dashboard/Books/New");
+  const handleUpdate = (e) => navigate(`/Dashboard/Books/Update/${e.id}`);
+  
+  const handleCallDeleteModal = (book) =>  {
+    setShowModal(true)
+    setSelectedBookId(book.id)
+  };
+  
+  const handleDeleteItem = async () => {
+    try {
+      
+      await dispatch(deleteBookThunk(selectedBookId)).unwrap();
+      dispatch(getData({ endpoint: API_ENDPOINTS.BOOKS, search: debouncedSearch }));
+      setShowModal(false);
+    } catch (err) {
+      setShowModal(false)
+      console.error("Failed to delete book:", err);
+      
+      
+    }
+  }
+
+  const handleCloseModal = () => setShowModal(() => !showModal)
+
+  const handleWatch = (e) => console.log(e);
+  
+  const actionsBooks = createActionsBooks(handleWatch, handleUpdate, handleCallDeleteModal);
+
+  
   if (loading) return <Loader />;
 
-  if (error) return <Error title="Oups..." message={error} />;
+  if (error) return <Error title="Oups..." message="Un problème est survenue. Re-essayé ultérieurement" />;
 
   if (!datas || !datas["hydra:member"])
     return (
@@ -50,43 +86,10 @@ export default function AdminBooks() {
       />
     );
 
-  const handleChangeSearch = () => (e) => setSearch(e.target.value);
-
-  const handlePaginationClick = async (url) => {
-    dispatch(getData({ endpoint: url, search: debouncedSearch }));
-  };
-
-  const handleCreateBook = () => navigate("/Dashboard/Books/New");
-  const handleUpdate = (e) => navigate(`/Dashboard/Books/Update/${e.id}`);
-
-  const handleCallDeleteModal = (book) =>  {
-    setShowModal(true)
-    setSelectedBookId(book.id)
-  };
-
-  const handleDeleteItem = async () => {
-    try {
-      await deleteBook(selectedBookId); // Utilise l'ID du livre pour le supprimer
-      dispatch(getData({ endpoint: API_ENDPOINTS.BOOKS, search: debouncedSearch })); // Rafraîchit la liste des livres après suppression
-      setShowModal(false);
-    } catch (error) {
-      console.error("Failed to delete book:", error);
-      // Gérer l'erreur (par exemple, afficher un message d'erreur)
-    }
-  }
-  const handleCloseModal = () => {
-    setShowModal(() => !showModal)
-  }
-  const handleWatch = (e) => console.log(e);
-
-  const actionsBooks = createActionsBooks(
-    handleWatch,
-    handleUpdate,
-    handleCallDeleteModal
-  );
 
   return (
     <div>
+     
       <section className="bg-blue-100 p-4 rounded my-2">
         <div className="flex justify-between items-center border-light border-b-2">
           <Title level={2} text1="Liste des ouvrages" />

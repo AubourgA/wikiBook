@@ -77,7 +77,7 @@ const BookForm = () => {
         finalValue = checked;
         break;
       case "number":
-        finalValue = parseInt(value, 10) || parseInt(13);
+        finalValue = parseInt(value, 10) || parseInt(value,13);
         break;
       case "text":
       default:
