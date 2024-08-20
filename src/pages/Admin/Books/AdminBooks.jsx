@@ -5,7 +5,7 @@ import { useDebounce } from "../../../hooks/useDebounce";
 import CustomTable from "../../../components/ui/Table/CustomTable";
 import {
   columnsBooks,
-  createActionsBooks,
+  createActions,
   PAGINATION_BUTTONS,
   API_ENDPOINTS} from "../../../Constants";
 import Title from "../../../components/ui/Title";
@@ -71,7 +71,7 @@ export default function AdminBooks() {
 
   const handleWatch = (e) => console.log(e);
   
-  const actionsBooks = createActionsBooks(handleWatch, handleUpdate, handleCallDeleteModal);
+  const actionsBooks = createActions(handleWatch, handleUpdate, handleCallDeleteModal);
 
   
   if (loading) return <Loader />;

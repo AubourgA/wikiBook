@@ -5,11 +5,11 @@ const Pagination = ({ paginationButtons, onPageChange, page }) => {
   return (
     <div className="flex items-center justify-center gap-2 my-4">
       {paginationButtons.map(
-        ({ key, title }) =>
+        ({ key, title:Icon }) =>
           page[key] && (
             <Button
               key={key}
-              title={title}
+              title= {<Icon />}
               category="paginate"
               type="button"
               onButtonClick={() => onPageChange(page[key])}
@@ -24,7 +24,7 @@ Pagination.propTypes = {
   paginationButtons: PropTypes.arrayOf(
     PropTypes.shape({
       key: PropTypes.string.isRequired,  
-      title: PropTypes.string.isRequired, 
+      title: PropTypes.func.isRequired, 
     })
   ).isRequired,  
   onPageChange: PropTypes.func.isRequired,  

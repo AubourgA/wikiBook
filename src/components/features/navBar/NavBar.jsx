@@ -21,7 +21,7 @@ export default function NavBar() {
   return (
     <nav className="fixed top-0 z-10 w-full px-2 bg-primary50 py-2 font-Secondary shadow-md">
       <div className="container mx-auto flex items-center justify-between flex-wrap">
-        <Image img={logo} alt="logo" className="w-[64px]" />
+        <Image img={logo} text="logo" className="w-[64px]" />
         <Button
           type="button"
           category="nav"

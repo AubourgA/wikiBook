@@ -21,7 +21,7 @@ export const adminMenus = [
     {
         id:"3",
         title:"Auteurs",
-        url:"/Dashboard/Author",
+        url:"/Dashboard/Authors",
         icon: FaPenNib  ,
     },
     {

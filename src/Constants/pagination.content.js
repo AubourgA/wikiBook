@@ -1,6 +1,9 @@
+import { MdKeyboardDoubleArrowLeft, MdKeyboardDoubleArrowRight, MdOutlineKeyboardArrowRight   } from "react-icons/md"
+import { IoIosArrowBack } from "react-icons/io";
+
 export const PAGINATION_BUTTONS = [
-    { key: "hydra:first", title: "1" },
-    { key: "hydra:previous", title: "Précédente" },
-    { key: "hydra:next", title: "Suivante" },
-    { key: "hydra:last", title: "Dernière" }
+    { key: "hydra:first", title: MdKeyboardDoubleArrowLeft  },
+    { key: "hydra:previous", title: IoIosArrowBack  },
+    { key: "hydra:next", title: MdOutlineKeyboardArrowRight },
+    { key: "hydra:last", title: MdKeyboardDoubleArrowRight  }
   ];

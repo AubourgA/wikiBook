@@ -21,8 +21,8 @@ export default function Article({ datas, title, renderItem, className = '', clas
 Article.propTypes = {
   datas: PropTypes.arrayOf(
     PropTypes.shape({
-      id: PropTypes.string.isRequired,  
-      title: PropTypes.string.isRequired, 
+      id: PropTypes.number.isRequired,  
+      title: PropTypes.string, 
       url: PropTypes.string,  
     })
   ).isRequired,  

@@ -14,6 +14,7 @@ import PrivateRoute from "./PrivateRoute";
 import Account from "../pages/UserAccount/Account";
 import AdminBooks from "../pages/Admin/Books/AdminBooks";
 import AdminHome from "../pages/Admin/AdminHome";
+import AdminAuhors from '../pages/Admin/Authors/AdminAuhors';
 
 import AdminBooksAction from '../pages/Admin/Books/AdminBooksAction';
 
@@ -60,6 +61,7 @@ const router = createBrowserRouter([
           { path: "/Dashboard/Books", element: <AdminBooks /> },
           { path: "/Dashboard/Books/New", element: <AdminBooksAction title="Créer un ouvrage"/> },
           { path: "/Dashboard/Books/Update/:id", element: <AdminBooksAction title="Modifier un ouvrage" /> },
+          { path: "/Dashboard/Authors", element: <AdminAuhors /> },
         ],
       },
       {

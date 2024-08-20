@@ -11,7 +11,13 @@ export const columnsBooks = [
     ) }
   ];
 
-  export const createActionsBooks = (handleWatch, handleEdit, handleDelete) => [
+  export const columnsAuthors = [
+    { key: 'id', header:"#"},
+    { key: 'name', header:"name"},
+    { key: 'firstname', header:"firstname"},
+  ]
+
+  export const createActions = (handleWatch, handleEdit, handleDelete) => [
     { icon: FaEye  , onClick: handleWatch , style: "text-blue-500 hover:bg-yellow-100"},
     { icon: FaEdit , onClick: handleEdit , style: "text-yellow-500 hover:bg-yellow-100"},
     { icon: FaTrash, onClick: handleDelete, style: "text-red-500 hover:bg-red-100" },

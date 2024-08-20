@@ -25,7 +25,7 @@ NavItem.propTypes = {
     title: PropTypes.string.isRequired  // Titre de l'élément, obligatoire
   }).isRequired,
   onClick: PropTypes.func,  // Fonction de rappel, optionnelle
-  defaultTo: PropTypes.string.isRequired  // URL par défaut à utiliser si item.url n'est pas fourni, obligatoire
+  defaultTo: PropTypes.string
 };
 
 export default NavItem;

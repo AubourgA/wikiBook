@@ -17,7 +17,8 @@ export default function SelectForm( {label ="",
                 value={value}
                 className='text-sm p-2 rounded-xl'
                 >
-            
+                  
+             <option value="">{value.length > 0 ? value.name : "Choissiez un item"}</option>
              {Array.isArray(options) && options.map((option) => (
           <option key={option[valueKey]} 
                   value={option[valueKey]}>

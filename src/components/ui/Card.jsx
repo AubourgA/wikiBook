@@ -12,9 +12,9 @@ const  Card = ( {children}) => {
 }
 
 
-const CardHeader = ( {pic} ) => <div> <Image img={pic} alt="cover" className='w-full h-[250px] object-cover rounded-t' /></div>
+const CardHeader = ( {pic} ) => <div> <Image img={pic} text="cover" className='w-full h-[250px] object-cover rounded-t' /></div>
 const CardContent = ( {children, ...htmlProps}) => <div {...htmlProps}>{children}</div>
-// const CardTitle = ( {children,...htmlProps}) => <h2 {...htmlProps}>{children}</h2>
+
 const CardTitle = ( {text, level, ...htmlProps}) => <Title text1={text} level={level} {...htmlProps}/>
 const CardDescription = ( {children}) => <div>{children}</div>
 const CardFooter = ( ) =>  { return(

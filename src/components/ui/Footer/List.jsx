@@ -13,7 +13,7 @@ export default function List({datas}) {
 List.propTypes = {
   datas: PropTypes.arrayOf(
     PropTypes.shape({
-      id: PropTypes.string.isRequired,  // Identifiant unique de l'élément, requis
+      id: PropTypes.number.isRequired,  // Identifiant unique de l'élément, requis
       text: PropTypes.string.isRequired, // Texte de l'élément, requis
     })
   ).isRequired,  // Tableau d'éléments, requis
