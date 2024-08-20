@@ -17,6 +17,8 @@ import AdminHome from "../pages/Admin/AdminHome";
 import AdminAuhors from '../pages/Admin/Authors/AdminAuhors';
 
 import AdminBooksAction from '../pages/Admin/Books/AdminBooksAction';
+import AdminAuthorAction from '../pages/Admin/Authors/AdminAuthorAction';
+
 
 const router = createBrowserRouter([
   {
@@ -62,6 +64,7 @@ const router = createBrowserRouter([
           { path: "/Dashboard/Books/New", element: <AdminBooksAction title="Créer un ouvrage"/> },
           { path: "/Dashboard/Books/Update/:id", element: <AdminBooksAction title="Modifier un ouvrage" /> },
           { path: "/Dashboard/Authors", element: <AdminAuhors /> },
+          { path: "/Dashboard/Authors/New", element: <AdminAuthorAction title="Créer un auteur"/> },
         ],
       },
       {

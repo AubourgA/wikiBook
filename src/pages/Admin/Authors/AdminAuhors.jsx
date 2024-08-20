@@ -9,16 +9,18 @@ import CustomTable from "../../../components/ui/Table/CustomTable";
 import { IoMdAddCircle } from "react-icons/io";
 import Loader from "../../../components/ui/Loader";
 import Error from "../../../components/ui/Error/Error";
+import { useNavigate } from "react-router-dom";
 import {columnsAuthors, createActions, API_ENDPOINTS} from "../../../Constants";
 
 export default function AdminAuhors() {
     const [search, setSearch] = useState("");
     const dispatch = useDispatch();
     const debouncedSearch = useDebounce(search, 500);
-    const { datas, loading, error, pagination } = useSelector(
+    const { datas, loading, error } = useSelector(
         (state) => state.authors
       );
 
+    const navigate = useNavigate();
      
     useEffect(() => {
         dispatch(
@@ -29,6 +31,7 @@ export default function AdminAuhors() {
 
       const handleChangeSearch = () => (e) => setSearch(e.target.value);
 
+      const handleCreateAuthor = () => navigate("/Dashboard/Authors/New");
       const handleWatch = ()=> {}
       const handleUpdate = () => {}
       const handleCallDeleteModal = () => {}
@@ -65,7 +68,7 @@ export default function AdminAuhors() {
           title="Ajouter un auteur"
           category="forms"
           icon={IoMdAddCircle}
-          onButtonClick={()=>{}}
+          onButtonClick={handleCreateAuthor}
           custom="items-center flex-row-reverse gap-2 mb-4"
         />
           <CustomTable
