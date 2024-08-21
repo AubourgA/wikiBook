@@ -44,3 +44,10 @@ export const INITIAL_SIGN_IN_VALUE = {
     language:'',
     isOnLine:false
   }
+
+  export const AUTHOR_INITIAL_VALUE = {
+    name:'',
+    firstname:'',
+    birthdate:'',
+    nationality:''
+  }

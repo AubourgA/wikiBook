@@ -1,9 +1,9 @@
 import { useEffect, useState } from 'react';
 import StatCard from '../../components/features/Admin/Home/StatCard';
 import Title from '../../components/ui/Title';
-import { statCards } from '../../Constants';
+import { API_ENDPOINTS, statCards } from '../../Constants';
 import { FaArrowRight } from "react-icons/fa6";
-import { getTotalBooks, getTotalUsers, getTotalLoans } from '../../api';
+import {  getTotalItems } from '../../api';
 
 
 export default function AdminHome( ) {
@@ -19,9 +19,9 @@ export default function AdminHome( ) {
       const fecthStats = async () => {
         try {
           const [usersCount, booksCount, loansCount] = await Promise.all( [
-            getTotalUsers(),
-            getTotalBooks(),
-            getTotalLoans(),
+            getTotalItems(API_ENDPOINTS.USERS),
+            getTotalItems(API_ENDPOINTS.BOOKS),
+            getTotalItems(API_ENDPOINTS.LOANS)
           ])
           setStats({
             totalUsers: usersCount,

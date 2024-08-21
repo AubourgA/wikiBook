@@ -6,10 +6,11 @@ import authorsReducer from './authorSlice'
 
 
 
+
+
 const rootReducer = combineReducers({
   books: booksReducer,
   authors: authorsReducer,
-
 
 });
 

@@ -1,5 +1,5 @@
 import { useSelector, useDispatch } from "react-redux";
-import { deleteBookThunk, getData } from "../../../store/bookSlice";
+import {   getData } from "../../../store/bookSlice";
 import { useEffect, useState } from "react";
 import { useDebounce } from "../../../hooks/useDebounce";
 import CustomTable from "../../../components/ui/Table/CustomTable";
@@ -18,6 +18,7 @@ import Error from "../../../components/ui/Error/Error";
 import { useNavigate } from "react-router-dom";
 import ModalConfirm from '../../../components/ui/Modal/ModalConfirm';
 import { createPortal } from 'react-dom';
+import { deleteEntity } from '../../../api';
 // import { deleteBook } from '../../../api'
 // import BookForm from './Forms/BookForm'
 
@@ -34,7 +35,7 @@ export default function AdminBooks() {
 
   useEffect(() => {
     dispatch(
-      getData({ endpoint: API_ENDPOINTS.BOOKS, search: debouncedSearch })
+      getData({ endpoint: API_ENDPOINTS.BOOKS, search: debouncedSearch, entityType : "Books" })
     );
   }, [dispatch, debouncedSearch]);
 
@@ -42,7 +43,8 @@ export default function AdminBooks() {
   const handleChangeSearch = () => (e) => setSearch(e.target.value);
   
   const handlePaginationClick = async (url) => {
-    dispatch(getData({ endpoint: url, search: debouncedSearch }));
+    dispatch(getData({ endpoint: url, search: debouncedSearch, entityType: "Books" }));
+    
   };
   
   const handleCreateBook = () => navigate("/Dashboard/Books/New");
@@ -56,8 +58,9 @@ export default function AdminBooks() {
   const handleDeleteItem = async () => {
     try {
       
-      await dispatch(deleteBookThunk(selectedBookId)).unwrap();
-      dispatch(getData({ endpoint: API_ENDPOINTS.BOOKS, search: debouncedSearch }));
+    
+      await deleteEntity(selectedBookId, API_ENDPOINTS.BOOKS);
+      dispatch(getData({ endpoint: API_ENDPOINTS.BOOKS, search: debouncedSearch, entityType: "Books" }));
       setShowModal(false);
     } catch (err) {
       setShowModal(false)

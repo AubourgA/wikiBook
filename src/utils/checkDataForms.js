@@ -151,3 +151,36 @@ export const validateBookForm = (formData) => {
 
   return newErrors;
 };
+
+
+export const validateAuthorForm = (formData) => {
+  const newErrors = {};
+
+
+  if (!formData.name) {
+    newErrors.name = 'Le nom est requis';
+  } else if (!isAlphabetic(formData.name)) {
+    newErrors.name = 'Le nom ne doit contenir que des lettres';
+  }
+
+  if (!formData.firstname) {
+    newErrors.firstname = 'Le prénom est requis';
+  } else if (!isAlphabetic(formData.firstname)) {
+    newErrors.firstname = 'Le prénom ne doit contenir que des lettres';
+  }
+
+  // if (!formData.birthdate) {
+  //   newErrors.birthdate = 'Le prénom est requis';
+  // } else if (!isAlphabetic(formData.birthdate)) {
+  //   newErrors.birthdate = 'Le prénom ne doit contenir que des lettres';
+  // }
+
+
+  if (!formData.nationality) {
+    newErrors.nationality = "La nationalité est requis";
+  }
+
+  
+
+  return newErrors;
+};

@@ -4,7 +4,7 @@ import { buildFullURL } from '../utils/QueryBuilder';
 
 export const fetchAuthors = async (url, search = "") => {
   try {
-    const fullURL = buildFullURL(url, search);
+    const fullURL = buildFullURL(url, search,"Authors");
     const response = await axiosInstance.get(fullURL);
     return response.data;
   } catch (error) {
@@ -12,6 +12,17 @@ export const fetchAuthors = async (url, search = "") => {
     throw error;
   }
 };
+
+export const fetchAuthorById = async (id) => {
+  try {
+    const response = await axiosInstance.get(`${API_ENDPOINTS.AUTHORS}/${id}`);
+    return response.data;
+  } catch (error) {
+    console.error('Error fetching book:', error.response ? error.response.data : error.message);
+    throw error;
+  }
+};
+
 
 
   export const createAuthor = async (authorData) => {

@@ -1,5 +1,5 @@
 import axios from "axios";
-import { axiosInstance } from '../api';
+
 import { API_ENDPOINTS } from '../Constants';
 
 export const createUser = async (formData,url = API_ENDPOINTS.USERS) => {
@@ -24,12 +24,12 @@ export const createUser = async (formData,url = API_ENDPOINTS.USERS) => {
   }
   };
 
-  export const getTotalUsers = async () => {
-    try {
-      const response = await axiosInstance.get(API_ENDPOINTS.USERS);
-      return response.data['hydra:totalItems'];
-    } catch (error) {
-      console.error('Error fetching total users:', error.response ? error.response.data : error.message);
-      throw error;
-    }
-  };
+  // export const getTotalUsers = async () => {
+  //   try {
+  //     const response = await axiosInstance.get(API_ENDPOINTS.USERS);
+  //     return response.data['hydra:totalItems'];
+  //   } catch (error) {
+  //     console.error('Error fetching total users:', error.response ? error.response.data : error.message);
+  //     throw error;
+  //   }
+  // };

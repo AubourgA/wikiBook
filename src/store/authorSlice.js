@@ -1,7 +1,7 @@
 
 import { API_ENDPOINTS } from '../Constants';
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
-import { fetchAuthors, createAuthor, updateAuthor, deleteAuthor } from '../api';
+import { fetchAuthors, createAuthor, updateAuthor } from '../api';
 
 
 const initialState = {
@@ -39,13 +39,7 @@ export const authorsSlice = createSlice({
             state.datas['hydra:member'][index] = action.payload;
           }
         })
-        .addCase(deleteAuthorThunk.fulfilled, (state, action) => {
-          state.datas['hydra:member'] = state.datas['hydra:member'].filter(book => book.id !== action.payload);
-        })
-        .addCase(deleteAuthorThunk.rejected, (state, action) => {
-          state.loading = false;
-          state.error = action.error.message; 
-        });
+    
   
       }
     });
@@ -89,17 +83,7 @@ export const authorsSlice = createSlice({
     }
   );
   
-  export const deleteAuthorThunk = createAsyncThunk(
-    'authors/deleteBook',
-    async (id, { rejectWithValue }) => {
-      try {
-        await deleteAuthor(id);
-        return id;
-      } catch (err) {
-        return rejectWithValue(err.response ? err.response.data : err.message);
-      }
-    }
-  );
+
     
     export default authorsSlice.reducer;
     

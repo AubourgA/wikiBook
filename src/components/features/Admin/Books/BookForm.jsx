@@ -1,23 +1,15 @@
 import { useState, useEffect } from "react";
 import { Link, useParams, useNavigate } from "react-router-dom";
-import {
-  fetchBookById,
-  fetchAuthors,
-  fetchEditors,
-  fetchGenres,
-  fetchLanguages,
-  createBook,
-  updateBook,
-} from "../../../../api";
+import { API_ENDPOINTS, BOOK_INITIAL_VALUE } from "../../../../Constants";
+import {fetchGenericData,fetchEntity, fetchEntityById,createEntity, updateEntity} from "../../../../api";
 import Button from "../../../ui/Forms/Button";
 import InputForm from "../../../ui/Forms/InputForm";
 import TextareaForm from "../../../ui/Forms/TextArea";
 import SelectForm from "../../../ui/Forms/SelectForm";
-import { validateBookForm } from "../../../../utils/checkDataForms";
-import { BOOK_INITIAL_VALUE } from "../../../../Constants";
 import MessageForm from "../../../ui/Forms/MessageForm";
 import SwitchInput from '../../../ui/Forms/InputSwitch';
-import { fetchGenericData } from '../../../../utils/QueryBuilder'
+import { validateBookForm } from "../../../../utils/checkDataForms";
+
 
 const BookForm = () => {
   const { id } = useParams();
@@ -34,16 +26,16 @@ const BookForm = () => {
 
    useEffect(() => {
     const fetchDataForForm  = async () => {
-
-      await fetchGenericData(fetchAuthors, setAuthors, "Erreur lors du chargement des auteurs:");
-      await fetchGenericData(fetchGenres, setGenres, "Erreur lors du chargement des genres:");
-      await fetchGenericData(fetchEditors, setEditors, "Erreur lors du chargement des éditeurs:");
-      await fetchGenericData(fetchLanguages, setLanguages, "Erreur lors du chargement des langues:");
-
+      await fetchGenericData(()=>fetchEntity(API_ENDPOINTS.AUTHORS), setAuthors, "Erreur lors du chargement des auteur");
+      await fetchGenericData(()=>fetchEntity(API_ENDPOINTS.EDITORS), setEditors, "Erreur lors du chargement des editeur");
+      await fetchGenericData(()=>fetchEntity(API_ENDPOINTS.LANGUAGES), setLanguages, "Erreur lors du chargement des langue");
+      await fetchGenericData(()=>fetchEntity(API_ENDPOINTS.GENRES), setGenres, "Erreur lors du chargement des genres");
+     
       try {
         if (id) {
           setIsCreateMode(false);
-          const book = await fetchBookById(id); //
+          
+          const book = await fetchEntityById(id, API_ENDPOINTS.BOOKS); //
 
           setFormData({
             title: book.title || "",
@@ -68,6 +60,7 @@ const BookForm = () => {
     fetchDataForForm (); // Appel de la fonction fetchData
   }, [id]);
   
+
   const handleChange = () => (e) => {
     const { name, type, value, checked } = e.target;
     let finalValue;
@@ -102,18 +95,17 @@ const BookForm = () => {
 
     try {
       if (isCreateMode) {
-        await createBook(formData);
-        //envoyer notification
+        await createEntity(API_ENDPOINTS.BOOKS, formData)
         navigate("/Dashboard/Books");
       } else {
-        await updateBook(id, formData);
-        //envoyer notification
+        await updateEntity(id, API_ENDPOINTS.BOOKS, formData);
         navigate("/Dashboard/Books");
       }
     } catch (error) {
       console.error("Failted to save book", error);
     }
   };
+
 
   return (
     <form onSubmit={handleSubmit}>
@@ -125,9 +117,9 @@ const BookForm = () => {
           onChange={handleChange}
           type="text"
           placeholder="Titre de l'ouvrage"
-          value={formData.title}
-        />
+          value={formData.title} />
         {errors.title && <MessageForm type="ERROR" message={errors.title} />}
+
         <TextareaForm
           label="Synopsys"
           id="synopsys"
@@ -135,11 +127,8 @@ const BookForm = () => {
           placeholder="Quelque mot sur le sujet de l'ouvrage"
           value={formData.synopsys}
           onChange={handleChange}
-          className="text-sm p-2 rounded-xl"
-        />
-        {errors.synopsys && (
-          <MessageForm type="ERROR" message={errors.synopsys} />
-        )}
+          className="text-sm p-2 rounded-xl"  />
+        {errors.synopsys &&  <MessageForm type="ERROR" message={errors.synopsys} />}
 
         <SelectForm
           id="authors"
@@ -149,12 +138,8 @@ const BookForm = () => {
           type="text"
           value={formData.author}
           options={authors}
-          labelKey="name"
-          valueKey="@id"
-        />
-        {errors.synopsys && (
-          <MessageForm type="ERROR" message={errors.synopsys} />
-        )}
+          labelKey="name" />
+        {errors.author && <MessageForm type="ERROR" message={errors.author} />}
 
         <InputForm
           id="YearPublished"
@@ -163,11 +148,8 @@ const BookForm = () => {
           onChange={handleChange}
           type="number"
           placeholder="Année de publication"
-          value={formData.YearPublished}
-        />
-        {errors.synopsys && (
-          <MessageForm type="ERROR" message={errors.synopsys} />
-        )}
+          value={formData.YearPublished}/>
+        {errors.YearPublished && <MessageForm type="ERROR" message={errors.YearPublished} />}
 
         <InputForm
           id="ISBN"
@@ -176,9 +158,9 @@ const BookForm = () => {
           onChange={handleChange}
           type="text"
           placeholder="ISBN 10 ou 13 chiffre"
-          value={formData.ISBN}
-        />
+          value={formData.ISBN} />
         {errors.ISBN && <MessageForm type="ERROR" message={errors.ISBN} />}
+
         <InputForm
           id="nbPage"
           name="nbPage"
@@ -186,65 +168,56 @@ const BookForm = () => {
           onChange={handleChange}
           type="number"
           placeholder="Nombre de page"
-          value={formData.nbPage}
-        />
+          value={formData.nbPage} />
         {errors.nbPage && <MessageForm type="ERROR" message={errors.nbPage} />}
+
         <SelectForm
           label="Genre"
           name="genre"
           value={formData.genre}
           onChange={handleChange}
           options={genres}
-          labelKey="name"
-        />
+          labelKey="name"  />
         {errors.genre && <MessageForm type="ERROR" message={errors.genre} />}
+
         <SelectForm
           label="Editeur"
           name="editor"
           value={formData.editor}
           onChange={handleChange}
           options={editors}
-          labelKey="name"
-        />
+          labelKey="name" />
         {errors.editor && <MessageForm type="ERROR" message={errors.editor} />}
+
         <SelectForm
           label="Langue"
           name="language"
           value={formData.language}
           onChange={handleChange}
           options={languages}
-          labelKey="name"
-        />
-        {errors.language && (
-          <MessageForm type="ERROR" message={errors.language} />
-        )}
+          labelKey="name" />
+        {errors.language && <MessageForm type="ERROR" message={errors.language} />}
   
        <SwitchInput   id="isOnLine"
                       name="isOnLine"
                       label="Disponible"
                       value={formData.isOnLine}
                       onChange={handleChange}
-                      customClass="my-4"
-                    />
-     {errors.isOnLine && (
-          <MessageForm type="ERROR" message={errors.isOnLine} />
-        )}
+                      customClass="my-4" />
+     {errors.isOnLine && <MessageForm type="ERROR" message={errors.isOnLine} /> }
 
-        <div className="flex items-center gap-2">
-          <Button
-            type="submit"
-            title={isCreateMode ? "Créer" : "Mise a jour"}
-            category="forms"
-          />
-          <Link
-            to="/Dashboard/Books"
-            className=" btn-pressed border-primary100 rounded-lg text-primary100 justify-center border px-4 py-2 mt-4"
-          >
-            Annuler{" "}
-          </Link>
-        </div>
+      <div className="flex items-center gap-2">
+        <Button
+          type="submit"
+          title={isCreateMode ? "Créer" : "Mise a jour"}
+          category="forms" />
+        <Link to="/Dashboard/Books"
+              className=" btn-pressed border-primary100 rounded-lg text-primary100 justify-center border px-4 py-2 mt-4"  >
+          Annuler
+        </Link>
       </div>
-    </form>
+    </div>
+  </form>
   );
 };
 
