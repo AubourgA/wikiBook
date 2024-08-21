@@ -32,7 +32,7 @@ export default function AdminAuhors() {
      
     useEffect(() => {
         dispatch(
-          getData({ endpoint: API_ENDPOINTS.AUTHORS, search: debouncedSearch,entityType: "Authors" })
+          getData({ endpoint: API_ENDPOINTS.AUTHORS, search: debouncedSearch, entityType: "Authors" })
         );
       }, [dispatch, debouncedSearch]);
 
@@ -41,7 +41,9 @@ export default function AdminAuhors() {
 
       const handleCreateAuthor = () => navigate("/Dashboard/Authors/New");
       const handleWatch = ()=> {}
+
       const handleUpdate = (e) => navigate(`/Dashboard/Authors/Update/${e.id}`);
+
       const handleCallDeleteModal = (book) =>  {
         setShowModal(true)
         setSelectedAutorId(book.id)

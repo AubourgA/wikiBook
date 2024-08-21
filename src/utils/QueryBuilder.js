@@ -1,5 +1,5 @@
 import { isNumeric } from './validation';
-import { API_ENDPOINTS } from '../Constants';
+
 
 
 /**
@@ -20,7 +20,7 @@ export const getSearchParams = (search, entityType) => {
   const result = {};
 
   switch (entityType) {
-    case 'Author':
+    case 'Authors':
       result.name = search;
       break;
     case 'Books':
@@ -30,8 +30,8 @@ export const getSearchParams = (search, entityType) => {
         result.title = search;
       }
       break;
-    case 'Nationality':
-      result.country = search;
+    case 'Editors':
+      result.name = search;
       break;
     default:
       throw new Error(`Type d'entité non supporté: ${entityType}`);
@@ -88,9 +88,8 @@ export const buildQueryParams = (filters) => {
  * const fullURL = buildFullURL();
  * // Returns: "https://api.example.com/books" (assuming `API_ENDPOINTS.BOOKS` is set to this URL)
  */
-export const buildFullURL = (url = API_ENDPOINTS.BOOKS, search = "", entityType = "Books") => {
+export const buildFullURL = (url , search = "", entityType = "") => {
   let fullURL = url;
-
   if (search) {
     const params = buildQueryParams(getSearchParams(search, entityType));
     fullURL = `${url}?${params}`;

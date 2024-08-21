@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { Link, useParams, useNavigate } from "react-router-dom";
 import {  API_ENDPOINTS, AUTHOR_INITIAL_VALUE } from "../../../../Constants";
-import {  updateAuthor, fetchGenericData, fetchEntity, fetchEntityById, createEntity } from "../../../../api";
+import {   fetchGenericData, fetchEntity, fetchEntityById, createEntity, updateEntity } from "../../../../api";
 
 
 import { validateAuthorForm } from '../../../../utils/checkDataForms';
@@ -9,6 +9,7 @@ import InputForm from '../../../ui/Forms/InputForm';
 import MessageForm from '../../../ui/Forms/MessageForm';
 import SelectForm from '../../../ui/Forms/SelectForm';
 import Button from '../../../ui/Forms/Button';
+import formatDate from '../../../../utils/formalizerDate';
 
 
 
@@ -91,9 +92,10 @@ export default function AuthorForm() {
           //envoyer notification
           navigate("/Dashboard/Authors");
         } else {
-          await updateAuthor(id, formData);
+          // await updateAuthor(id, formData);
+          await updateEntity(id, API_ENDPOINTS.AUTHORS, formData);
           //envoyer notification
-          navigate("/Dashboard/Books");
+          navigate("/Dashboard/Authors");
         }
       } catch (error) {
         console.error("Failted to save author", error);
@@ -130,7 +132,7 @@ export default function AuthorForm() {
           label="Date de Naissance"
           onChange={handleChange}
           type="date"
-          value={formData.birthdate}
+          value={formatDate(formData.birthdate)}
         />
         {errors.birthdate && <MessageForm type="ERROR" message={errors.birthdate} />}
 

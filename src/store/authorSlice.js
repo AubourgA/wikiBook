@@ -1,7 +1,7 @@
 
-import { API_ENDPOINTS } from '../Constants';
+
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
-import { fetchAuthors, createAuthor, updateAuthor } from '../api';
+import {  createAuthor, updateAuthor, fetchEntityByParams } from '../api';
 
 
 const initialState = {
@@ -46,11 +46,12 @@ export const authorsSlice = createSlice({
     
   
     export const getData = createAsyncThunk(
-      'authors/fetchAuthor',
-      async ({ endpoint = `${API_ENDPOINTS.AUTHORS}`, search = "" }, { rejectWithValue }) => {
+      'authors/fetchAuthors',
+      async ({ endpoint , search = "", entityType }, { rejectWithValue }) => {
+        const url = `${endpoint}`
         try {
-          const response = await fetchAuthors(endpoint, search);
-        
+          
+          const response = await fetchEntityByParams(url, search, entityType);
           return response; 
         } catch (err) {
           return rejectWithValue(err.response ? err.response.data : err.message); 

@@ -1,7 +1,7 @@
 
-// import { API_ENDPOINTS } from '../Constants';
+
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
-// import { fetchBooks, fetchEntity } from '../api';
+
 import {  deleteEntity, fetchEntityByParams } from '../api';
 import { API_ENDPOINTS } from '../Constants';
 
@@ -76,7 +76,7 @@ export const booksSlice = createSlice({
     async ({ endpoint , search = "", entityType }, { rejectWithValue }) => {
      const url = `${endpoint}`
       try {
-        // const response = await fetchBooks(endpoint, search);
+      
         const response = await fetchEntityByParams(url, search, entityType);
       
         return response; 
