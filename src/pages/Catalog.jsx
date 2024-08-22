@@ -123,8 +123,6 @@ const handlePaginationClick = async (path) => {
                                     <Card.Description>Année : {YearPublished}</Card.Description>
                                 </Card.Content>
                                 <Card.Footer />
-    
-                               
                             </Card>
                             )
                         )
