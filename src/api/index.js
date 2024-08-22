@@ -1,6 +1,3 @@
-export * from './books'
-export * from './authors'
-
 export * from './email'
 export * from './users'
 export * from './auth'

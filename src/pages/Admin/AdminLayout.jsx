@@ -8,7 +8,7 @@ import UserBar from "../../components/features/Admin/Dashboard/UserBar";
 import { Provider } from "react-redux";
 import store from "../../store";
 
-export default function Dashboard() {
+export default function AdminLayout() {
   const { user } = useContext(AuthContext);
 
   return (

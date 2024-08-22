@@ -1,20 +1,20 @@
 import { useSelector, useDispatch } from "react-redux";
 import { useState, useEffect} from "react"
-import Title from '../../../components/ui/Title'
-import {  getData } from "../../../store/authorSlice";
-import { useDebounce } from "../../../hooks/useDebounce";
-import SearchBar from '../../../components/features/filters/SearchBar'
-import Button from '../../../components/ui/Forms/Button'
-import CustomTable from "../../../components/ui/Table/CustomTable";
+import Title from '../../components/ui/Title'
+import {  getData } from "../../store/authorSlice";
+import { useDebounce } from "../../hooks/useDebounce";
+import SearchBar from '../../components/features/filters/SearchBar'
+import Button from '../../components/ui/Forms/Button'
+import CustomTable from "../../components/ui/Table/CustomTable";
 import { IoMdAddCircle } from "react-icons/io";
-import Loader from "../../../components/ui/Loader";
-import Error from "../../../components/ui/Error/Error";
+import Loader from "../../components/ui/Loader";
+import Error from "../../components/ui/Error/Error";
 import { useNavigate } from "react-router-dom";
-import {columnsAuthors, createActions, API_ENDPOINTS, PAGINATION_BUTTONS} from "../../../Constants";
+import {columnsAuthors, createActions, API_ENDPOINTS, PAGINATION_BUTTONS} from "../../Constants";
 import { createPortal } from 'react-dom';
-import ModalConfirm from '../../../components/ui/Modal/ModalConfirm';
-import { deleteEntity } from '../../../api';
-import Pagination from '../../../components/ui/Table/Pagination';
+import ModalConfirm from '../../components/ui/Modal/ModalConfirm';
+import { deleteEntity } from '../../api';
+import Pagination from '../../components/ui/Table/Pagination';
 
 
 export default function AdminAuhors() {

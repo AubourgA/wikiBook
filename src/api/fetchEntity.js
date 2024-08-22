@@ -1,7 +1,25 @@
-// import { API_ENDPOINTS } from '../Constants';
+
+import axios from 'axios';
 import { axiosInstance } from '.';
+
 import { buildFullURL } from '../utils/QueryBuilder';
-// import { buildFullURL } from '../utils/QueryBuilder';
+
+
+export const getEntityPublic = async (endpoint) => {
+  const url = `${endpoint}`
+  try {
+    const response = await axios.get(url, {
+      headers: {
+        'Content-Type': 'application/ld+json',
+      },
+    });
+    return response.data;
+  } catch (error) {
+    console.error('Error:', error.response ? error.response.data : error.message);
+    throw error;
+  }
+};
+
 
 /**
  * Fetches data using a provided fetch function and updates the state with the result, handling errors if they occur.

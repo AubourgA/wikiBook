@@ -9,7 +9,8 @@ import { useEffect, useState } from 'react';
 import Card from '../components/ui/Card';
 import Loader from '../components/ui/Loader';
 import Error from '../components/ui/Error/Error';
-import { getBooks } from '../api';
+import { getEntityPublic } from '../api';
+import { API_ENDPOINTS } from '../Constants';
 
 export default function BookLatest( ) {
 
@@ -23,7 +24,7 @@ useEffect(() => {
   const fetchLastBooks = async () => {
          setIsLoading(true);
          try {
-           setLastBooks(await getBooks());
+           setLastBooks(await getEntityPublic(API_ENDPOINTS.BOOKS));
          } catch (error) {
            setError(error);
          } finally {

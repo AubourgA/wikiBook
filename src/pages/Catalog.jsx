@@ -6,7 +6,7 @@ import Filters from '../components/features/filters/Filters';
 import Loader from '../components/ui/Loader'
 
 import { buildQueryParams } from "../utils/QueryBuilder"
-import { getBooks } from '../api';
+import {  getEntityPublic } from '../api';
 import { API_ENDPOINTS } from '../Constants/api.endspoints';
 import { INITIAL_FILTERS_VALUE, PAGINATION_BUTTONS } from '../Constants';
 import Error from '../components/ui/Error/Error';
@@ -26,7 +26,8 @@ export default function Catalog() {
      const fetchBooks = async () => {
             setIsLoading(true);
             try {
-              const booksData = await getBooks();
+            
+              const booksData = await getEntityPublic(API_ENDPOINTS.BOOKS);
               setBooks(booksData);
             } catch (error) {
               setError(error);
@@ -52,7 +53,7 @@ const handleResultFilter = async () => {
   const apiUrl = `${API_ENDPOINTS.BOOKS}?${queryParams}`;
   setIsLoading(true);
   try {
-    const booksData = await getBooks(apiUrl);
+    const booksData = await getEntityPublic(apiUrl);
     setBooks(booksData);
   } catch (error) {
     setError(error);
@@ -66,7 +67,7 @@ const handleResetFilters = async () => {
   setFilters(INITIAL_FILTERS_VALUE);
   setIsLoading(true);
   try {
-    const booksData = await getBooks();
+    const booksData = await getEntityPublic(API_ENDPOINTS.BOOKS);
     setBooks(booksData);
   } catch (error) {
     setError(error);
@@ -81,7 +82,7 @@ const handlePaginationClick = async (path) => {
     const fullUrl = new URL(path, API_ENDPOINTS.BASE).toString();
     setIsLoading(true);
     try {
-      const booksData = await getBooks(fullUrl);
+      const booksData = await getEntityPublic(fullUrl);
       setBooks(booksData);
       console.log(books)
     } catch (error) {

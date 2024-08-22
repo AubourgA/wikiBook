@@ -9,17 +9,17 @@ import Root from "../pages/Root";
 import Contact from "../pages/Contact";
 import Login from "../pages/Login";
 import Subscribe from "../pages/Subscribe";
-import Dashboard from "../pages/Admin/Dashboard";
+import AdminLayout from "../pages/Admin/AdminLayout";
 import PrivateRoute from "./PrivateRoute";
 import Account from "../pages/UserAccount/Account";
-import AdminBooks from "../pages/Admin/Books/AdminBooks";
+import AdminBooks from "../pages/Admin/AdminBooks";
 import AdminHome from "../pages/Admin/AdminHome";
-import AdminAuhors from '../pages/Admin/Authors/AdminAuhors';
+import AdminAuhors from "../pages/Admin/AdminAuhors";
+import AdminGenres from "../pages/Admin/AdminGenres";
+import AdminDisplayForms from "../components/features/Admin/Forms/AdminDisplayForms";
 
-import AdminBooksAction from '../pages/Admin/Books/AdminBooksAction';
-import AdminAuthorAction from '../pages/Admin/Authors/AdminAuthorAction';
-import AdminGenres from '../pages/Admin/Genres/AdminGenres';
-
+import AuthorForm from "../components/features/Admin/Authors/AuthorForm";
+import BookForm from "../components/features/Admin/Books/BookForm";
 
 const router = createBrowserRouter([
   {
@@ -55,18 +55,37 @@ const router = createBrowserRouter([
         path: "/Dashboard",
         element: (
           <PrivateRoute roles={["ROLE_ADMIN"]}>
-            <Dashboard />
+            <AdminLayout />
           </PrivateRoute>
         ),
 
         children: [
           { path: "/Dashboard/Home", element: <AdminHome /> },
           { path: "/Dashboard/Books", element: <AdminBooks /> },
-          { path: "/Dashboard/Books/New", element: <AdminBooksAction title="Créer un ouvrage"/> },
-          { path: "/Dashboard/Books/Update/:id", element: <AdminBooksAction title="Modifier un ouvrage" /> },
-          { path: "/Dashboard/Authors", element: <AdminAuhors /> },
-          { path: "/Dashboard/Authors/New", element: <AdminAuthorAction title="Créer un auteur"/> },
-          { path: "/Dashboard/Authors/Update/:id", element: <AdminAuthorAction title="Modifier un auteur" /> },
+          {
+            path: "/Dashboard/Books/New",
+            element: (
+              <AdminDisplayForms  title="Créer un ouvrage" FormComponent={BookForm} />
+            ),
+          },
+          {
+            path: "/Dashboard/Books/Update/:id", element: (<AdminDisplayForms  title="Mise a jour d'un auteur" FormComponent={BookForm}/>
+            ),
+          },
+          { path: "/Dashboard/Authors", element: <AdminAuhors /> },    
+           {
+            path: "/Dashboard/Authors/New",
+            element: (<AdminDisplayForms  title="Créer un auteur" FormComponent={AuthorForm}  /> ),
+          },
+          {
+            path: "/Dashboard/Authors/Update/:id",
+            element: (
+              <AdminDisplayForms
+                title="Mise a jour d'un auteur"
+                FormComponent={AuthorForm}
+              />
+            ),
+          },
           { path: "/Dashboard/Genres", element: <AdminGenres /> },
         ],
       },
