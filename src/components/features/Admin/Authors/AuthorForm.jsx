@@ -10,6 +10,7 @@ import MessageForm from '../../../ui/Forms/MessageForm';
 import SelectForm from '../../../ui/Forms/SelectForm';
 import Button from '../../../ui/Forms/Button';
 import formatDate from '../../../../utils/formalizerDate';
+import Error from '../../../ui/Error/Error';
 
 
 
@@ -20,6 +21,7 @@ export default function AuthorForm() {
     const [nationalities, setNationalities] = useState([]);
     const [isCreateMode, setIsCreateMode] = useState(false);
     const [errors, setErrors] = useState({});
+    const [updateError, setUpdateError] = useState(null)
 
     const navigate = useNavigate();
 
@@ -39,11 +41,14 @@ export default function AuthorForm() {
                         birthdate: author.birthdate || "",
                         nationality: author.nationality ? author.nationality["@id"] : ""
                     })
+                   
                 } else {
                     setIsCreateMode(true)
+                   setUpdateError(null)
                 }
             } catch(error) {
                 console.error("FAiled to fetch author details:",error)
+               
             }
         
         }
@@ -84,26 +89,32 @@ export default function AuthorForm() {
         return;
       }
       
-      console.log(formData)
+  
 
       try {
         if (isCreateMode) {
           await createEntity(API_ENDPOINTS.AUTHORS, formData)
           //envoyer notification
+          setUpdateError(null)
           navigate("/Dashboard/Authors");
         } else {
           // await updateAuthor(id, formData);
           await updateEntity(id, API_ENDPOINTS.AUTHORS, formData);
           //envoyer notification
+          setUpdateError(null)
           navigate("/Dashboard/Authors");
         }
       } catch (error) {
         console.error("Failted to save author", error);
+        setUpdateError("Le nom et prenom sont déja existant")
+
       }
     }
 
+    console.log(updateError)
   return (
     <form onSubmit={handleSubmit}>
+      {updateError && (<Error title="Erreur :"  message={updateError} />  )}
       <div className="flex flex-col pt-5 pb-2">
         <InputForm
           id="name"

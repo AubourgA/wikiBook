@@ -1,5 +1,5 @@
 import { useSelector, useDispatch } from "react-redux";
-import { getData } from "../../store/bookSlice";
+import { getData } from "../../store/booksSlice";
 import { useEffect, useState } from "react";
 import { useDebounce } from "../../hooks/useDebounce";
 import CustomTable from "../../components/ui/Table/CustomTable";
@@ -19,7 +19,8 @@ import Error from "../../components/ui/Error/Error";
 import { useNavigate } from "react-router-dom";
 import ModalConfirm from "../../components/ui/Modal/ModalConfirm";
 import { createPortal } from "react-dom";
-import { deleteEntity } from "../../api";
+import { deleteEntity } from '../../api';
+
 
 
 export default function AdminBooks() {
@@ -127,8 +128,7 @@ export default function AdminBooks() {
           onButtonClick={handleCreateBook}
           custom="items-center flex-row-reverse gap-2 mb-4"
         />
-
-        <CustomTable
+         <CustomTable
           data={datas["hydra:member"]}
           columns={columnsBooks}
           actions={actionsBooks}

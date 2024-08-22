@@ -20,6 +20,7 @@ import AdminDisplayForms from "../components/features/Admin/Forms/AdminDisplayFo
 
 import AuthorForm from "../components/features/Admin/Authors/AuthorForm";
 import BookForm from "../components/features/Admin/Books/BookForm";
+import GenresForm from '../components/features/Admin/Genres/GenresForm';
 
 const router = createBrowserRouter([
   {
@@ -63,9 +64,7 @@ const router = createBrowserRouter([
           { path: "/Dashboard/Home", element: <AdminHome /> },
           { path: "/Dashboard/Books", element: <AdminBooks /> },
           {
-            path: "/Dashboard/Books/New",
-            element: (
-              <AdminDisplayForms  title="Créer un ouvrage" FormComponent={BookForm} />
+            path: "/Dashboard/Books/New", element: (<AdminDisplayForms  title="Créer un ouvrage" FormComponent={BookForm} />
             ),
           },
           {
@@ -87,6 +86,14 @@ const router = createBrowserRouter([
             ),
           },
           { path: "/Dashboard/Genres", element: <AdminGenres /> },
+          {
+            path: "/Dashboard/Genres/New", element: (<AdminDisplayForms  title="Créer un nouveau genre" FormComponent={GenresForm} />
+            ),
+          },
+          {
+            path: "/Dashboard/Genres/Update/:id",
+            element: ( <AdminDisplayForms title="Mise a jour d'un genre" FormComponent={GenresForm} /> ),
+          },
         ],
       },
       {

@@ -1,23 +1,22 @@
-import { useDispatch, useSelector } from 'react-redux';
-import { useEffect } from 'react';
-import { getData } from '../../store/genresSlice';
-import { API_ENDPOINTS } from '../../Constants';
+import { columnsGenres, API_ENDPOINTS } from "../../Constants";
+import { getData } from "../../store/genresSlice";
+import AdminEntity from "../../components/features/Admin/AdminEntityDisplay";
 
 export default function AdminGenres() {
 
 
-  const dispatch = useDispatch();
-  const { datas } = useSelector((state) => state.genres);
 
-  useEffect( ()=> {
-    dispatch(getData({endpoint: API_ENDPOINTS.GENRES, search:"", entityType: "Genres"}))
-  },[dispatch])
-
-  console.log(datas)
   return (
-    <div>
-        <h1>Title</h1>
-        
-    </div>
-  )
+    <AdminEntity
+        entityType="genres"
+        sliceSelector={(state) => state.genres}
+        columns={columnsGenres}
+        apiEndpoint={API_ENDPOINTS.GENRES}
+        createPath="/Dashboard/Genres/New"
+        updatePath="/Dashboard/Genres/Update"
+        entityName="genre"
+        getFetchData={getData} 
+  />
+);
+  
 }

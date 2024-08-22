@@ -12,9 +12,10 @@ export function createEntitySlice({ name, endpoint }) {
 
   const getData = createAsyncThunk(
     `${name}/fetchData`,
-    async ({ search = "", entityType }, { rejectWithValue }) => {
+    async ({ endpoint, search = "", entityType }, { rejectWithValue }) => {
+        const url = `${endpoint}`
       try {
-        const response = await fetchEntityByParams(endpoint, search, entityType);
+        const response = await fetchEntityByParams(url, search, entityType);
         return response;
       } catch (err) {
         return rejectWithValue(err.response ? err.response.data : err.message);
@@ -52,16 +53,7 @@ export function createEntitySlice({ name, endpoint }) {
         .addCase(getData.rejected, (state, action) => {
           state.error = action.payload;
           state.loading = false;
-        })
-        .addCase(deleteEntityThunk.fulfilled, (state, action) => {
-          state.datas['hydra:member'] = state.datas['hydra:member'].filter(
-            (item) => item.id !== action.payload
-          );
-        })
-        .addCase(deleteEntityThunk.rejected, (state, action) => {
-          state.error = action.payload;
-          state.loading = false;
-        });
+        })      
     },
   });
 

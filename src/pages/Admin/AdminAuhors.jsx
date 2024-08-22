@@ -1,7 +1,9 @@
 import { useSelector, useDispatch } from "react-redux";
 import { useState, useEffect} from "react"
 import Title from '../../components/ui/Title'
-import {  getData } from "../../store/authorSlice";
+
+import {  getData } from "../../store/authorsSlice";
+
 import { useDebounce } from "../../hooks/useDebounce";
 import SearchBar from '../../components/features/filters/SearchBar'
 import Button from '../../components/ui/Forms/Button'
@@ -13,14 +15,18 @@ import { useNavigate } from "react-router-dom";
 import {columnsAuthors, createActions, API_ENDPOINTS, PAGINATION_BUTTONS} from "../../Constants";
 import { createPortal } from 'react-dom';
 import ModalConfirm from '../../components/ui/Modal/ModalConfirm';
-import { deleteEntity } from '../../api';
+
 import Pagination from '../../components/ui/Table/Pagination';
+import { deleteEntity } from '../../api';
 
 
 export default function AdminAuhors() {
     const [search, setSearch] = useState("");
     const [selectedAuthorId, setSelectedAutorId] = useState(null)
     const [showModal, setShowModal] = useState(false)
+
+    //ajout
+    const [deleteError, setDeleteError] = useState(null);
 
     const dispatch = useDispatch();
     const debouncedSearch = useDebounce(search, 500);
@@ -54,11 +60,15 @@ export default function AdminAuhors() {
         try {
           
           await deleteEntity(selectedAuthorId, API_ENDPOINTS.AUTHORS);
+       
           dispatch(getData({ endpoint: API_ENDPOINTS.AUTHORS, search: debouncedSearch, entityType: "Author" }));
           setShowModal(false);
+          //ajout
+          setDeleteError(null)
         } catch (err) {
           setShowModal(false)
           console.error("Failed to delete book:", err);
+          setDeleteError("Echec de suppression car auteur déja lié à un livre")
         }
       }
 
@@ -97,6 +107,7 @@ export default function AdminAuhors() {
                 onChange={handleChangeSearch}
               />
             </div>
+            {deleteError && (<Error title="Erreur :"  message={deleteError} />  )}
             <Button
               type="button"
               title="Ajouter un auteur"
