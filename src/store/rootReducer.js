@@ -13,7 +13,7 @@ import booksReducer from './booksSlice';
 const rootReducer = combineReducers({
   books: booksReducer,
   authors: authorsReducer,
- genres : genreReducer
+   genres : genreReducer
 });
 
 export default rootReducer;

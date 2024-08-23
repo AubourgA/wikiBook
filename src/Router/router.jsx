@@ -14,7 +14,7 @@ import PrivateRoute from "./PrivateRoute";
 import Account from "../pages/UserAccount/Account";
 import AdminBooks from "../pages/Admin/AdminBooks";
 import AdminHome from "../pages/Admin/AdminHome";
-import AdminAuhors from "../pages/Admin/AdminAuhors";
+import AdminAuthors from '../pages/Admin/AdminAuthors'
 import AdminGenres from "../pages/Admin/AdminGenres";
 import AdminDisplayForms from "../components/features/Admin/Forms/AdminDisplayForms";
 
@@ -71,7 +71,7 @@ const router = createBrowserRouter([
             path: "/Dashboard/Books/Update/:id", element: (<AdminDisplayForms  title="Mise a jour d'un auteur" FormComponent={BookForm}/>
             ),
           },
-          { path: "/Dashboard/Authors", element: <AdminAuhors /> },    
+          { path: "/Dashboard/Authors", element: <AdminAuthors /> },    
            {
             path: "/Dashboard/Authors/New",
             element: (<AdminDisplayForms  title="Créer un auteur" FormComponent={AuthorForm}  /> ),

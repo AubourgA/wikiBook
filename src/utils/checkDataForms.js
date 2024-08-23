@@ -82,6 +82,9 @@ export const validateContactForm = (formData) => {
   return newErrors;
 };
 
+
+
+
 export const validateLoginForm = (formData) => {
   const newErrors = {};
 
@@ -181,6 +184,19 @@ export const validateAuthorForm = (formData) => {
   }
 
   
+
+  return newErrors;
+};
+
+export const validateGenresForm = (formData) => {
+  const newErrors = {};
+
+  if (!formData.name) {
+    newErrors.name = 'Une désignation est requis';
+  } else if (!isAlphabetic(formData.name)) {
+    newErrors.name = 'La désignation ne doit contenir que des lettres';
+  }
+
 
   return newErrors;
 };

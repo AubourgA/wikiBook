@@ -44,6 +44,9 @@ export default function AdminEntity({
 
   const handleChangeSearch = () => (e) => setSearch(e.target.value);
 
+
+
+
   const handlePaginationClick = async (url) => {
     dispatch(
         getFetchData({
@@ -53,6 +56,11 @@ export default function AdminEntity({
       })
     );
   };
+
+
+
+
+  
 
   const handleCreateEntity = () => navigate(createPath);
   const handleUpdate = (e) => navigate(`${updatePath}/${e.id}`);

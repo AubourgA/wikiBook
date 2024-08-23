@@ -51,3 +51,7 @@ export const INITIAL_SIGN_IN_VALUE = {
     birthdate:'',
     nationality:''
   }
+
+  export const GENRES_INITIAL_VALUE = {
+    name:'',
+  }

@@ -111,7 +111,7 @@ export default function AuthorForm() {
       }
     }
 
-    console.log(updateError)
+
   return (
     <form onSubmit={handleSubmit}>
       {updateError && (<Error title="Erreur :"  message={updateError} />  )}
