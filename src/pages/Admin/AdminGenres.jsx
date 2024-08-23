@@ -1,6 +1,7 @@
 import { columnsGenres, API_ENDPOINTS } from "../../Constants";
 import { getData } from "../../store/genresSlice";
-import AdminEntity from "../../components/features/Admin/AdminEntityDisplay";
+// import AdminEntity from "../../components/features/Admin/AdminEntityDisplay";
+import AdminEntity from "../../components/features/Admin/EntityDisplay";
 
 export default function AdminGenres() {
 
