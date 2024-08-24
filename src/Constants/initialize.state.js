@@ -55,3 +55,11 @@ export const INITIAL_SIGN_IN_VALUE = {
   export const GENRES_INITIAL_VALUE = {
     name:'',
   }
+
+  export const EDITORS_INITIAL_VALUE = {
+    name:'',
+  }
+
+  export const NATIONNALITIES_INITIAL_VALUE = {
+    country:'',
+  }

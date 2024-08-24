@@ -109,8 +109,9 @@ export const fetchGenericData = async (fetchFunction, setState, errorMessage) =>
   };
 
   export const fetchEntityByParams = async (url, search = "", entityType) => {
+    const fullURL = buildFullURL(url, search, entityType);
+   
     try {
-      const fullURL = buildFullURL(url, search, entityType);
 
       const response = await axiosInstance.get(fullURL);
       return response.data;

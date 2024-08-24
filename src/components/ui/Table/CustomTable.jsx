@@ -2,6 +2,7 @@ import Button from "../Forms/Button";
 import PropTypes from 'prop-types'
 
 const CustomTable = ({ data, columns, actions }) => {
+  
   return (
     <div className="overflow-x-auto">
       <div className="hidden md:block">

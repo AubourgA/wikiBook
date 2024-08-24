@@ -4,6 +4,8 @@ import { BiCategoryAlt } from "react-icons/bi";
 import { IoStatsChartSharp } from "react-icons/io5";
 import { GrTransaction } from "react-icons/gr";
 import { PiBooksLight } from "react-icons/pi";
+import { ImBooks } from "react-icons/im";
+import { GiWorld } from "react-icons/gi";
 
 export const adminMenus = [
     {
@@ -26,9 +28,21 @@ export const adminMenus = [
     },
     {
         id:"4",
-        title:"Genre",
+        title:"Genres",
         url:"/Dashboard/Genres",
         icon: BiCategoryAlt   ,
+    },
+    {
+        id:"5",
+        title:"Editeurs",
+        url:"/Dashboard/Editors",
+        icon: ImBooks,
+    },
+    {
+        id:"6",
+        title:"Nationnalités",
+        url:"/Dashboard/Nationnalities",
+        icon: GiWorld ,
     },
 ]
 

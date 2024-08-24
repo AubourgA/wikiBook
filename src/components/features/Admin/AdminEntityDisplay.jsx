@@ -92,7 +92,7 @@ export default function AdminEntity({
   const handleCloseModal = () => setShowModal(false);
 
   const actions = createActions(handleRead, handleUpdate, handleCallDeleteModal);
- console.log(datas)
+ 
   if (loading) return <Loader />;
 
   if (error) return <Error title="Oups..." message="Un problème est survenu. Réessayez ultérieurement." />;

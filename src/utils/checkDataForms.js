@@ -200,3 +200,29 @@ export const validateGenresForm = (formData) => {
 
   return newErrors;
 };
+
+export const validateEditorsForm = (formData) => {
+  const newErrors = {};
+
+  if (!formData.name) {
+    newErrors.name = 'Une désignation est requis';
+  } else if (!isAlphabetic(formData.name)) {
+    newErrors.name = 'La désignation ne doit contenir que des lettres';
+  }
+
+
+  return newErrors;
+};
+
+export const validateNationnalitiesForm = (formData) => {
+  const newErrors = {};
+
+  if (!formData.country) {
+    newErrors.country = 'Une désignation est requis';
+  } else if (!isAlphabetic(formData.country)) {
+    newErrors.country = 'La désignation ne doit contenir que des lettres';
+  }
+
+
+  return newErrors;
+};

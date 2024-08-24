@@ -9,7 +9,7 @@ export default function AdminAuthors() {
 
   return (
     <AdminEntity
-        entityType="authors"
+        entityType="Authors"
         sliceSelector={(state) => state.authors}
         columns={columnsAuthors}
         apiEndpoint={API_ENDPOINTS.AUTHORS}

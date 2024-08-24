@@ -18,9 +18,11 @@ import { isNumeric } from './validation';
  */
 export const getSearchParams = (search, entityType) => {
   const result = {};
-
+  console.log(search)
   switch (entityType) {
     case 'Authors':
+    case 'Editors':
+    case 'Genres' :
       result.name = search;
       break;
     case 'Books':
@@ -30,8 +32,8 @@ export const getSearchParams = (search, entityType) => {
         result.title = search;
       }
       break;
-    case 'Editors':
-      result.name = search;
+    case 'Nationnalities':
+      result.country = search;
       break;
     default:
       throw new Error(`Type d'entité non supporté: ${entityType}`);

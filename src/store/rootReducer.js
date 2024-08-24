@@ -5,7 +5,8 @@ import { combineReducers } from 'redux';
 import genreReducer from './genresSlice';
 import authorsReducer from './authorsSlice';
 import booksReducer from './booksSlice';
-
+import editorsReducer from './editorsSlice';
+import nationnalitiesReducer from './nationnalitiesSlice';
 
 
 
@@ -13,7 +14,9 @@ import booksReducer from './booksSlice';
 const rootReducer = combineReducers({
   books: booksReducer,
   authors: authorsReducer,
-   genres : genreReducer
+   genres : genreReducer,
+   editors: editorsReducer,
+   nationnalities : nationnalitiesReducer
 });
 
 export default rootReducer;

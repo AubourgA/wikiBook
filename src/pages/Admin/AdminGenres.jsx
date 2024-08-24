@@ -9,7 +9,7 @@ export default function AdminGenres() {
 
   return (
     <AdminEntity
-        entityType="genres"
+        entityType="Genres"
         sliceSelector={(state) => state.genres}
         columns={columnsGenres}
         apiEndpoint={API_ENDPOINTS.GENRES}

@@ -21,6 +21,10 @@ import AdminDisplayForms from "../components/features/Admin/Forms/AdminDisplayFo
 import AuthorForm from "../components/features/Admin/Authors/AuthorForm";
 import BookForm from "../components/features/Admin/Books/BookForm";
 import GenresForm from '../components/features/Admin/Genres/GenresForm';
+import AdminEditors from '../pages/Admin/AdminEditors';
+import AdminNationnalities from '../pages/Admin/AdminNationnalities'
+import EditorsForm from '../components/features/Admin/Editors/EditorsForm';
+import NationnalitiesForm from '../components/features/Admin/Nationnalities/NationnalitiesForm';
 
 const router = createBrowserRouter([
   {
@@ -63,37 +67,21 @@ const router = createBrowserRouter([
         children: [
           { path: "/Dashboard/Home", element: <AdminHome /> },
           { path: "/Dashboard/Books", element: <AdminBooks /> },
-          {
-            path: "/Dashboard/Books/New", element: (<AdminDisplayForms  title="Créer un ouvrage" FormComponent={BookForm} />
-            ),
-          },
-          {
-            path: "/Dashboard/Books/Update/:id", element: (<AdminDisplayForms  title="Mise a jour d'un auteur" FormComponent={BookForm}/>
-            ),
-          },
+          { path: "/Dashboard/Books/New", element: (<AdminDisplayForms  title="Créer un ouvrage" FormComponent={BookForm} />),  },
+          { path: "/Dashboard/Books/Update/:id", element: (<AdminDisplayForms  title="Mise a jour d'un auteur" FormComponent={BookForm}/> ),  },
           { path: "/Dashboard/Authors", element: <AdminAuthors /> },    
-           {
-            path: "/Dashboard/Authors/New",
-            element: (<AdminDisplayForms  title="Créer un auteur" FormComponent={AuthorForm}  /> ),
-          },
-          {
-            path: "/Dashboard/Authors/Update/:id",
-            element: (
-              <AdminDisplayForms
-                title="Mise a jour d'un auteur"
-                FormComponent={AuthorForm}
-              />
-            ),
-          },
+          { path: "/Dashboard/Authors/New", element: (<AdminDisplayForms  title="Créer un auteur" FormComponent={AuthorForm}  /> ),   },
+          { path: "/Dashboard/Authors/Update/:id", element: ( <AdminDisplayForms title="Mise a jour d'un auteur"  FormComponent={AuthorForm} /> ), },
           { path: "/Dashboard/Genres", element: <AdminGenres /> },
-          {
-            path: "/Dashboard/Genres/New", element: (<AdminDisplayForms  title="Créer un nouveau genre" FormComponent={GenresForm} />
-            ),
-          },
-          {
-            path: "/Dashboard/Genres/Update/:id",
-            element: ( <AdminDisplayForms title="Mise a jour d'un genre" FormComponent={GenresForm} /> ),
-          },
+          { path: "/Dashboard/Genres/New", element: (<AdminDisplayForms  title="Créer un nouveau genre" FormComponent={GenresForm} /> ), },
+          { path: "/Dashboard/Genres/Update/:id", element: ( <AdminDisplayForms title="Mise a jour d'un genre" FormComponent={GenresForm} /> ),},
+          { path: "/Dashboard/Editors", element: <AdminEditors /> },
+          { path: "/Dashboard/Editors/New", element: (<AdminDisplayForms  title="Créer un nouveau editeur" FormComponent={EditorsForm} /> ), },
+          { path: "/Dashboard/Editors/Update/:id", element: ( <AdminDisplayForms title="Mise a jour d'un editeur" FormComponent={EditorsForm} /> ),},
+          { path: "/Dashboard/Nationnalities", element: <AdminNationnalities /> },
+          { path: "/Dashboard/Nationnalities/New", element: (<AdminDisplayForms  title="Créer un nouveau editeur" FormComponent={NationnalitiesForm} /> ), },
+          { path: "/Dashboard/Nationnalities/Update/:id", element: ( <AdminDisplayForms title="Mise a jour d'un editeur" FormComponent={NationnalitiesForm} /> ),},
+
         ],
       },
       {
