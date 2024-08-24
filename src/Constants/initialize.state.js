@@ -63,3 +63,11 @@ export const INITIAL_SIGN_IN_VALUE = {
   export const NATIONNALITIES_INITIAL_VALUE = {
     country:'',
   }
+
+  export const STATUS_INITIAL_VALUE = {
+    type:'',
+  }
+
+  export const LANGUAGES_INITIAL_VALUE = {
+    name:'',
+  }

@@ -14,9 +14,10 @@ export function createEntitySlice({ name, endpoint }) {
     `${name}/fetchData`,
     async ({ endpoint, search = "", entityType }, { rejectWithValue }) => {
         const url = `${endpoint}`
+        
       try {
         const response = await fetchEntityByParams(url, search, entityType);
-       
+        console.log(response)
         return response;
       } catch (err) {
         return rejectWithValue(err.response ? err.response.data : err.message);

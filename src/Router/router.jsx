@@ -25,6 +25,10 @@ import AdminEditors from '../pages/Admin/AdminEditors';
 import AdminNationnalities from '../pages/Admin/AdminNationnalities'
 import EditorsForm from '../components/features/Admin/Editors/EditorsForm';
 import NationnalitiesForm from '../components/features/Admin/Nationnalities/NationnalitiesForm';
+import LanguagesForm from '../components/features/Admin/Languages/LanguagesForm';
+import StatusForm from '../components/features/Admin/Status/StatusForm';
+import AdminLanguages from '../pages/Admin/AdminLanguages';
+import AdminStatus from '../pages/Admin/AdminStatus'
 
 const router = createBrowserRouter([
   {
@@ -79,8 +83,14 @@ const router = createBrowserRouter([
           { path: "/Dashboard/Editors/New", element: (<AdminDisplayForms  title="Créer un nouveau editeur" FormComponent={EditorsForm} /> ), },
           { path: "/Dashboard/Editors/Update/:id", element: ( <AdminDisplayForms title="Mise a jour d'un editeur" FormComponent={EditorsForm} /> ),},
           { path: "/Dashboard/Nationnalities", element: <AdminNationnalities /> },
-          { path: "/Dashboard/Nationnalities/New", element: (<AdminDisplayForms  title="Créer un nouveau editeur" FormComponent={NationnalitiesForm} /> ), },
-          { path: "/Dashboard/Nationnalities/Update/:id", element: ( <AdminDisplayForms title="Mise a jour d'un editeur" FormComponent={NationnalitiesForm} /> ),},
+          { path: "/Dashboard/Nationnalities/New", element: (<AdminDisplayForms  title="Créer un nouvelle nationnalité" FormComponent={NationnalitiesForm} /> ), },
+          { path: "/Dashboard/Nationnalities/Update/:id", element: ( <AdminDisplayForms title="Mise a jour d'une nationnalité" FormComponent={NationnalitiesForm} /> ),},
+          { path: "/Dashboard/Languages", element: <AdminLanguages/> },
+          { path: "/Dashboard/Languages/New", element: (<AdminDisplayForms  title="Créer une nouvelle langue" FormComponent={LanguagesForm} /> ), },
+          { path: "/Dashboard/Languages/Update/:id", element: ( <AdminDisplayForms title="Mise a jour de la langue" FormComponent={LanguagesForm} /> ),},
+          { path: "/Dashboard/Status", element: <AdminStatus /> },
+          { path: "/Dashboard/Status/New", element: (<AdminDisplayForms  title="Créer un nouveau status" FormComponent={StatusForm} /> ), },
+          { path: "/Dashboard/Status/Update/:id", element: ( <AdminDisplayForms title="Mise a jour du status" FormComponent={StatusForm} /> ),},
 
         ],
       },

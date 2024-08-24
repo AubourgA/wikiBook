@@ -5,7 +5,7 @@ import { MdDashboard } from "react-icons/md";
 
 export default function SideMenu() {
   return (
-    <aside className="fixed z-10 flex w-full sm:w-auto   sm:relative bottom-0 sm:flex-col justify-between bg-primary50 rounded p-4 max-h-[450px] ">
+    <aside className="fixed z-10 flex w-full sm:w-auto   sm:relative bottom-0 sm:flex-col justify-between bg-primary50 rounded p-4 max-h-[600px] ">
       <h1 className="hidden sm:block font-primary text-3xl text-dark font-bold">
         WIKIBOOK
       </h1>

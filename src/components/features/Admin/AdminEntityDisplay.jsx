@@ -16,7 +16,7 @@ import { deleteEntity } from "../../../api";
 import { createActions, PAGINATION_BUTTONS } from '../../../Constants';
 
 export default function AdminEntity({
-  entityType, // Le type d'entité, par exemple "Books", "Authors", "Genres"
+  entityType, //added this in getSearchParams function for searching feature
   sliceSelector, // Le sélecteur pour accéder au slice dans le store Redux
   columns, // Les colonnes pour le tableau
   apiEndpoint, // Le point de terminaison API pour l'entité

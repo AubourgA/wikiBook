@@ -9,7 +9,8 @@ export default function AdminBooks() {
 
   return (
     <AdminEntity
-        entityType="Books"
+    
+        entityType="Books" 
         sliceSelector={(state) => state.books}
         columns={columnsBooks}
         apiEndpoint={API_ENDPOINTS.BOOKS}

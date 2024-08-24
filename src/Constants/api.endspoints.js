@@ -8,9 +8,10 @@ export const API_ENDPOINTS = {
     AUTHORS : `${URL_API}/authors`,
     GENRES :`${URL_API}/genres`,
     EDITORS : `${URL_API}/editors`,
-    LANGUAGES : `${URL_API}/languages`,
     LOANS : `${URL_API}/loans`,
     NATIONALITIES : `${URL_API}/nationalities`,
+    LANGUAGES : `${URL_API}/languages`,
+    STATUS : `${URL_API}/statuses`,
     USERS:  `${URL_API}/users`,
     MAILER:`${URL_API}/send-email`,
     AUTH: `${URL_BASE}/auth`

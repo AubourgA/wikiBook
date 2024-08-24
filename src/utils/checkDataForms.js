@@ -222,7 +222,27 @@ export const validateNationnalitiesForm = (formData) => {
   } else if (!isAlphabetic(formData.country)) {
     newErrors.country = 'La désignation ne doit contenir que des lettres';
   }
+  return newErrors;
+};
 
+export const validateStatusForm = (formData) => {
+  const newErrors = {};
 
+  if (!formData.type) {
+    newErrors.type = 'Le type est requis';
+  } else if (!isAlphabetic(formData.type)) {
+    newErrors.type = 'Le type ne doit contenir que des lettres';
+  }
+  return newErrors;
+};
+
+export const validateLanguagesForm = (formData) => {
+  const newErrors = {};
+
+  if (!formData.name) {
+    newErrors.name = 'Le type est requis';
+  } else if (!isAlphabetic(formData.name)) {
+    newErrors.name = 'Le type ne doit contenir que des lettres';
+  }
   return newErrors;
 };

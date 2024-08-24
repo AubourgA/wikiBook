@@ -29,8 +29,19 @@ export const columnsBooks = [
 
   export const columnsNationnalities = [
     { key: 'id', header:"#"},
-    { key: 'country', header:"country"}
+    { key: 'country', header:"Pays"}
   ]
+
+  export const columnsStatus = [
+    { key: 'id', header:"#"},
+    { key: 'type', header:"status"}
+  ]
+
+  export const columnsLanguages = [
+    { key: 'id', header:"#"},
+    { key: 'name', header:"name"}
+  ]
+
 
   export const createActions = (handleWatch, handleEdit, handleDelete) => [
     { icon: FaEye  , onClick: handleWatch , style: "text-blue-500 hover:bg-yellow-100"},

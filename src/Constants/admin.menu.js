@@ -6,6 +6,8 @@ import { GrTransaction } from "react-icons/gr";
 import { PiBooksLight } from "react-icons/pi";
 import { ImBooks } from "react-icons/im";
 import { GiWorld } from "react-icons/gi";
+import { CiBookmarkMinus } from "react-icons/ci";
+import { FaFlag } from "react-icons/fa";
 
 export const adminMenus = [
     {
@@ -43,6 +45,18 @@ export const adminMenus = [
         title:"Nationnalités",
         url:"/Dashboard/Nationnalities",
         icon: GiWorld ,
+    },
+    {
+        id:"7",
+        title:"Langues",
+        url:"/Dashboard/Languages",
+        icon: FaFlag ,
+    },
+    {
+        id:"8",
+        title:"Status",
+        url:"/Dashboard/Status",
+        icon: CiBookmarkMinus,
     },
 ]
 
