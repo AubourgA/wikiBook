@@ -27,14 +27,10 @@ import { axiosInstance } from './configHeaderToken';
 export const updateEntity = async (id, endpoint, data) => {
     const url = `${endpoint}/${id}`
     try {
-      const response = await axiosInstance.put(
+      const response = await axiosInstance.patch(
         url,  
         data, 
-        {
-          headers: {
-            'Content-Type': 'application/json',  
-          },
-        }
+        { headers: {  'Content-Type': 'application/merge-patch+json',   }, }
       );
       return response.data;  
     } catch (error) {

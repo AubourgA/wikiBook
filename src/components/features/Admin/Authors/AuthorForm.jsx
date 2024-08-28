@@ -9,7 +9,7 @@ import InputForm from '../../../ui/Forms/InputForm';
 import MessageForm from '../../../ui/Forms/MessageForm';
 import SelectForm from '../../../ui/Forms/SelectForm';
 import Button from '../../../ui/Forms/Button';
-import formatDate from '../../../../utils/formalizerDate';
+import {formatDate} from '../../../../utils/formalizerDate';
 import Error from '../../../ui/Error/Error';
 
 
@@ -98,7 +98,6 @@ export default function AuthorForm() {
           setUpdateError(null)
           navigate("/Dashboard/Authors");
         } else {
-          // await updateAuthor(id, formData);
           await updateEntity(id, API_ENDPOINTS.AUTHORS, formData);
           //envoyer notification
           setUpdateError(null)

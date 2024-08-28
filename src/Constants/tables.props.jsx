@@ -1,9 +1,10 @@
 import { FaTrash, FaEdit, FaEye  } from 'react-icons/fa';
-
+import { formatDateISO} from '../utils/formalizerDate'
 export const columnsBooks = [
     { key: 'id', header: '#' },
     { key: 'title', header: 'Titre' },
     { key: 'ISBN', header: 'ISBN' },
+     {key: 'createdAt', header: 'Crée le', render: (value) => formatDateISO(value)},
     { key: 'isOnLine', header: 'Disponible', render: (isOnLine) => (
       <span className={`inline-block px-2 py-1 text-sm font-semibold rounded-full ${isOnLine ? 'bg-green-100 text-green-800' : 'bg-red-100 text-red-800'}`}>
         {isOnLine ? 'Yes' : 'No'}

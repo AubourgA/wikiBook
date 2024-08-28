@@ -144,9 +144,6 @@ export const validateBookForm = (formData) => {
     newErrors.editor = "L'éditeur est requis";
   }
 
-  if (!formData.language) {
-    newErrors.language = "La langue est requise";
-  }
 
   if(!isBool(formData.isOnLine)) {
     newErrors.isOnLine = "La disponibilité est requis"

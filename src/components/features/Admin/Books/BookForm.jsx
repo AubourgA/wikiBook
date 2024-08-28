@@ -19,7 +19,7 @@ const BookForm = () => {
   const [authors, setAuthors] = useState([]);
   const [genres, setGenres] = useState([]);
   const [editors, setEditors] = useState([]);
-  const [languages, setLanguages] = useState([]);
+
 
   const navigate = useNavigate();
 
@@ -27,8 +27,9 @@ const BookForm = () => {
    useEffect(() => {
     const fetchDataForForm  = async () => {
       await fetchGenericData(()=>fetchEntity(API_ENDPOINTS.AUTHORS), setAuthors, "Erreur lors du chargement des auteur");
+      // await fetchAllData(()=>fetchEntity(API_ENDPOINTS.AUTHORS), setAuthors, "Erreur lors du chargement des auteur");
+
       await fetchGenericData(()=>fetchEntity(API_ENDPOINTS.EDITORS), setEditors, "Erreur lors du chargement des editeur");
-      await fetchGenericData(()=>fetchEntity(API_ENDPOINTS.LANGUAGES), setLanguages, "Erreur lors du chargement des langue");
       await fetchGenericData(()=>fetchEntity(API_ENDPOINTS.GENRES), setGenres, "Erreur lors du chargement des genres");
      
       try {
@@ -36,7 +37,7 @@ const BookForm = () => {
           setIsCreateMode(false);
           
           const book = await fetchEntityById(id, API_ENDPOINTS.BOOKS); //
-
+          
           setFormData({
             title: book.title || "",
             synopsys: book.synopsys || "",
@@ -46,9 +47,9 @@ const BookForm = () => {
             author: book.author ? book.author["@id"] : "",
             genre: book.genre ? book.genre["@id"] : "",
             editor: book.editor ? book.editor["@id"] : "",
-            language: book.language ? book.language["@id"] : "",
             isOnLine: book.isOnLine ? book.isOnLine : false,
           });
+        
         } else {
           setIsCreateMode(true);
         }
@@ -57,7 +58,7 @@ const BookForm = () => {
       }
     };
 
-    fetchDataForForm (); // Appel de la fonction fetchData
+    fetchDataForForm (); 
   }, [id]);
   
 
@@ -83,7 +84,7 @@ const BookForm = () => {
       [name]: finalValue,
     }));
   };
-  // // Gestion de la soumission du formulaire
+ 
   const handleSubmit = async (e) => {
     e.preventDefault();
 
@@ -98,6 +99,7 @@ const BookForm = () => {
         await createEntity(API_ENDPOINTS.BOOKS, formData)
         navigate("/Dashboard/Books");
       } else {
+        console.log(formData)
         await updateEntity(id, API_ENDPOINTS.BOOKS, formData);
         navigate("/Dashboard/Books");
       }
@@ -189,14 +191,7 @@ const BookForm = () => {
           labelKey="name" />
         {errors.editor && <MessageForm type="ERROR" message={errors.editor} />}
 
-        <SelectForm
-          label="Langue"
-          name="language"
-          value={formData.language}
-          onChange={handleChange}
-          options={languages}
-          labelKey="name" />
-        {errors.language && <MessageForm type="ERROR" message={errors.language} />}
+      
   
        <SwitchInput   id="isOnLine"
                       name="isOnLine"

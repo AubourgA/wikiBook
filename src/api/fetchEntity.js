@@ -54,7 +54,27 @@ export const fetchGenericData = async (fetchFunction, setState, errorMessage) =>
     }
   };
 
+  // **************
+  // A DEVELOPPER
+  // RECUPERER L ENSEMBLE DES DATA DES ENTITE DANS UN TABLEAU
+  //************* */
+  // export const fetchAllData = async (fetchFunction, setState, errorMessage) => {
+  //   let allData = [];
+  //   try {
+  //     const response = await fetchFunction();
+  //     if (Array.isArray(response["hydra:member"])) {
 
+  //       allData = [...allData, ...response["hydra:member"]]
+        
+  //     }
+  //     // let nextPageUrl = null;
+
+  //     } catch (error) {
+  //       console.error(errorMessage)
+  //     }
+      
+  //   setState(allData)
+  // };
 
 /**
  * Fetches data from a specified endpoint.
@@ -74,6 +94,8 @@ export const fetchGenericData = async (fetchFunction, setState, errorMessage) =>
       throw error;
     }
   };
+
+
 
 /**
  * 
@@ -157,3 +179,4 @@ export const getTotalItems = async (endpoint) => {
     throw error;
   }
 };
+

@@ -1,5 +1,5 @@
 export const isAlphabetic = (str) => {
-    const regex = /^[A-Za-z]+$/;
+    const regex = /^[A-Za-z\s]+$/;
   return regex.test(str);
 }
 

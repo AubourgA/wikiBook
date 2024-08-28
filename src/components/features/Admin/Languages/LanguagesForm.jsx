@@ -35,19 +35,15 @@ export default function LanguagesForm() {
                     setIsCreateMode(false)     
                     const languages = await fetchEntityById(id, API_ENDPOINTS.LANGUAGES)
                     setFormData( {
-                        name: languages.name || "",
-                      
-                    })
-                   
+                        name: languages.name || "",       
+                    })     
                 } else {
                     setIsCreateMode(true)
                    setUpdateError(null)
                 }
             } catch(error) {
-                console.error("FAiled to fetch languages details:",error)
-               
+                console.error("FAiled to fetch languages details:",error)        
             }
-        
         }
         fetchDataForm()
     },[id] )
@@ -95,7 +91,6 @@ export default function LanguagesForm() {
           setUpdateError(null)
           navigate("/Dashboard/Languages");
         } else {
-          // await updateAuthor(id, formData);
           await updateEntity(id, API_ENDPOINTS.LANGUAGES, formData);
           //envoyer notification
           setUpdateError(null)

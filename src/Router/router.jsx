@@ -72,7 +72,7 @@ const router = createBrowserRouter([
           { path: "/Dashboard/Home", element: <AdminHome /> },
           { path: "/Dashboard/Books", element: <AdminBooks /> },
           { path: "/Dashboard/Books/New", element: (<AdminDisplayForms  title="Créer un ouvrage" FormComponent={BookForm} />),  },
-          { path: "/Dashboard/Books/Update/:id", element: (<AdminDisplayForms  title="Mise a jour d'un auteur" FormComponent={BookForm}/> ),  },
+          { path: "/Dashboard/Books/Update/:id", element: (<AdminDisplayForms  title="Mise a jour d'un ouvrage" FormComponent={BookForm}/> ),  },
           { path: "/Dashboard/Authors", element: <AdminAuthors /> },    
           { path: "/Dashboard/Authors/New", element: (<AdminDisplayForms  title="Créer un auteur" FormComponent={AuthorForm}  /> ),   },
           { path: "/Dashboard/Authors/Update/:id", element: ( <AdminDisplayForms title="Mise a jour d'un auteur"  FormComponent={AuthorForm} /> ), },
