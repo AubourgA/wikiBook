@@ -22,6 +22,7 @@ export default function AdminEntity({
   apiEndpoint, // Le point de terminaison API pour l'entité
   createPath, // Le chemin pour créer une nouvelle entité
   updatePath, // Le chemin pour mettre à jour une entité
+  viewPath, // chemin pour voir une entité
   entityName = "article", // Le nom de l'entité pour les messages, par défaut "article"
   getFetchData
 }) {
@@ -64,7 +65,7 @@ export default function AdminEntity({
 
   const handleCreateEntity = () => navigate(createPath);
   const handleUpdate = (e) => navigate(`${updatePath}/${e.id}`);
- const handleRead = () => {}
+ const handleRead = (e) => navigate(`${viewPath}/${e.id}`)
   const handleCallDeleteModal = (entity) => {
     setShowModal(true);
     setSelectedEntityId(entity.id);

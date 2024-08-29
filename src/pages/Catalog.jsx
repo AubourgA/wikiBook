@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-
+import { useNavigate } from 'react-router-dom';
 
 import Card from "../components/ui/Card"
 import Filters from '../components/features/filters/Filters';
@@ -21,6 +21,8 @@ export default function Catalog() {
     const [error, setError] = useState(null);
     const [filters, setFilters] = useState( INITIAL_FILTERS_VALUE)
     
+    const navigate = useNavigate()
+
   useEffect(() => {
    
      const fetchBooks = async () => {
@@ -76,6 +78,9 @@ const handleResetFilters = async () => {
   }
 };
 
+const handleDetailBook = (id) => {
+  navigate(`/Catalogs/${id}`)
+}
 
 const handlePaginationClick = async (path) => {
   if (path) {
@@ -122,7 +127,7 @@ const handlePaginationClick = async (path) => {
                                     <Card.Title  className='text md:text-md lg:text-lg  font-semibold pb-2'text1={title} level={4} />
                                     <Card.Description>Année : {YearPublished}</Card.Description>
                                 </Card.Content>
-                                <Card.Footer />
+                                <Card.Footer onDetailClick={handleDetailBook} id={id} />
                             </Card>
                             )
                         )

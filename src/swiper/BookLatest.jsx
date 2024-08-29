@@ -11,6 +11,7 @@ import Loader from '../components/ui/Loader';
 import Error from '../components/ui/Error/Error';
 import { getEntityPublic } from '../api';
 import { API_ENDPOINTS } from '../Constants';
+import { useNavigate } from 'react-router-dom';
 
 export default function BookLatest( ) {
 
@@ -18,6 +19,7 @@ export default function BookLatest( ) {
     const [isLoading, setIsLoading] = useState(true);
     const [error, setError] = useState(null);
 
+    const navigate = useNavigate();
 
 useEffect(() => {
    
@@ -35,7 +37,9 @@ useEffect(() => {
  }, []);
 
 
-
+ const handleDetailBook = (id) => {
+  navigate(`/Catalogs/${id}`)
+}
 
 if (isLoading)  return <Loader />;
   
@@ -62,7 +66,7 @@ if (error) return <Error title="Oups..." message={error.message} />;
                                 <Card.Title  className='text md:text-md lg:text-lg  font-semibold pb-2'text1={title} level={4} />
                                     <Card.Description>Année : {YearPublished}</Card.Description>
                                 </Card.Content>
-                                <Card.Footer />
+                                <Card.Footer onDetailClick={handleDetailBook} id={id} />
                             </Card>
                     </swiper-slide>
                 )

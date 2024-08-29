@@ -8,6 +8,7 @@ import { ImBooks } from "react-icons/im";
 import { GiWorld } from "react-icons/gi";
 import { CiBookmarkMinus } from "react-icons/ci";
 import { FaFlag } from "react-icons/fa";
+import { PiBookOpenUserBold } from "react-icons/pi";
 
 export const adminMenus = [
     {
@@ -74,6 +75,15 @@ export const adminParams = [
         icon: IoStatsChartSharp,
     },
 ]
+
+export const adminGestion = 
+    {
+        id:1,
+        title :"Emprunts",
+        url:"/Dashboard/Loans",
+        icon : PiBookOpenUserBold 
+    }
+
 
 //pour exemple
 export const statCards = (users, books, loans) => [

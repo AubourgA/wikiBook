@@ -16,6 +16,7 @@ export default function AdminBooks() {
         apiEndpoint={API_ENDPOINTS.BOOKS}
         createPath="/Dashboard/Books/New"
         updatePath="/Dashboard/Books/Update"
+        viewPath="/Dashboard/Books/Details"
         entityName="ouvrage"
         getFetchData={getData} 
   />

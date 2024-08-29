@@ -29,6 +29,8 @@ import LanguagesForm from '../components/features/Admin/Languages/LanguagesForm'
 import StatusForm from '../components/features/Admin/Status/StatusForm';
 import AdminLanguages from '../pages/Admin/AdminLanguages';
 import AdminStatus from '../pages/Admin/AdminStatus'
+import AdminLoans from '../pages/Admin/AdminLoans';
+import DisplayDetailLayoutBook from '../components/ui/DisplayDetailLayoutBook';
 
 const router = createBrowserRouter([
   {
@@ -43,6 +45,10 @@ const router = createBrowserRouter([
       {
         path: "/Catalogs",
         element: <Catalog />,
+      },
+      {
+        path: "/Catalogs/:id",
+        element: <DisplayDetailLayoutBook title="Détail de l'ouvrage"/>,
       },
       {
         path: "/News",
@@ -73,6 +79,7 @@ const router = createBrowserRouter([
           { path: "/Dashboard/Books", element: <AdminBooks /> },
           { path: "/Dashboard/Books/New", element: (<AdminDisplayForms  title="Créer un ouvrage" FormComponent={BookForm} />),  },
           { path: "/Dashboard/Books/Update/:id", element: (<AdminDisplayForms  title="Mise a jour d'un ouvrage" FormComponent={BookForm}/> ),  },
+          { path: "/Dashboard/Books/Details/:id", element: (<DisplayDetailLayoutBook  title="Fiche de l'ouvrage" /> ),  },
           { path: "/Dashboard/Authors", element: <AdminAuthors /> },    
           { path: "/Dashboard/Authors/New", element: (<AdminDisplayForms  title="Créer un auteur" FormComponent={AuthorForm}  /> ),   },
           { path: "/Dashboard/Authors/Update/:id", element: ( <AdminDisplayForms title="Mise a jour d'un auteur"  FormComponent={AuthorForm} /> ), },
@@ -91,6 +98,7 @@ const router = createBrowserRouter([
           { path: "/Dashboard/Status", element: <AdminStatus /> },
           { path: "/Dashboard/Status/New", element: (<AdminDisplayForms  title="Créer un nouveau status" FormComponent={StatusForm} /> ), },
           { path: "/Dashboard/Status/Update/:id", element: ( <AdminDisplayForms title="Mise a jour du status" FormComponent={StatusForm} /> ),},
+          { path: "/Dashboard/Loans", element: <AdminLoans /> },
 
         ],
       },
