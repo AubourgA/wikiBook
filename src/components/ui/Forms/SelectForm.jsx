@@ -39,7 +39,7 @@ SelectForm.propTypes = {
     onChange: func.isRequired, 
     options: arrayOf(shape({ 
         '@id': string.isRequired, 
-        name: string.isRequired 
+        name: string,
     })).isRequired, 
     labelKey: string, 
     valueKey: string

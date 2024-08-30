@@ -31,6 +31,7 @@ import AdminLanguages from '../pages/Admin/AdminLanguages';
 import AdminStatus from '../pages/Admin/AdminStatus'
 import AdminLoans from '../pages/Admin/AdminLoans';
 import DisplayDetailLayoutBook from '../components/ui/DisplayDetailLayoutBook';
+import BookCopiesForm from '../components/features/Admin/BookCopies/BookCopiesForm';
 
 const router = createBrowserRouter([
   {
@@ -80,9 +81,11 @@ const router = createBrowserRouter([
           { path: "/Dashboard/Books/New", element: (<AdminDisplayForms  title="Créer un ouvrage" FormComponent={BookForm} />),  },
           { path: "/Dashboard/Books/Update/:id", element: (<AdminDisplayForms  title="Mise a jour d'un ouvrage" FormComponent={BookForm}/> ),  },
           { path: "/Dashboard/Books/Details/:id", element: (<DisplayDetailLayoutBook  title="Fiche de l'ouvrage" /> ),  },
+          { path: "/Dashboard/Books/Detail/:id/New", element: (<AdminDisplayForms  title="Créer une exemplaire" FormComponent={BookCopiesForm}  /> ),   },
           { path: "/Dashboard/Authors", element: <AdminAuthors /> },    
           { path: "/Dashboard/Authors/New", element: (<AdminDisplayForms  title="Créer un auteur" FormComponent={AuthorForm}  /> ),   },
           { path: "/Dashboard/Authors/Update/:id", element: ( <AdminDisplayForms title="Mise a jour d'un auteur"  FormComponent={AuthorForm} /> ), },
+          // { path: "/Dashboard/Authors/Details/:id", element: ( <DisplayDetailsEntity title="Mise a jour d'un auteur"  FormComponent={AuthorForm} /> ), },
           { path: "/Dashboard/Genres", element: <AdminGenres /> },
           { path: "/Dashboard/Genres/New", element: (<AdminDisplayForms  title="Créer un nouveau genre" FormComponent={GenresForm} /> ), },
           { path: "/Dashboard/Genres/Update/:id", element: ( <AdminDisplayForms title="Mise a jour d'un genre" FormComponent={GenresForm} /> ),},

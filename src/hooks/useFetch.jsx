@@ -15,6 +15,7 @@ const useFetch = (endpoint, id, initialState = {}) => {
   useEffect(() => {
     const fetchData = async () => {
       setIsLoading(true);
+   
       try {
         // Construire l'URL complète si un ID est fourni
         const fullUrl = id ? `${endpoint}/${id}` : endpoint;

@@ -19,17 +19,19 @@ export default function Button( {title, icon:Icon, onButtonClick, type, category
       case 'filter-secondary':
         return 'border-secondary text-secondary border justify-between items-center';
       case 'forms':
-        return 'bg-primary100 justify-center border mt-4 text-white';
-        case 'confirm':
-          return 'bg-green-500 justify-center border mt-4 text-white';
-          case 'danger':
-            return 'bg-red-500 justify-center border mt-4 text-white';
+        return 'bg-primary100 justify-center border my-4 text-white';
+      case 'confirm':
+         return 'bg-green-500 justify-center border mt-4 text-white';
+      case 'danger':
+         return 'bg-red-500 justify-center border mt-4 text-white';
+      case 'tabs' :
+          return 'text-dark'
       default:
         return '';
     }
   };
 
-  const buttonClass = `flex rounded-lg px-4 py-2 btn-pressed  text-sm md:text-base ${getCategoryClass(category)} ${custom} `;
+  const buttonClass = `flex rounded-lg px-4 py-2  text-sm md:text-base ${category !== 'tabs' ? 'btn-pressed' : ''} ${getCategoryClass(category)} ${custom} `;
 
   return (
     <button type={type} 

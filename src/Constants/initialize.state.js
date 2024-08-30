@@ -71,3 +71,10 @@ export const INITIAL_SIGN_IN_VALUE = {
   export const LANGUAGES_INITIAL_VALUE = {
     name:'',
   }
+
+  export const BOOKCOPIES_INITIAL_VALUE = {
+    book:'',
+    serviceDate:'',
+    status:'',
+    language:'',
+  }

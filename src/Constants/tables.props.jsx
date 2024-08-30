@@ -1,5 +1,5 @@
 import { FaTrash, FaEdit, FaEye  } from 'react-icons/fa';
-import { formatDateISO} from '../utils/formalizerDate'
+import { formatDate, formatDateISO} from '../utils/formalizerDate'
 export const columnsBooks = [
     { key: 'id', header: '#' },
     { key: 'title', header: 'Titre' },
@@ -43,6 +43,19 @@ export const columnsBooks = [
     { key: 'name', header:"name"}
   ]
 
+
+  export const columnsBookCopies = [
+    {key: 'id', header:'#'},
+    {key: 'serviceDate', header:"Mise en service", render: (value) => formatDate(value)},
+    {key: 'Language.name', header:"Langues"},
+    {key: 'status.type', header:"Status"}
+  ]
+
+ export const createEditAction = (handleEdit) => [
+
+   { icon: FaEdit , onClick: handleEdit , style: "text-yellow-500 hover:bg-yellow-100"},
+ ]
+ 
 
   export const createActions = (handleWatch, handleEdit, handleDelete) => [
     { icon: FaEye  , onClick: handleWatch , style: "text-blue-500 hover:bg-yellow-100"},

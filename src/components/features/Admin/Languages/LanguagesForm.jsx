@@ -131,7 +131,7 @@ export default function LanguagesForm() {
           />
           <Link
             to="/Dashboard/Languages"
-            className="btn-pressed border-primary100 rounded-lg text-primary100 justify-center border px-4 py-2 mt-4"
+            className="btn-pressed border-primary100 rounded-lg text-primary100 justify-center border px-4 py-2 my-4"
           >
             Annuler
           </Link>

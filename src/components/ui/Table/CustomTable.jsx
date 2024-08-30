@@ -1,5 +1,6 @@
 import Button from "../Forms/Button";
 import PropTypes from 'prop-types'
+import {getNestedValue} from '../../../utils/deepAccessValue'
 
 const CustomTable = ({ data, columns, actions }) => {
   
@@ -23,8 +24,11 @@ const CustomTable = ({ data, columns, actions }) => {
                 {columns.map((column) => (
                   <td key={column.key} className="text-center px-4 py-2">
                     {column.render
-                      ? column.render(item[column.key])
-                      : item[column.key]}
+                      // ? column.render(item[column.key])
+                      // : item[column.key]
+                      ? column.render(getNestedValue(item, column.key))
+                      : getNestedValue(item, column.key)
+                      }
                   </td>
                 ))}
                 {actions && (
@@ -59,8 +63,11 @@ const CustomTable = ({ data, columns, actions }) => {
                 <span className="font-semibold">{column.header}</span>
                 <span>
                   {column.render
-                    ? column.render(item[column.key])
-                    : item[column.key]}
+                    // ? column.render(item[column.key])
+                    // : item[column.key]
+                    ? column.render(getNestedValue(item, column.key))
+                    : getNestedValue(item, column.key)
+                    }
                 </span>
               </div>
             ))}

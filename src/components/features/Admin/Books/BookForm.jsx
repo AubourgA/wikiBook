@@ -99,7 +99,7 @@ const BookForm = () => {
         await createEntity(API_ENDPOINTS.BOOKS, formData)
         navigate("/Dashboard/Books");
       } else {
-        console.log(formData)
+      
         await updateEntity(id, API_ENDPOINTS.BOOKS, formData);
         navigate("/Dashboard/Books");
       }
@@ -207,7 +207,7 @@ const BookForm = () => {
           title={isCreateMode ? "Créer" : "Mise a jour"}
           category="forms" />
         <Link to="/Dashboard/Books"
-              className=" btn-pressed border-primary100 rounded-lg text-primary100 justify-center border px-4 py-2 mt-4"  >
+              className=" btn-pressed border-primary100 rounded-lg text-primary100 justify-center border px-4 py-2 my-4"  >
           Annuler
         </Link>
       </div>
