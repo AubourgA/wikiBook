@@ -15,6 +15,7 @@ export const API_ENDPOINTS = {
     STATUS : `${URL_API}/statuses`,
     USERS:  `${URL_API}/users`,
     MAILER:`${URL_API}/send-email`,
-    AUTH: `${URL_BASE}/auth`
+    AUTH: `${URL_BASE}/auth`,
+    CURRENTUSER :`${URL_API}/me`,
  
   };

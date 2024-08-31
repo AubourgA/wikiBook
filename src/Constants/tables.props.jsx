@@ -43,6 +43,14 @@ export const columnsBooks = [
     { key: 'name', header:"name"}
   ]
 
+  export const columnsLoans = [
+    { key: 'id', header:"#"},
+    { key: 'bookCopy.book.title', header:"Livre"},
+    { key: 'bookCopy.id', header:"No_ID"},
+    { key: 'borrowDate', header:"Date d'emprunt", render: (value) => formatDateISO(value)},
+    { key: 'returnDate', header:"Date de retour", render: (value) => value ? formatDateISO(value): "en attente"},
+    { key: 'user.name', header:"Utilisateur"},
+  ]
 
   export const columnsBookCopies = [
     {key: 'id', header:'#'},

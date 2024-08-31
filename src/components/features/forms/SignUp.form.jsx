@@ -94,7 +94,7 @@ export default function SignUpForm( {value, onFormData : handleFormData, onSubmi
                   placeholder='Choisissez votre mot de passe'
                   value={value.password}
                   onChange={ handleFormData} />
-     {validation.email && (<MessageForm type="ERREUR" 
+     {validation.password && (<MessageForm type="ERREUR" 
                             message="Le champs doit comporter 8 carac et 1 spécial"
                             styleType="error bg-red-300"
                             styleMessage="text-red-500"/>)}

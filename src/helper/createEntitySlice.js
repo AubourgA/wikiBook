@@ -12,11 +12,11 @@ export function createEntitySlice({ name, endpoint }) {
 
   const getData = createAsyncThunk(
     `${name}/fetchData`,
-    async ({ endpoint, search = "", entityType }, { rejectWithValue }) => {
+    async ({ endpoint, search = "", filter="", entityType }, { rejectWithValue }) => {
         const url = `${endpoint}`
         
       try {
-        const response = await fetchEntityByParams(url, search, entityType);
+        const response = await fetchEntityByParams(url, search,filter, entityType);
      
         return response;
       } catch (err) {

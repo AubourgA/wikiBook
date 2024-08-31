@@ -130,9 +130,11 @@ export const fetchGenericData = async (fetchFunction, setState, errorMessage) =>
     }
   };
 
-  export const fetchEntityByParams = async (url, search = "", entityType) => {
-    const fullURL = buildFullURL(url, search, entityType);
+  export const fetchEntityByParams = async (url, search = "", filter="", entityType) => {
+    let fullURL = buildFullURL(url, search, entityType);
    
+    if( filter ==="ongoing")  fullURL += `?exists[returnDate]=false`
+     console.log(fullURL)
     try {
 
       const response = await axiosInstance.get(fullURL);

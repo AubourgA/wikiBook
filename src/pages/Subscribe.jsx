@@ -24,7 +24,7 @@ export default function Subscribe() {
 
  const handleSubmitSignUp = async (e) => {
       e.preventDefault()
-   
+   console.log(formData)
     if (!checkValidationSignUp(formData, setShowValidation)) return;
  
     const response = await createUser(formData)

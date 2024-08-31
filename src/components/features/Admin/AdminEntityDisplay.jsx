@@ -45,7 +45,7 @@ export default function AdminEntity({
 
   const handleChangeSearch = () => (e) => setSearch(e.target.value);
 
-
+ 
 
 
   const handlePaginationClick = async (url) => {
@@ -89,7 +89,8 @@ export default function AdminEntity({
       console.error("Failed to delete entity:", err);
     }
   };
-
+ 
+ 
   const handleCloseModal = () => setShowModal(false);
 
   const actions = createActions(handleRead, handleUpdate, handleCallDeleteModal);

@@ -8,6 +8,7 @@ import editorsReducer from './editorsSlice';
 import nationnalitiesReducer from './nationnalitiesSlice';
 import statusReducer from './statusSlice';
 import languagesReducer from './languagesSlice';
+import loansReducer from './loansSlice';
 
 
 
@@ -18,7 +19,8 @@ const rootReducer = combineReducers({
    editors: editorsReducer,
    nationnalities : nationnalitiesReducer,
    status : statusReducer,
-   languages: languagesReducer
+   languages: languagesReducer,
+   loans: loansReducer,
 });
 
 export default rootReducer;
