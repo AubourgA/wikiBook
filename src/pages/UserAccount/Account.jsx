@@ -4,10 +4,11 @@ import SideMenuUser from '../../components/features/UserAccount/SideMenuUser';
 
 
 export default function Account() {
-
+ 
+  
 
   return (
-    <div className="container mx-auto py-5 flex items-stretch h-full gap-2">
+    <div className="container mx-auto  flex items-stretch gap-2 h-full py-5">
         <SideMenuUser />
         <div className="w-full">
           <UserBar  />

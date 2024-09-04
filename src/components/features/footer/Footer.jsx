@@ -8,7 +8,7 @@ import List from "../../ui/Footer/List";
 
 export default function Footer({ text }) {
   return (
-    <footer className="text-center bg-dark text-light py-20 text-sm">
+    <footer className="text-center bg-dark text-light pt-20 pb-5 text-sm">
       <section className="container mx-auto grid grid-cols-1 md:grid-cols-4">
         <article className="grid grid-cols-1 grid-rows-2 gap-y-2 -mt-20 py-4 md:py-0">
           <div className="flex flex-col justify-center items-center">

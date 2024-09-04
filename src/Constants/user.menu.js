@@ -15,7 +15,7 @@ export const userMenus = [
         icon: FaBook,
     },
     {
-        id:2,
+        id:3,
         title:"Parametres",
         url:'/Account/parameters',
         icon: GrConfigure,

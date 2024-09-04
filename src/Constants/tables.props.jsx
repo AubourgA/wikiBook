@@ -62,6 +62,14 @@ export const columnsBooks = [
     {key: 'status.type', header:"Status"}
   ]
 
+
+  export const columnsUserLoans = [
+    {key: 'id', header:'#'},
+    {key: 'user.loans', header:"Livre"},
+    {key: 'user.loans.date', header:"Date emprunt"},
+    {key: 'user.loans.returnDate', header:"Date de retour"},
+
+  ]
  export const createEditAction = (handleEdit) => [
 
    { icon: FaEdit , onClick: handleEdit , style: "text-yellow-500 hover:bg-yellow-100"},
