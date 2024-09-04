@@ -1,18 +1,20 @@
-import useCurrentUser from '../../hooks/useCurrentUser';
-import Loader from '../../components/ui/Loader';
+import { Outlet } from 'react-router-dom';
+import UserBar from '../../components/features/Admin/Dashboard/UserBar';
+import SideMenuUser from '../../components/features/UserAccount/SideMenuUser';
+
 
 export default function Account() {
 
-  const { currentUser, loading, error } = useCurrentUser();
- 
-  if (loading) return <Loader />;
-  if (error) return <div>Error: {error}</div>;
 
-  console.log(currentUser)
   return (
-    <div className='flex flex-col h-screen items-center justify-center'>
-        <h1>Mon Compte Utilisateur</h1>
-        <p>bienvenue : {currentUser.name}</p>
-    </div>
+    <div className="container mx-auto py-5 flex items-stretch h-full gap-2">
+        <SideMenuUser />
+        <div className="w-full">
+          <UserBar  />
+          <Outlet />
+        </div>
+      </div>
   )
 }
+
+

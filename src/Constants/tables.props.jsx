@@ -4,8 +4,11 @@ export const columnsBooks = [
     { key: 'id', header: '#' },
     { key: 'title', header: 'Titre' },
     { key: 'ISBN', header: 'ISBN' },
+    { key: 'bookCopy', header: 'Nb', render: (bookCopy) => (
+      <span>{bookCopy ? bookCopy.length : 0}</span>
+    )},
      {key: 'createdAt', header: 'Crée le', render: (value) => formatDateISO(value)},
-    { key: 'isOnLine', header: 'Disponible', render: (isOnLine) => (
+    { key: 'isOnLine', header: 'En Rayon', render: (isOnLine) => (
       <span className={`inline-block px-2 py-1 text-sm font-semibold rounded-full ${isOnLine ? 'bg-green-100 text-green-800' : 'bg-red-100 text-red-800'}`}>
         {isOnLine ? 'Yes' : 'No'}
       </span>
@@ -63,6 +66,7 @@ export const columnsBooks = [
 
    { icon: FaEdit , onClick: handleEdit , style: "text-yellow-500 hover:bg-yellow-100"},
  ]
+ 
  
 
   export const createActions = (handleWatch, handleEdit, handleDelete) => [

@@ -2,6 +2,7 @@ import { columnsLanguages, API_ENDPOINTS } from "../../Constants";
 import { getData } from "../../store/languagesSlice";
 import AdminEntity from "../../components/features/Admin/AdminEntityDisplay";
 
+
 export default function AdminLanguages() {
 
   return (
@@ -14,6 +15,7 @@ export default function AdminLanguages() {
     updatePath="/Dashboard/Languages/Update"
     entityName="langues"
     getFetchData={getData} 
+    
 />
   )
 }

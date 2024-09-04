@@ -134,7 +134,7 @@ export const fetchGenericData = async (fetchFunction, setState, errorMessage) =>
     let fullURL = buildFullURL(url, search, entityType);
    
     if( filter ==="ongoing")  fullURL += `?exists[returnDate]=false`
-     console.log(fullURL)
+
     try {
 
       const response = await axiosInstance.get(fullURL);

@@ -25,7 +25,7 @@ export default function BookDetails({data, user}) {
             </div>
             <ul >
               <li className='text-secondary font-bold text-lg mb-3'>  {data.author.name} {data.author.firstname}</li>
-                 <span className={` ${data.bookCopies.length < 1 ? "bg-red-300" : "bg-green-300"} rounded p-1 text-sm`}>{data.bookCopies.length < 1 ? "Indisponible" : "En stock"}</span>
+                 <span className={` ${data.bookCopies.length < 1 ? "bg-red-300" : "bg-green-300"} rounded p-1 text-sm`}>{data.bookCopies.length < 1 ? "Indisponible" : "Disponible"}</span>
               <li className='mt-2'><span className='font-bold'>Par</span> {data.editor.name}</li>
               <li className='py-4'>{data.synopsys}</li>
               <li><span className='font-bold'>Année de publication : </span>{data.YearPublished}</li>

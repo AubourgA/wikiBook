@@ -12,8 +12,9 @@ import Error from "../../../components/ui/Error/Error";
 import { useNavigate } from "react-router-dom";
 import ModalConfirm from "../../../components/ui/Modal/ModalConfirm";
 import { createPortal } from "react-dom";
-import { deleteEntity } from "../../../api";
+// import { deleteEntity } from "../../../api";
 import { createActions, PAGINATION_BUTTONS } from '../../../Constants';
+import {useDeleteEntity} from '../../../hooks/useDeleteEntity'
 
 export default function AdminEntity({
   entityType, //added this in getSearchParams function for searching feature
@@ -27,9 +28,9 @@ export default function AdminEntity({
   getFetchData
 }) {
   const [search, setSearch] = useState("");
-  const [showModal, setShowModal] = useState(false);
-  const [selectedEntityId, setSelectedEntityId] = useState(null);
-  const [deleteError, setDeleteError] = useState(null);
+  // const [showModal, setShowModal] = useState(false);
+  // const [selectedEntityId, setSelectedEntityId] = useState(null);
+  // const [deleteError, setDeleteError] = useState(null);
 
   const dispatch = useDispatch();
   const { datas, loading, error, pagination } = useSelector(sliceSelector);
@@ -44,9 +45,6 @@ export default function AdminEntity({
   }, [dispatch, debouncedSearch, apiEndpoint, entityType, getFetchData]);
 
   const handleChangeSearch = () => (e) => setSearch(e.target.value);
-
- 
-
 
   const handlePaginationClick = async (url) => {
     dispatch(
@@ -66,32 +64,40 @@ export default function AdminEntity({
   const handleCreateEntity = () => navigate(createPath);
   const handleUpdate = (e) => navigate(`${updatePath}/${e.id}`);
  const handleRead = (e) => navigate(`${viewPath}/${e.id}`)
-  const handleCallDeleteModal = (entity) => {
-    setShowModal(true);
-    setSelectedEntityId(entity.id);
-  };
+  // const handleCallDeleteModal = (entity) => {
+  //   setShowModal(true);
+  //   setSelectedEntityId(entity.id);
+  // };
 
-  const handleDeleteItem = async () => {
-    try {
-      await deleteEntity(selectedEntityId, apiEndpoint);
-      dispatch(
-        getFetchData({
-          endpoint: apiEndpoint,
-          search: debouncedSearch,
-          entityType: entityType,
-        })
-      );
-      setShowModal(false);
-      setDeleteError(null); // Réinitialise l'erreur en cas de succès
-    } catch (err) {
-      setShowModal(false);
-      setDeleteError("Echec de suppression, cette entité est liée à d'autres données.");
-      console.error("Failed to delete entity:", err);
-    }
-  };
+  // const handleDeleteItem = async () => {
+  //   try {
+  //     await deleteEntity(selectedEntityId, apiEndpoint);
+  //     dispatch(
+  //       getFetchData({
+  //         endpoint: apiEndpoint,
+  //         search: debouncedSearch,
+  //         entityType: entityType,
+  //       })
+  //     );
+  //     setShowModal(false);
+  //     setDeleteError(null); // Réinitialise l'erreur en cas de succès
+  //   } catch (err) {
+  //     setShowModal(false);
+  //     setDeleteError("Echec de suppression, cette entité est liée à d'autres données.");
+  //     console.error("Failed to delete entity:", err);
+  //   }
+  // };
  
  
-  const handleCloseModal = () => setShowModal(false);
+  // const handleCloseModal = () => setShowModal(false);
+
+  const { 
+    showModal, 
+    deleteError, 
+    handleCallDeleteModal, 
+    handleDeleteItem, 
+    handleCloseModal 
+  } = useDeleteEntity(apiEndpoint, getFetchData, debouncedSearch, entityType);
 
   const actions = createActions(handleRead, handleUpdate, handleCallDeleteModal);
  
@@ -107,51 +113,40 @@ export default function AdminEntity({
       <section className="bg-blue-100 p-4 rounded my-2">
         <div className="flex justify-between items-center border-light border-b-2">
           <Title level={2} text1={`Liste des ${entityType.toLowerCase()}`} />
-          <SearchBar
-            id="searchBar"
-            type="text"
-            value={search}
-            name="searchBar"
-            placeholder="Votre recherche..."
-            pattern={""}
-            onChange={handleChangeSearch}
-          />
+          <SearchBar  id="searchBar"
+                      type="text"
+                      value={search}
+                      name="searchBar"
+                      placeholder="Votre recherche..."
+                      pattern={""}
+                      onChange={handleChangeSearch} />
         </div>
         {deleteError && <Error title="Erreur :" message={deleteError} />}
-        <Button
-          type="button"
-          title={`Ajouter un ${entityName}`}
-          category="forms"
-          icon={IoMdAddCircle}
-          onButtonClick={handleCreateEntity}
-          custom="items-center flex-row-reverse gap-2 mb-4"
-        />
-        <CustomTable
-          data={datas["hydra:member"]}
-          columns={columns}
-          actions={actions}
-        />
+
+        <Button type="button"
+                title={`Ajouter un ${entityName}`}
+                category="forms"
+                icon={IoMdAddCircle}
+                onButtonClick={handleCreateEntity}
+                custom="items-center flex-row-reverse gap-2 mb-4" />
+
+        <CustomTable  data={datas["hydra:member"]}
+                      columns={columns}
+                      actions={actions} />
+
         {datas["hydra:view"] && 
-        <Pagination
-          paginationButtons={PAGINATION_BUTTONS.map(({ key, title }) => ({
-            key,
-            title,
-          }))}
-          onPageChange={handlePaginationClick}
-          page={pagination}
-        />
+          <Pagination   paginationButtons={PAGINATION_BUTTONS.map(({ key, title }) => ({key, title, }))}
+                        onPageChange={handlePaginationClick}
+                        page={pagination} />
         }
       </section>
       {showModal &&
         createPortal(
-          <ModalConfirm
-            title={`SUPPRESION D'UN ${entityName.toUpperCase()}`}
-            message={`Voulez-vous supprimer cet ${entityName}?`}
-            onButConfirm={handleDeleteItem}
-            onButCancel={handleCloseModal}
-          />,
-          document.body
-        )}
-    </div>
-  );
+          <ModalConfirm  title={`SUPPRESION D'UN ${entityName.toUpperCase()}`}
+                         message={`Voulez-vous supprimer cet ${entityName}?`}
+                         onButConfirm={handleDeleteItem}
+                         onButCancel={handleCloseModal} />,
+                         document.body )}
+  </div>
+ );
 }

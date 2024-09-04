@@ -33,6 +33,8 @@ import AdminLoans from '../pages/Admin/AdminLoans';
 import DisplayDetailLayoutBook from '../components/ui/DisplayDetailLayoutBook';
 import BookCopiesForm from '../components/features/Admin/BookCopies/BookCopiesForm';
 
+import AccountHome from '../pages/UserAccount/AccountHome'
+
 const router = createBrowserRouter([
   {
     path: "/",
@@ -85,7 +87,6 @@ const router = createBrowserRouter([
           { path: "/Dashboard/Authors", element: <AdminAuthors /> },    
           { path: "/Dashboard/Authors/New", element: (<AdminDisplayForms  title="Créer un auteur" FormComponent={AuthorForm}  /> ),   },
           { path: "/Dashboard/Authors/Update/:id", element: ( <AdminDisplayForms title="Mise a jour d'un auteur"  FormComponent={AuthorForm} /> ), },
-          // { path: "/Dashboard/Authors/Details/:id", element: ( <DisplayDetailsEntity title="Mise a jour d'un auteur"  FormComponent={AuthorForm} /> ), },
           { path: "/Dashboard/Genres", element: <AdminGenres /> },
           { path: "/Dashboard/Genres/New", element: (<AdminDisplayForms  title="Créer un nouveau genre" FormComponent={GenresForm} /> ), },
           { path: "/Dashboard/Genres/Update/:id", element: ( <AdminDisplayForms title="Mise a jour d'un genre" FormComponent={GenresForm} /> ),},
@@ -112,6 +113,9 @@ const router = createBrowserRouter([
             <Account />
           </PrivateRoute>
         ),
+        children: [
+          { path: "/Account/Home",  element : (<AccountHome />)}
+      ]
       },
     ],
   },

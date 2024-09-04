@@ -13,7 +13,7 @@ export default function UserBar() {
   return (
     <section className="flex justify-between items-center bg-primary50 rounded-lg p-3 ">
       <p>
-        Bonjour <span className="font-bold">{currentUser?.name}</span>
+        Bonjour <span className="font-bold">{currentUser?.name} {currentUser?.firstname}</span>
       </p>
       <p className="flex items-center gap-2">
         <FaCalendarAlt className="text-secondary/50" /> <DisplayDate />
