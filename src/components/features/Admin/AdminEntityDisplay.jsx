@@ -28,9 +28,7 @@ export default function AdminEntity({
   getFetchData
 }) {
   const [search, setSearch] = useState("");
-  // const [showModal, setShowModal] = useState(false);
-  // const [selectedEntityId, setSelectedEntityId] = useState(null);
-  // const [deleteError, setDeleteError] = useState(null);
+ 
 
   const dispatch = useDispatch();
   const { datas, loading, error, pagination } = useSelector(sliceSelector);
@@ -57,47 +55,13 @@ export default function AdminEntity({
   };
 
 
-
-
-  
-
   const handleCreateEntity = () => navigate(createPath);
   const handleUpdate = (e) => navigate(`${updatePath}/${e.id}`);
- const handleRead = (e) => navigate(`${viewPath}/${e.id}`)
-  // const handleCallDeleteModal = (entity) => {
-  //   setShowModal(true);
-  //   setSelectedEntityId(entity.id);
-  // };
+  const handleRead = (e) => navigate(`${viewPath}/${e.id}`)
 
-  // const handleDeleteItem = async () => {
-  //   try {
-  //     await deleteEntity(selectedEntityId, apiEndpoint);
-  //     dispatch(
-  //       getFetchData({
-  //         endpoint: apiEndpoint,
-  //         search: debouncedSearch,
-  //         entityType: entityType,
-  //       })
-  //     );
-  //     setShowModal(false);
-  //     setDeleteError(null); // Réinitialise l'erreur en cas de succès
-  //   } catch (err) {
-  //     setShowModal(false);
-  //     setDeleteError("Echec de suppression, cette entité est liée à d'autres données.");
-  //     console.error("Failed to delete entity:", err);
-  //   }
-  // };
- 
- 
-  // const handleCloseModal = () => setShowModal(false);
 
-  const { 
-    showModal, 
-    deleteError, 
-    handleCallDeleteModal, 
-    handleDeleteItem, 
-    handleCloseModal 
-  } = useDeleteEntity(apiEndpoint, getFetchData, debouncedSearch, entityType);
+  const { showModal, deleteError,  handleCallDeleteModal,  handleDeleteItem,  handleCloseModal 
+        } = useDeleteEntity(apiEndpoint, getFetchData, debouncedSearch, entityType);
 
   const actions = createActions(handleRead, handleUpdate, handleCallDeleteModal);
  

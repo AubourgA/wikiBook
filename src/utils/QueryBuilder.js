@@ -39,6 +39,9 @@ export const getSearchParams = (search, entityType) => {
     case 'Status':
        result.type = search;
        break;
+    case 'Loans':
+       result.returnDate = search;
+       break;
     default:
       throw new Error(`Type d'entité non supporté: ${entityType}`);
   }

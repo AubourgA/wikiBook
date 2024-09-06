@@ -34,6 +34,7 @@ import DisplayDetailLayoutBook from '../components/ui/DisplayDetailLayoutBook';
 import BookCopiesForm from '../components/features/Admin/BookCopies/BookCopiesForm';
 
 import AccountHome from '../pages/UserAccount/AccountHome'
+import AccountLoans from '../pages/UserAccount/AccountLoans';
 
 const router = createBrowserRouter([
   {
@@ -114,7 +115,8 @@ const router = createBrowserRouter([
           </PrivateRoute>
         ),
         children: [
-          { path: "/Account/Home",  element : (<AccountHome />)}
+          { path: "/Account/Home",  element : (<AccountHome />)},
+          { path: "/Account/Emprunt",  element : (<AccountLoans />)}
       ]
       },
     ],

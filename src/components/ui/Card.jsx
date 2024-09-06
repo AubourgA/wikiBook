@@ -12,22 +12,23 @@ const  Card = ( {children}) => {
 }
 
 
-const CardHeader = ( {pic} ) => <div> <Image img={pic} text="cover" className='w-full h-[250px] object-cover rounded-t' /></div>
+const CardHeader = ( {pic} ) => <div > <Image img={pic} text="cover" className='w-full h-[250px] object-cover rounded-t' /></div>
 const CardContent = ( {children, ...htmlProps}) => <div {...htmlProps}>{children}</div>
-
+const CardBadge = ( {type,...htmlProps} ) => <div {...htmlProps}>{type}</div>
 const CardTitle = ( {text, level, ...htmlProps}) => <Title text1={text} level={level} {...htmlProps}/>
 const CardDescription = ( {children}) => <div>{children}</div>
-const CardFooter = ( {onDetailClick : handleDetail, id}) =>  { return(
+const CardFooter = ( {onDetailClick : handleDetail, onBookingClick: handleAddBook, id}) =>  { return(
 
 <div className='flex gap-2 pb-4 px-2'>
 <Button type="button" category="secondary" title="Détail" onButtonClick={()=>handleDetail(id)}  />
-<Button type="button" category="primary" title="Réserver" onButtonClick={()=>{}}  />
+<Button type="button" category="primary" title="Sélectionner" onButtonClick={()=>handleAddBook(id)}  />
 </div> 
 )}
 
 
 Card.Header = CardHeader;
 Card.Content = CardContent;
+Card.Badge = CardBadge;
 Card.Title = CardTitle;
 Card.Description = CardDescription;
 Card.Footer = CardFooter;
@@ -48,6 +49,9 @@ CardContent.propTypes = {
     children : node
 }
 
+CardBadge.prototypes = {
+    type : string
+}
 
 CardTitle.propTypes = {
     text1 : string,

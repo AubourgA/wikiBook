@@ -31,7 +31,7 @@ export const createEntity = async (endpoint, formDatas) => {
       const response = await axiosInstance.post(url, formDatas);
       return response.data; // Retourne la réponse de l'API (le livre créé, ou autre message de succès)
     } catch (error) {
-      console.error('Failed to create book:', error);
+      console.error('Failed to create entity:', error);
       throw error; // Vous pouvez lever l'erreur pour la gérer dans votre composant formulaire
     }
   };

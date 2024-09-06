@@ -20,6 +20,7 @@ export default function SelectForm( {label ="",
                   
              <option value="">{value.length > 0 ? value.name : "Choissiez un item"}</option>
              {Array.isArray(options) && options.map((option) => (
+              
           <option key={option[valueKey]} 
                   value={option[valueKey]}>
             {option[labelKey]} 

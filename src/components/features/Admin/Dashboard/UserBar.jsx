@@ -7,7 +7,7 @@ export default function UserBar() {
 
   const { currentUser, loading, error } = useCurrentUser();
 
-  console.log(currentUser)
+  
   if (loading) return <Loader />;
   if (error) return <div>Error: {error}</div>;
 

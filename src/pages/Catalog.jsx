@@ -6,13 +6,16 @@ import Filters from '../components/features/filters/Filters';
 import Loader from '../components/ui/Loader'
 
 import { buildQueryParams } from "../utils/QueryBuilder"
-import {  getEntityPublic } from '../api';
+import {  fetchEntityById, getEntityPublic } from '../api';
 import { API_ENDPOINTS } from '../Constants/api.endspoints';
 import { INITIAL_FILTERS_VALUE, PAGINATION_BUTTONS } from '../Constants';
 import Error from '../components/ui/Error/Error';
 // import Button from '../components/ui/Button';
 import Title from '../components/ui/Title';
 import Pagination from '../components/ui/Table/Pagination';
+import {useBookContext} from '../hooks/useBookContext';
+import { hasBookCopyWithStatus } from '../utils/checkAvailableBooks';
+
 
 export default function Catalog() {
 
@@ -20,6 +23,8 @@ export default function Catalog() {
     const [isLoading, setIsLoading] = useState(true);
     const [error, setError] = useState(null);
     const [filters, setFilters] = useState( INITIAL_FILTERS_VALUE)
+    
+    const {reserveBooks} = useBookContext();
     
     const navigate = useNavigate()
 
@@ -82,6 +87,21 @@ const handleDetailBook = (id) => {
   navigate(`/Catalogs/${id}`)
 }
 
+
+
+const handleAddBook = async (id) => {
+
+  try {
+    const book = await fetchEntityById(id, API_ENDPOINTS.BOOKS); 
+   
+    reserveBooks(book);
+    //appeler notification
+  } catch (error) {
+    console.error('Erreur lors de la réservation du livre :', error);
+  }
+}
+
+
 const handlePaginationClick = async (path) => {
   if (path) {
     const fullUrl = new URL(path, API_ENDPOINTS.BASE).toString();
@@ -119,15 +139,17 @@ const handlePaginationClick = async (path) => {
                 <p className='border-b-2 border-primary50 '>Résultat de la rercherche : <span>{ books["hydra:totalItems"]} livre(s) trouvé(s)</span></p>
 
                 <div className='flex justify-center flex-wrap gap-5 p-1 pt-5'>
-                    { books && books["hydra:member"].map( ({id, title, YearPublished}) => (  
+                    { books && books["hydra:member"].map( ({id, title, YearPublished, bookCopies}) => (  
                           <Card key={id}>
-                                <Card.Header pic="https://placehold.co/250x250" />
+                                <Card.Header pic="https://placehold.co/250x250" className=""/>
                              
                                 <Card.Content className='flex flex-col px-4 pt-4 h-full'>
+                                    <Card.Badge  type={ hasBookCopyWithStatus(bookCopies, "En Stock") ? "Disponible" : "Loué"} 
+                                                 className={`${hasBookCopyWithStatus(bookCopies, "En Stock") ? "bg-green-300" : "bg-red-300"} text-xs self-start px-2 py-1 rounded-lg  `}/>
                                     <Card.Title  className='text md:text-md lg:text-lg  font-semibold pb-2'text1={title} level={4} />
                                     <Card.Description>Année : {YearPublished}</Card.Description>
                                 </Card.Content>
-                                <Card.Footer onDetailClick={handleDetailBook} id={id} />
+                                <Card.Footer onDetailClick={handleDetailBook} onBookingClick={handleAddBook} id={id} />
                             </Card>
                             )
                         )
