@@ -32,7 +32,7 @@ export default function DisplayDetailLayoutBook( {title}) {
           </div>
           <BookDetails  data={book} user={user}/>
           {
-            user?.roles.includes('ROLE_ADMIN') && <BookDetailsTabs data={book.bookCopies} id={book.id} />
+            user?.roles.includes('ROLE_ADMIN') && <BookDetailsTabs data={book} id={book.id} />
           }
      </section>
      

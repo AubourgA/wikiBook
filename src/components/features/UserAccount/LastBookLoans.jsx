@@ -10,7 +10,7 @@ export default function LastBookLoans( {user}) {
 
   return (
     <div>
-      <Title level={3} text1="Mes derniere lectures"  />
+      <Title level={3} text1="Mes dernieres lectures"  />
        <CustomTable data={sortedLoansByBorrowDate} columns={columnsUserLoans}/>
     </div>
   )

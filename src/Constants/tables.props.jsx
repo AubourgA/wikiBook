@@ -68,8 +68,15 @@ export const columnsBooks = [
     {key: 'bookCopy.book.title', header:"Livre"},
     {key: 'borrowDate', header:"Date emprunt", render: (value) => formatDateISO(value)},
     {key: 'returnDate', header:"Date de retour",render: (value) => value ? formatDateISO(value): "a retourner"},
-
   ]
+
+  export const columnsBookUserDetail = [
+    {key: 'name', header:"nom"},
+    {key: 'firstname', header:"prenom"},
+    {key: 'date', header:"Date emprunt", render: (value) => formatDateISO(value)},
+  ]
+
+
  export const createEditAction = (handleEdit) => [
 
    { icon: FaEdit , onClick: handleEdit , style: "text-yellow-500 hover:bg-yellow-100"},
