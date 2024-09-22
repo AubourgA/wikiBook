@@ -108,35 +108,3 @@ export const buildFullURL = (url , search = "", entityType = "") => {
 };
 
 
-/**
- * Fetches data using a provided fetch function and updates the state with the result, handling errors if they occur.
- *
- * @param {Function} fetchFunction - A function that returns a promise resolving to the data to be fetched. This function should handle the actual data retrieval process.
- * @param {Function} setState - A function to update the state with the fetched data. Typically, this would be a state setter function from a React `useState` hook or similar.
- * @param {string} errorMessage - A message to log in case of an error or if the response data does not meet expected criteria.
- *
- * @returns {Promise<void>} A promise that resolves when the data has been fetched and the state has been updated, or when an error has been logged.
- *
- * @throws {Error} Logs errors to the console if the fetch fails or if the response data does not contain the expected `hydra:member` property.
- *
- * Example usage:
- * const fetchFunction = () => fetch('/api/data').then(res => res.json());
- * const setState = data => console.log('State updated:', data);
- * const errorMessage = 'Failed to fetch data';
- * 
- * fetchGenericData(fetchFunction, setState, errorMessage)
- *   .then(() => console.log('Data fetch complete'))
- *   .catch(error => console.error('Data fetch failed', error));
- */
-export const fetchGenericData = async (fetchFunction, setState, errorMessage) => {
-  try {
-    const response = await fetchFunction();
-    if (Array.isArray(response["hydra:member"])) {
-      setState(response["hydra:member"]);
-    } else {
-      console.error(errorMessage, response);
-    }
-  } catch (error) {
-    console.error(errorMessage, error);
-  }
-};

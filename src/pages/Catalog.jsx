@@ -15,7 +15,7 @@ import Title from '../components/ui/Title';
 import Pagination from '../components/ui/Table/Pagination';
 import {useBookContext} from '../hooks/useBookContext';
 import { hasBookCopyWithStatus } from '../utils/checkAvailableBooks';
-
+import useCurrentUser from '../hooks/useCurrentUser'
 
 export default function Catalog() {
 
@@ -25,9 +25,11 @@ export default function Catalog() {
     const [filters, setFilters] = useState( INITIAL_FILTERS_VALUE)
     
     const {reserveBooks} = useBookContext();
-    
+    const {currentUser} = useCurrentUser();
+
     const navigate = useNavigate()
 
+    
   useEffect(() => {
    
      const fetchBooks = async () => {
@@ -91,10 +93,13 @@ const handleDetailBook = (id) => {
 
 const handleAddBook = async (id) => {
 
+  if(!currentUser) return
+
   try {
     const book = await fetchEntityById(id, API_ENDPOINTS.BOOKS); 
    
     reserveBooks(book);
+    navigate('/Account/Emprunt')
     //appeler notification
   } catch (error) {
     console.error('Erreur lors de la réservation du livre :', error);
@@ -117,7 +122,7 @@ const handlePaginationClick = async (path) => {
     }
   }
 };
-
+console.log(books)
   if (isLoading)  return <Loader />;
   
   if (error) return <Error title="Oups..." message={error.message} />;
@@ -140,8 +145,10 @@ const handlePaginationClick = async (path) => {
 
                 <div className='flex justify-center flex-wrap gap-5 p-1 pt-5'>
                     { books && books["hydra:member"].map( ({id, title, YearPublished, bookCopies}) => (  
-                          <Card key={id}>
-                                <Card.Header pic="https://placehold.co/250x250" className=""/>
+                       
+                       <Card key={id}>
+                                {/* <Card.Header pic="https://placehold.co/250x250" className=""/> */}
+                                <Card.Header pic="https://covers.openlibrary.org/b/isbn/9780385533225-L.jpg" className=""/>
                              
                                 <Card.Content className='flex flex-col px-4 pt-4 h-full'>
                                     <Card.Badge  type={ hasBookCopyWithStatus(bookCopies, "En Stock") ? "Disponible" : "Loué"} 
@@ -149,7 +156,7 @@ const handlePaginationClick = async (path) => {
                                     <Card.Title  className='text md:text-md lg:text-lg  font-semibold pb-2'text1={title} level={4} />
                                     <Card.Description>Année : {YearPublished}</Card.Description>
                                 </Card.Content>
-                                <Card.Footer onDetailClick={handleDetailBook} onBookingClick={handleAddBook} id={id} />
+                                <Card.Footer onDetailClick={handleDetailBook} onBookingClick={handleAddBook} id={id} hasStock={hasBookCopyWithStatus(bookCopies, "En Stock")} />
                             </Card>
                             )
                         )

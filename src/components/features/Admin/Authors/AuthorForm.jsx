@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { Link, useParams, useNavigate } from "react-router-dom";
 import {  API_ENDPOINTS, AUTHOR_INITIAL_VALUE } from "../../../../Constants";
-import {   fetchGenericData, fetchEntity, fetchEntityById, createEntity, updateEntity } from "../../../../api";
+import {   fetchEntity, fetchEntityById, createEntity, updateEntity, fetchAllGenericData } from "../../../../api";
 
 
 import { validateAuthorForm } from '../../../../utils/checkDataForms';
@@ -28,7 +28,7 @@ export default function AuthorForm() {
     useEffect( ()=> {
          const fetchDataForm = async () => {
            
-            await fetchGenericData(()=>fetchEntity(API_ENDPOINTS.NATIONALITIES), setNationalities, "Erreur lors du chargement des nationalité");
+            await fetchAllGenericData(API_ENDPOINTS.BASE, (endpoint)=>fetchEntity(endpoint ? endpoint : API_ENDPOINTS.NATIONALITIES), setNationalities, "Erreur lors du chargement des nationalité");
            
             
             try {

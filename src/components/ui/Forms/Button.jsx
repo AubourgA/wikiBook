@@ -1,6 +1,6 @@
 import { string,elementType,func, oneOfType, element } from 'prop-types';
 
-export default function Button( {title, icon:Icon, onButtonClick, type, category, custom=""}) {
+export default function Button( {title, icon:Icon, onButtonClick, type, category, custom="", disabled=false}) {
 
   const getCategoryClass = (category) => {
     switch (category) {
@@ -26,6 +26,8 @@ export default function Button( {title, icon:Icon, onButtonClick, type, category
          return 'bg-red-500 justify-center border mt-4 text-white';
       case 'tabs' :
           return 'text-dark'
+      case 'validate' :
+          return 'md:text-xs border bg-green-400 '
       default:
         return '';
     }
@@ -36,7 +38,8 @@ export default function Button( {title, icon:Icon, onButtonClick, type, category
   return (
     <button type={type} 
             className={buttonClass}
-            onClick={onButtonClick}>
+            onClick={onButtonClick} 
+            disabled={disabled}>
         {title}
         {Icon && <Icon />}
     </button>

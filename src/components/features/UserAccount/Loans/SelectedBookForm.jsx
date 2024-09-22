@@ -1,8 +1,9 @@
 import { useState } from 'react';
 import Button from '../../../ui/Forms/Button'
 import SelectForm from '../../../ui/Forms/SelectForm'
+import Image from '../../../ui/Image';
 
-export default function SelectedBookForm( {item, onButtonClick : handleClick } ) {
+export default function SelectedBookForm( {item, onSubmitBooking   } ) {
 
 
 const [formData, setFormData] = useState({langue:""})
@@ -22,16 +23,24 @@ const options = item.bookCopies.map(copy => ({
       }));
   }
 
+  const handleSubmit = (e) => {
+    e.preventDefault()
+    onSubmitBooking(item.id, formData)
+  }
 
   return (
-    <div className='shadow shadow-dark rounded p-2 my-4'>
+    <div className='shadow-sm bg-slate-50  rounded p-2 my-4'>
 
-            <form className='flex items-center justify-between'>
-                <div>
+            <form onSubmit={handleSubmit} className='flex items-center justify-between gap-2'>
+                <div className='flex gap-2'>
+                  <Image img="https://covers.openlibrary.org/b/isbn/9780385533225-S.jpg"/>
+                    <div>
+                      
                     <p className='font-bold'>{item.title}</p>
-                    <SelectForm name="langue" id="langue" onChange={handleChange} options={options} value={formData.langue} valueKeyKey="value" labelKey="label"/>
+                    <SelectForm key={item.id} name="langue" id="langue" onChange={handleChange} options={options} value={formData.langue} valueKey="value" labelKey="label"/>
+                    </div>
                 </div>
-                <Button title="EMPRUNTER" category="nav-user" custom="text-sm"  type='button' onButtonClick={()=> handleClick(item.id)} />
+                <Button title="VALIDER ?" category="validate" custom="text-sm"  type='submit'  />
             </form>
     </div>
 

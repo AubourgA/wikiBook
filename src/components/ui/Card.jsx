@@ -17,11 +17,11 @@ const CardContent = ( {children, ...htmlProps}) => <div {...htmlProps}>{children
 const CardBadge = ( {type,...htmlProps} ) => <div {...htmlProps}>{type}</div>
 const CardTitle = ( {text, level, ...htmlProps}) => <Title text1={text} level={level} {...htmlProps}/>
 const CardDescription = ( {children}) => <div>{children}</div>
-const CardFooter = ( {onDetailClick : handleDetail, onBookingClick: handleAddBook, id}) =>  { return(
+const CardFooter = ( {onDetailClick : handleDetail, onBookingClick: handleAddBook, id, hasStock}) =>  { return(
 
 <div className='flex gap-2 pb-4 px-2'>
 <Button type="button" category="secondary" title="Détail" onButtonClick={()=>handleDetail(id)}  />
-<Button type="button" category="primary" title="Sélectionner" onButtonClick={()=>handleAddBook(id)}  />
+<Button type="button" category="primary" title="Sélectionner" onButtonClick={()=>handleAddBook(id)} disabled={!hasStock}  />
 </div> 
 )}
 

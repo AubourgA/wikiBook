@@ -46,7 +46,7 @@ export default function Login() {
               if (loggedInUser.roles.includes('ROLE_ADMIN')) {
                 navigate('/Dashboard/Home');
               } else {
-                navigate('/Account');
+                navigate('/Account/Home');
               }
          } else {
           setErrors({ general: 'Connexion échouée. Veuillez vérifier vos identifiants.' });

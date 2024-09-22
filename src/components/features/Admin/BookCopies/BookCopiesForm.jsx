@@ -1,6 +1,6 @@
-import { Link, useParams } from 'react-router-dom'
+import { Link, useNavigate, useParams } from 'react-router-dom'
 import { useEffect, useState } from 'react';
-import { createEntity, fetchEntity, fetchGenericData } from '../../../../api';
+import { createEntity, fetchAllGenericData, fetchEntity } from '../../../../api';
 import { API_ENDPOINTS, BOOKCOPIES_INITIAL_VALUE } from '../../../../Constants';
 
 import SelectForm from '../../../ui/Forms/SelectForm';
@@ -17,14 +17,14 @@ export default function BookCopiesForm() {
     const [formData, setFormData] = useState(BOOKCOPIES_INITIAL_VALUE);
 
     let {id} = useParams();
-
+    const navigate = useNavigate();
 
 
     useEffect(() => {
       
         const fetchDataForForm  = async () => {
-          await fetchGenericData(()=>fetchEntity(API_ENDPOINTS.LANGUAGES), setLanguages, "Erreur lors du chargement des langues");
-          await fetchGenericData(()=>fetchEntity(API_ENDPOINTS.STATUS), setStatus, "Erreur lors du chargement des status");
+          await fetchAllGenericData(API_ENDPOINTS.BASE, ( endpoint)=>fetchEntity(endpoint ? endpoint : API_ENDPOINTS.LANGUAGES), setLanguages, "Erreur lors du chargement des langues");
+          await fetchAllGenericData(API_ENDPOINTS.BASE, (endpoint )=>fetchEntity(endpoint ? endpoint : API_ENDPOINTS.STATUS), setStatus, "Erreur lors du chargement des status");
         };
     
         fetchDataForForm (); 
@@ -61,6 +61,7 @@ export default function BookCopiesForm() {
         e.preventDefault();
         try {
             createEntity(API_ENDPOINTS.BOOKCOPIES, formData)
+            navigate('/Dashboard/Books')
         } catch(err) {
             console.error("Failed", err)
         }

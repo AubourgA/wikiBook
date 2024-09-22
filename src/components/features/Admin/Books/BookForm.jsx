@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { Link, useParams, useNavigate } from "react-router-dom";
 import { API_ENDPOINTS, BOOK_INITIAL_VALUE } from "../../../../Constants";
-import {fetchGenericData,fetchEntity, fetchEntityById,createEntity, updateEntity} from "../../../../api";
+import {fetchEntity, fetchEntityById,createEntity, updateEntity, fetchAllGenericData} from "../../../../api";
 import Button from "../../../ui/Forms/Button";
 import InputForm from "../../../ui/Forms/InputForm";
 import TextareaForm from "../../../ui/Forms/TextArea";
@@ -26,12 +26,11 @@ const BookForm = () => {
 
    useEffect(() => {
     const fetchDataForForm  = async () => {
-      await fetchGenericData(()=>fetchEntity(API_ENDPOINTS.AUTHORS), setAuthors, "Erreur lors du chargement des auteur");
-      // await fetchAllData(()=>fetchEntity(API_ENDPOINTS.AUTHORS), setAuthors, "Erreur lors du chargement des auteur");
-
-      await fetchGenericData(()=>fetchEntity(API_ENDPOINTS.EDITORS), setEditors, "Erreur lors du chargement des editeur");
-      await fetchGenericData(()=>fetchEntity(API_ENDPOINTS.GENRES), setGenres, "Erreur lors du chargement des genres");
      
+      await fetchAllGenericData(API_ENDPOINTS.BASE,( endpoint )=>fetchEntity(endpoint ? endpoint : API_ENDPOINTS.AUTHORS), setAuthors, "Erreur lors du chargement des auteur");
+      await fetchAllGenericData(API_ENDPOINTS.BASE,( endpoint )=>fetchEntity(endpoint ? endpoint : API_ENDPOINTS.EDITORS), setEditors, "Erreur lors du chargement des auteur");
+      await fetchAllGenericData(API_ENDPOINTS.BASE,( endpoint )=>fetchEntity(endpoint ? endpoint : API_ENDPOINTS.GENRES), setGenres, "Erreur lors du chargement des auteur");
+   
       try {
         if (id) {
           setIsCreateMode(false);

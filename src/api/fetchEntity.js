@@ -5,6 +5,29 @@ import { axiosInstance } from '.';
 import { buildFullURL } from '../utils/QueryBuilder';
 
 
+/**
+ * Fetches public entity data from a specified API endpoint.
+ * 
+ * This function makes a GET request to the provided endpoint using axios.
+ * It sets the 'Content-Type' header to 'application/ld+json' for JSON-LD compatibility.
+ *
+ * @async
+ * @function getEntityPublic
+ * 
+ * @param {string} endpoint - The full URL of the API endpoint to fetch data from.
+ * 
+ * @returns {Promise<Object>} A promise that resolves to the data returned by the API.
+ * 
+ * @throws {Error} Logs the error to the console and re-throws it if the API request fails.
+ * 
+ * @example
+ * try {
+ *   const data = await getEntityPublic('https://api.example.com/public/entity/123');
+ *   console.log(data);
+ * } catch (error) {
+ *   console.error('Failed to fetch public entity:', error);
+ * }
+ */
 export const getEntityPublic = async (endpoint) => {
   const url = `${endpoint}`
   try {
@@ -21,60 +44,66 @@ export const getEntityPublic = async (endpoint) => {
 };
 
 
+
 /**
- * Fetches data using a provided fetch function and updates the state with the result, handling errors if they occur.
- *
- * @param {Function} fetchFunction - A function that returns a promise resolving to the data to be fetched. This function should handle the actual data retrieval process.
- * @param {Function} setState - A function to update the state with the fetched data. Typically, this would be a state setter function from a React `useState` hook or similar.
- * @param {string} errorMessage - A message to log in case of an error or if the response data does not meet expected criteria.
- *
- * @returns {Promise<void>} A promise that resolves when the data has been fetched and the state has been updated, or when an error has been logged.
- *
- * @throws {Error} Logs errors to the console if the fetch fails or if the response data does not contain the expected `hydra:member` property.
- *
- * Example usage:
- * const fetchFunction = () => fetch('/api/data').then(res => res.json());
- * const setState = data => console.log('State updated:', data);
- * const errorMessage = 'Failed to fetch data';
+ * Fetches all paginated data from an API and combines it into a single array.
  * 
- * fetchGenericData(fetchFunction, setState, errorMessage)
- *   .then(() => console.log('Data fetch complete'))
- *   .catch(error => console.error('Data fetch failed', error));
+ * This function automatically handles pagination by following the "hydra:next" links
+ * provided by the API. It accumulates all data from each page into a single array
+ * before updating the state with the complete set of data.
+ *
+ * @async
+ * @function fetchAllGenericData
+ * 
+ * @param {string} baseURL - The base URL of the API.
+ * @param {Function} fetchFunction - An asynchronous function that performs the API request.
+ *                                   It should accept an 'endpoint' parameter and return
+ *                                   the response data.
+ * @param {Function} setState - A function to update the state with the fetched data.
+ * @param {string} errorMessage - An error message to display if something goes wrong.
+ * 
+ * @throws {Error} Logs an error to the console if data fetching fails.
+ * 
+ * @example
+ * fetchAllGenericData(
+ *   'https://api.example.com',
+ *   (endpoint) => fetchEntity(endpoint || '/authors'),
+ *   setAuthors,
+ *   "Error loading authors"
+ * );
  */
-export const fetchGenericData = async (fetchFunction, setState, errorMessage) => {
+
+  export const fetchAllGenericData = async (baseURL,fetchFunction, setState, errorMessage) => {
+    
     try {
-      const response = await fetchFunction();
-      if (Array.isArray(response["hydra:member"])) {
-        setState(response["hydra:member"]);
-      } else {
-        console.error(errorMessage, response);
-      }
+      let allData = [];
+      let nextPage = null;
+      do {
+        const endpoint = nextPage || '';
+        const response = await fetchFunction(endpoint);
+        
+        if (Array.isArray(response["hydra:member"])) {
+          allData = [...allData, ...response["hydra:member"]];
+          
+          // Vérifier s'il y a une page suivante
+          nextPage = response["hydra:view"] && response["hydra:view"]["hydra:next"];
+          if (nextPage) {
+            // Extraire le chemin relatif de l'URL complète
+           
+            nextPage = new URL(nextPage, baseURL).href;
+            console.log(nextPage)
+          }
+        } else {
+          console.error(errorMessage, response);
+          break;
+        }
+      } while (nextPage);
+  
+      setState(allData);
     } catch (error) {
       console.error(errorMessage, error);
     }
   };
-
-  // **************
-  // A DEVELOPPER
-  // RECUPERER L ENSEMBLE DES DATA DES ENTITE DANS UN TABLEAU
-  //************* */
-  // export const fetchAllData = async (fetchFunction, setState, errorMessage) => {
-  //   let allData = [];
-  //   try {
-  //     const response = await fetchFunction();
-  //     if (Array.isArray(response["hydra:member"])) {
-
-  //       allData = [...allData, ...response["hydra:member"]]
-        
-  //     }
-  //     // let nextPageUrl = null;
-
-  //     } catch (error) {
-  //       console.error(errorMessage)
-  //     }
-      
-  //   setState(allData)
-  // };
 
 /**
  * Fetches data from a specified endpoint.
@@ -130,6 +159,34 @@ export const fetchGenericData = async (fetchFunction, setState, errorMessage) =>
     }
   };
 
+
+  /**
+ * Fetches entities from an API based on provided parameters.
+ * 
+ * This function constructs a URL using the provided base URL, search term, and entity type.
+ * It can also apply an additional filter for ongoing entities (where returnDate doesn't exist).
+ * The function uses an axios instance to make the GET request.
+ *
+ * @async
+ * @function fetchEntityByParams
+ * 
+ * @param {string} url - The base URL for the API endpoint.
+ * @param {string} [search=""] - The search term to filter entities (default is an empty string).
+ * @param {string} [filter=""] - A filter parameter. If set to "ongoing", it adds a query to filter entities without a return date.
+ * @param {string} entityType - The type of entity being fetched (used in URL construction).
+ * 
+ * @returns {Promise<Object>} The data returned from the API.
+ * 
+ * @throws {Error} Logs an error to the console and re-throws if the API request fails.
+ * 
+ * @example
+ * try {
+ *   const books = await fetchEntityByParams('/api', 'fantasy', 'ongoing', 'books');
+ *   console.log(books);
+ * } catch (error) {
+ *   console.error('Failed to fetch books:', error);
+ * }
+ */
   export const fetchEntityByParams = async (url, search = "", filter="", entityType) => {
     let fullURL = buildFullURL(url, search, entityType);
    

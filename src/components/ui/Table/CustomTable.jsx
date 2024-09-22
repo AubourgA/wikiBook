@@ -20,7 +20,7 @@ const CustomTable = ({ data, columns, actions }) => {
           </thead>
           <tbody>
             {data.map((item) => (
-              <tr key={item.id} className="even:bg-slate-100">
+              <tr key={item.id} className="even:bg-slate-50">
                 {columns.map((column) => (
                   <td key={column.key} className="text-center px-4 py-2">
                     {column.render
