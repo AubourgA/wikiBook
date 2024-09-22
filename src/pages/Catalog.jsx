@@ -122,7 +122,7 @@ const handlePaginationClick = async (path) => {
     }
   }
 };
-console.log(books)
+
   if (isLoading)  return <Loader />;
   
   if (error) return <Error title="Oups..." message={error.message} />;
@@ -147,7 +147,7 @@ console.log(books)
                     { books && books["hydra:member"].map( ({id, title, YearPublished, bookCopies}) => (  
                        
                        <Card key={id}>
-                                {/* <Card.Header pic="https://placehold.co/250x250" className=""/> */}
+                               
                                 <Card.Header pic="https://covers.openlibrary.org/b/isbn/9780385533225-L.jpg" className=""/>
                              
                                 <Card.Content className='flex flex-col px-4 pt-4 h-full'>

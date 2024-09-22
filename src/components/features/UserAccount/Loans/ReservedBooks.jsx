@@ -1,3 +1,4 @@
+import { useMemo } from 'react';
 import { createEntity } from '../../../../api';
 import { API_ENDPOINTS } from '../../../../Constants';
 import { useBookContext } from '../../../../hooks/useBookContext';
@@ -10,7 +11,7 @@ export default function ReservedBooks( {user}) {
 
     const { reservedBooks } = useBookContext()
 
-
+   
       
     // a modifier
     const handleLoansClick =  (e, formData) => {
@@ -22,13 +23,41 @@ export default function ReservedBooks( {user}) {
             bookCopy : formData.langue,
              user : `/api/users/${user.id}`
         }
-        console.log( newFormData)
+        
         
         createEntity(API_ENDPOINTS.LOANS, newFormData).then( response => console.log("succes", response))
         .catch(error => console.error('resrvarion faile',error))
     }
    
-   console.log(reservedBooks)
+    const reservedBooksFiltered = useMemo(() => {
+        return reservedBooks
+          .map(book => {
+          
+            if (!book.bookCopies || !Array.isArray(book.bookCopies)) {
+              return null;
+            }
+      
+           
+            const availableCopies = book.bookCopies.filter(copy =>
+              copy.status && copy.status.type !== "Emprunté"
+            );
+      
+           
+            if (availableCopies.length === 0) {
+              return null;
+            }
+      
+           
+            return {
+              ...book,
+              bookCopies: availableCopies
+            };
+          })
+          
+          .filter(book => book !== null);
+      }, [reservedBooks]);
+   
+   
 
   return (
     <div>
@@ -36,7 +65,7 @@ export default function ReservedBooks( {user}) {
 
      
         <ul>
-            {reservedBooks.length != 0 ? reservedBooks.map( (item,index) => (
+            {reservedBooks.length != 0 ? reservedBooksFiltered.map( (item,index) => (
                 
                 // <li key={item.id} className='flex gap-2 my-2 p-2 items-center justify-between rounded bg-orange-300/25'>
                 //     {item.title}

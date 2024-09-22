@@ -31,7 +31,6 @@ export default function AdminLoans() {
       search: debouncedSearch,
       filter: isSelected ? "ongoing" : "",
     }
-    // dispatch( getData({ endpoint: API_ENDPOINTS.LOANS, search: debouncedSearch })  );
     dispatch( getData(params)  );
   
   }, [dispatch, debouncedSearch, isSelected]);

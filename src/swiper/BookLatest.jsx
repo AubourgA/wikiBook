@@ -40,7 +40,7 @@ useEffect(() => {
  const handleDetailBook = (id) => {
   navigate(`/Catalogs/${id}`)
 }
-
+console.log(lastBooks)
 if (isLoading)  return <Loader />;
   
 if (error) return <Error title="Oups..." message={error.message} />;
@@ -58,10 +58,10 @@ if (error) return <Error title="Oups..." message={error.message} />;
                           }
                       })} >
         { lastBooks && 
-                lastBooks["hydra:member"].map( ({id, title, YearPublished}) => (  
+                lastBooks["hydra:member"].map( ({id, title, YearPublished, ISBN}) => (  
                     <swiper-slide key={id} >
                              <Card key={id}>
-                                <Card.Header pic="https://placehold.co/250x250" />
+                                <Card.Header pic={`https://covers.openlibrary.org/b/isbn/${ISBN}-L.jpg`} />
                                 <Card.Content className='flex flex-col px-4 pt-4 h-full'>
                                 <Card.Title  className='text md:text-md lg:text-lg  font-semibold pb-2'text1={title} level={4} />
                                     <Card.Description>Année : {YearPublished}</Card.Description>
