@@ -1,49 +1,26 @@
 import { register } from 'swiper/element/bundle';
 
-
-// register Swiper custom elements
 register()
 
-
-import { useEffect, useState } from 'react';
 import Card from '../components/ui/Card';
 import Loader from '../components/ui/Loader';
 import Error from '../components/ui/Error/Error';
-import { getEntityPublic } from '../api';
 import { API_ENDPOINTS } from '../Constants';
 import { useNavigate } from 'react-router-dom';
+import useFetch from '../hooks/useFetch';
 
 export default function BookLatest( ) {
 
-    const [lastBooks, setLastBooks] = useState([])
-    const [isLoading, setIsLoading] = useState(true);
-    const [error, setError] = useState(null);
 
-    const navigate = useNavigate();
+  const {data : lastBooks, isLoading, error} = useFetch(`${API_ENDPOINTS.BOOKS}?order[createdAt]=DESC`)
+    
+  const navigate = useNavigate();
 
-useEffect(() => {
-   
-  const fetchLastBooks = async () => {
-         setIsLoading(true);
-         try {
-           setLastBooks(await getEntityPublic(API_ENDPOINTS.BOOKS));
-         } catch (error) {
-           setError(error);
-         } finally {
-           setIsLoading(false);
-         }
-     }
-   fetchLastBooks()
- }, []);
+  const handleDetailBook = (id) => navigate(`/Catalogs/${id}`)
 
-
- const handleDetailBook = (id) => {
-  navigate(`/Catalogs/${id}`)
-}
-console.log(lastBooks)
-if (isLoading)  return <Loader />;
-  
-if (error) return <Error title="Oups..." message={error.message} />;
+  if (isLoading)  return <Loader />;
+    
+  if (error) return <Error title="Oups..." message={error.message} />;
 
   return (
     <swiper-container space-between="50" 

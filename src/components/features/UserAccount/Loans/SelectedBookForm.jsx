@@ -26,6 +26,7 @@ const options = item.bookCopies.map(copy => ({
   const handleSubmit = (e) => {
     e.preventDefault()
     onSubmitBooking(item.id, formData)
+    
   }
 
   return (

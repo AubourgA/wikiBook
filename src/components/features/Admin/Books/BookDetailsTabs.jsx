@@ -28,7 +28,7 @@ export default function BookDetailsTabs({data,id}) {
  
       const tabComponents = [
         <BookCopiesInventory key={1} data={data.bookCopies} id={id}   />,
-        <LoansGraph key={2} />,
+        <LoansGraph key={2} data={data.bookCopies}/>,
         <BookCopiesUsers key={3} data={data.bookCopies} />
       ];
 

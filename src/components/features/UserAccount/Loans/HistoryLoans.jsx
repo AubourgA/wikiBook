@@ -7,9 +7,7 @@ import Title from '../../../ui/Title';
 
 export default function HistoryLoans( {user}) {
 
-
     const loans = user?.loans || []
-
 
   return (
     <div>

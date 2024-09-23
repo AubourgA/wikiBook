@@ -1,7 +1,13 @@
+// import { Bar} from 'react-chartjs-2'
 
 
-export default function LoansGraph() {
+
+
+export default function LoansGraph( {data}) {
+  console.log(data)
   return (
-    <div>LoansGraph</div>
+    <div>
+      
+    </div>
   )
 }
