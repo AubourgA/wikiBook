@@ -2,7 +2,7 @@ import Title from '../../components/ui/Title';
 import SearchBar from '../../components/features/filters/SearchBar';
 
 import { getData} from '../../store/loansSlice';
-import { API_ENDPOINTS, columnsLoans, createEditAction } from '../../Constants';
+import { API_ENDPOINTS, columnsLoans, createEditAction, PAGINATION_BUTTONS } from '../../Constants';
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useDebounce } from '../../hooks/useDebounce';
@@ -14,10 +14,11 @@ import ModalConfirm from '../../components/ui/Modal/ModalConfirm';
 import { createPortal } from 'react-dom';
 import { updateEntity } from '../../api';
 import { formatDateISO } from '../../utils/formalizerDate';
+import Pagination from '../../components/ui/Table/Pagination';
 export default function AdminLoans() {
 
   const [search, setSearch] = useState("");
-  const { datas, loading } = useSelector((state)=> state.loans);
+  const { datas, loading , pagination} = useSelector((state)=> state.loans);
  const [isSelected, setIsSelected] = useState(true)
  const [selectedId, setSelectedId] = useState(null)
 
@@ -55,6 +56,9 @@ const updateDateReturn = () => {
 
   const handleSelectedAction = () => (e) => setIsSelected(e.target.checked)
   
+ const handlePaginationClick = (url) =>  dispatch(getData( {endpoint : `${API_ENDPOINTS.BASE}${url}`})) 
+ 
+
   const action = isSelected ?  createEditAction(handleEdit) : "";
 
 
@@ -91,6 +95,12 @@ const updateDateReturn = () => {
         <CustomTable data={datas['hydra:member']} 
                     columns={columnsLoans} 
                     actions={action}/>
+
+      {datas["hydra:view"] && 
+          <Pagination   paginationButtons={PAGINATION_BUTTONS.map(({ key, title }) => ({key, title, }))}
+                        onPageChange={handlePaginationClick}
+                        page={pagination} />
+        }
 
 {showModal &&
   createPortal(

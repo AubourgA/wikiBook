@@ -3,6 +3,7 @@ import Image from '../ui/Image';
 import Title from '../ui/Title';
 import { IoMdArrowRoundBack } from "react-icons/io";
 import { formatDateISO } from '../../utils/formalizerDate';
+import { hasBookCopyWithStatus } from '../../utils/checkAvailableBooks';
 
 
 export default function BookDetails({data, user}) {
@@ -25,7 +26,7 @@ export default function BookDetails({data, user}) {
             </div>
             <ul >
               <li className='text-secondary font-bold text-lg mb-3'>  {data.author.name} {data.author.firstname}</li>
-                 <span className={` ${data.bookCopies.length < 1 ? "bg-red-300" : "bg-green-300"} rounded p-1 text-sm`}>{data.bookCopies.length < 1 ? "Indisponible" : "Disponible"}</span>
+                 <span className={` ${hasBookCopyWithStatus(data.bookCopies, "En Stock")? "bg-green-300" : "bg-red-300"} rounded p-1 text-sm`}>{hasBookCopyWithStatus(data.bookCopies, "En Stock") ? "Disponible" : "Loué"}</span>
               <li className='mt-2'><span className='font-bold'>Par</span> {data.editor.name}</li>
               <li className='py-4'>{data.synopsys}</li>
               <li><span className='font-bold'>Année de publication : </span>{data.YearPublished}</li>
