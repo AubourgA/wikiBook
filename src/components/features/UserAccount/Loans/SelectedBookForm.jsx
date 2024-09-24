@@ -8,15 +8,16 @@ export default function SelectedBookForm( {item, onSubmitBooking   } ) {
 
 const [formData, setFormData] = useState({langue:""})
 
-
-const options = item.bookCopies.map(copy => ({
-    value: copy?.["@id"],
-    label: copy.Language?.name,
+const options = item.bookCopies
+  .filter(copy => copy.status?.type === "En Stock")  
+  .map(copy => ({
+    value: copy?.["@id"],        
+    label: copy.Language?.name,  
   }));
+
 
   const handleChange = () => (e) =>{
     const { name, value } = e.target;
-   
     setFormData((prev) => ({
         ...prev,
         [name]: value,
@@ -26,7 +27,6 @@ const options = item.bookCopies.map(copy => ({
   const handleSubmit = (e) => {
     e.preventDefault()
     onSubmitBooking(item.id, formData)
-    
   }
 
   return (

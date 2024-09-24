@@ -91,7 +91,7 @@ export const getEntityPublic = async (endpoint) => {
             // Extraire le chemin relatif de l'URL complète
            
             nextPage = new URL(nextPage, baseURL).href;
-            console.log(nextPage)
+          
           }
         } else {
           console.error(errorMessage, response);

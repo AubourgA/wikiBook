@@ -6,7 +6,9 @@ import Title from '../../ui/Title'
 export default function LastBookLoans( {user}) {
 
  const datas= user?.loans
- const sortedLoansByBorrowDate = datas.sort((a, b) => new Date(b.borrowDate) - new Date(a.borrowDate));
+ const sortedLoansByBorrowDate = datas
+      .sort((a, b) => new Date(b.borrowDate) - new Date(a.borrowDate))
+      .slice(0,5);
 
   return (
     <div>

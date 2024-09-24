@@ -26,3 +26,8 @@ export const getNestedValue = (obj, path) => {
   
     return userArray;
   };
+
+
+  export const filterDatasWithParameter = (data, param, value) => {
+    return data.filter( item => item[param] !== value)
+  }
