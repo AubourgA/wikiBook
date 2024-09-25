@@ -48,6 +48,8 @@ import { format } from 'date-fns';
  * console.log(formattedDate); // Outputs: "28-08-2024 12:34"
  */
  export const formatDateISO = (dateISO) => {
+  if (!dateISO) return 'Date non disponible';
+  
   const date = new Date(dateISO);
   return format(date, 'dd-MM-yyyy HH:mm');
  }

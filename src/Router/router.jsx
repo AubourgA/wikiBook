@@ -36,7 +36,7 @@ import BookCopiesForm from '../components/features/Admin/BookCopies/BookCopiesFo
 import AccountHome from '../pages/UserAccount/AccountHome'
 import AccountLoans from '../pages/UserAccount/AccountLoans';
 import AdminUsers from '../pages/Admin/AdminUsers';
-import AdminUserDetails from '../components/features/Admin/Users/AdminUserDetails';
+import AdminUserDetailsLayout from '../components/features/Admin/Users/AdminUserDetailsLayout';
 
 const router = createBrowserRouter([
   {
@@ -107,7 +107,7 @@ const router = createBrowserRouter([
           { path: "/Dashboard/Status/Update/:id", element: ( <AdminDisplayForms title="Mise a jour du status" FormComponent={StatusForm} /> ),},
           { path: "/Dashboard/Loans", element: <AdminLoans /> },
           { path: "/Dashboard/Users", element: <AdminUsers /> },
-          { path: "/Dashboard/Users/Details/:id", element: <AdminUserDetails /> },
+          { path: "/Dashboard/Users/Details/:id", element: <AdminUserDetailsLayout /> },
 
         ],
       },

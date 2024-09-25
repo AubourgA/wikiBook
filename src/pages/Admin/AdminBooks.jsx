@@ -5,7 +5,7 @@ import AdminEntity from "../../components/features/Admin/AdminEntityDisplay";
 
 export default function AdminBooks() {
 
-
+ 
 
   return (
     <AdminEntity

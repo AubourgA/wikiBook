@@ -51,3 +51,17 @@ export const getNestedValue = (obj, path) => {
          return sortedData.slice(0,max) 
       }
    }
+
+   export const filteredbookCopies = (data) => {
+    const bookCopiesArray = [];
+    if( data && Array.isArray(data)) {
+    data.forEach(item => {
+      console.log("item", item)
+      if (item.status.type != "Retiré")  bookCopiesArray.push(item );
+        
+      }
+    )
+   
+    return bookCopiesArray.length;
+  }
+  };

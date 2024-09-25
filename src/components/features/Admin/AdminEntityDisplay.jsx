@@ -56,6 +56,7 @@ export default function AdminEntity({
   };
 
 
+
   const handleCreateEntity = () => navigate(createPath);
   const handleUpdate = (e) => navigate(`${updatePath}/${e.id}`);
   const handleRead = (e) => navigate(`${viewPath}/${e.id}`)
