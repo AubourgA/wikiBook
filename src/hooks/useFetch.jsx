@@ -10,8 +10,7 @@ const useFetch = (endpoint, id, initialState = {}) => {
 
   // Déterminez la fonction de récupération des données en fonction du rôle
   const fetchFunction = user?.roles.includes("ROLE_ADMIN") ? fetchEntity : getEntityPublic;
-  
-
+ 
   useEffect(() => {
     const fetchData = async () => {
       setIsLoading(true);

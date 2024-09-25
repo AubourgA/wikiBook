@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { columnsBookUserDetail } from '../../../../Constants'
 import CustomTable from '../../../ui/Table/CustomTable'
-import { extractUsersFromData } from '../../../../utils/deepAccessValue';
+import { extractUsersFromSortedData } from '../../../../utils/deepAccessValue';
 
 
 
@@ -10,7 +10,7 @@ export default function BookCopiesUsers( {data}) {
   const [lastUsers, setLastUsers] = useState([]);
 
   useEffect(() => {
-    const userArray = extractUsersFromData(data);
+    const userArray = extractUsersFromSortedData(data,10);
     setLastUsers(userArray);
   }, [data]); 
 

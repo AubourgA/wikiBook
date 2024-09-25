@@ -15,6 +15,12 @@ export const columnsBooks = [
     ) }
   ];
 
+  export const columnsShortBooks = [
+    { key: 'id', header: '#' },
+    { key: 'title', header: 'Titre' },
+    { key: 'ISBN', header: 'ISBN' },
+  ]
+
   export const columnsAuthors = [
     { key: 'id', header:"#"},
     { key: 'name', header:"name"},
@@ -68,6 +74,14 @@ export const columnsBooks = [
     {key: 'bookCopy.book.title', header:"Livre"},
     {key: 'borrowDate', header:"Date emprunt", render: (value) => formatDateISO(value)},
     {key: 'returnDate', header:"Date de retour",render: (value) => value ? formatDateISO(value): "a retourner"},
+  ]
+
+  export const columnsUser = [
+    {key: 'id', header: '#' },
+    {key: 'name', header: 'Nom' },
+    {key: 'firstname', header:"prenom"},
+    {key: 'subscribedAt', header: 'Inscription', render: (value) => formatDateISO(value) },
+    {key: 'email', header: 'Email' },
   ]
 
   export const columnsBookUserDetail = [

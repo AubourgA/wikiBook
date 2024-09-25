@@ -6,7 +6,7 @@ export const getNestedValue = (obj, path) => {
 
 
 
-  export const extractUsersFromData = (data) => {
+  export const extractUsersFromSortedData = (data,limit) => {
     const userArray = [];
   
     data.forEach(item => {
@@ -23,11 +23,31 @@ export const getNestedValue = (obj, path) => {
         });
       }
     });
-  
-    return userArray;
+    userArray.sort((a, b) => new Date(b.date) - new Date(a.date));
+    return userArray.slice(0,limit);
   };
 
 
   export const filterDatasWithParameter = (data, param, value) => {
     return data.filter( item => item[param] !== value)
   }
+
+  export const filteredUserbyRoleAndDate = ( data) => {
+    let customersFiltered = []
+     if (data && Array.isArray(data)) {
+       customersFiltered = data.filter( item => !item.roles.includes("ROLE_ADMIN") )
+       
+       customersFiltered.sort( (a,b) => new Date(b.subscribedAt) - new Date(a.subscribedAt) )
+       
+       return customersFiltered
+     }
+     
+   }
+
+   export const orderedDescDataByDate = (data, params) => {
+       
+    if( data && Array.isArray(data)) {
+         const sortedData = data.sort( (a,b)=> new Date(b[params] - new Date(a[params])))
+         return sortedData 
+      }
+   }
