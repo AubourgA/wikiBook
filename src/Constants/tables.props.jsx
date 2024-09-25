@@ -91,6 +91,11 @@ export const columnsBooks = [
   ]
 
 
+  export const createViewAction = (handleWatch) => [
+
+    { icon: FaEye  , onClick: handleWatch , style: "text-blue-500 hover:bg-yellow-100"},
+  ]
+
  export const createEditAction = (handleEdit) => [
 
    { icon: FaEdit , onClick: handleEdit , style: "text-yellow-500 hover:bg-yellow-100"},

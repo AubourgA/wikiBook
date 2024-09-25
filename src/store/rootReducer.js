@@ -9,7 +9,7 @@ import nationnalitiesReducer from './nationnalitiesSlice';
 import statusReducer from './statusSlice';
 import languagesReducer from './languagesSlice';
 import loansReducer from './loansSlice';
-
+import usersReducer from './usersSlice'
 
 
 const rootReducer = combineReducers({
@@ -21,6 +21,7 @@ const rootReducer = combineReducers({
    status : statusReducer,
    languages: languagesReducer,
    loans: loansReducer,
+   users: usersReducer
 });
 
 export default rootReducer;

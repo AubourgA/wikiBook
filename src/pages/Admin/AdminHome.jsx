@@ -46,10 +46,10 @@ useEffect( ()=> {
  
  
  const { data : customers , isLoading} = useFetch(API_ENDPOINTS.USERS)
- const onlyNewCustomers = filteredUserbyRoleAndDate(customers["hydra:member"]).slice(0,5)
+ const onlyNewCustomers = filteredUserbyRoleAndDate(customers["hydra:member"])
 
  const { data: books, isLoading: isCharging} = useFetch(`${API_ENDPOINTS.BOOKS}?order[createdAt]=DESC`)
- const newBooks = orderedDescDataByDate(books["hydra:member"], "createdAt").slice(0,5)
+ const newBooks = orderedDescDataByDate(books["hydra:member"], "createdAt",5)
 
   return (
     <div className='grid grid-cols-6 gap-4' >

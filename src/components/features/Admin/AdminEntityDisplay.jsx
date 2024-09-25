@@ -25,6 +25,7 @@ export default function AdminEntity({
   updatePath, // Le chemin pour mettre à jour une entité
   viewPath, // chemin pour voir une entité
   entityName = "article", // Le nom de l'entité pour les messages, par défaut "article"
+  customAction ="",
   getFetchData
 }) {
   const [search, setSearch] = useState("");
@@ -64,7 +65,9 @@ export default function AdminEntity({
         } = useDeleteEntity(apiEndpoint, getFetchData, debouncedSearch, entityType);
 
   const actions = createActions(handleRead, handleUpdate, handleCallDeleteModal);
- 
+  const tabActions = customAction ? customAction : actions
+
+  
   if (loading) return <Loader />;
 
   if (error) return <Error title="Oups..." message="Un problème est survenu. Réessayez ultérieurement." />;
@@ -87,16 +90,16 @@ export default function AdminEntity({
         </div>
         {deleteError && <Error title="Erreur :" message={deleteError} />}
 
-        <Button type="button"
+       { createPath && <Button type="button"
                 title={`Ajouter un ${entityName}`}
                 category="forms"
                 icon={IoMdAddCircle}
                 onButtonClick={handleCreateEntity}
-                custom="items-center flex-row-reverse gap-2 mb-4" />
+                custom="items-center flex-row-reverse gap-2 mb-4" />}
 
         <CustomTable  data={datas["hydra:member"]}
                       columns={columns}
-                      actions={actions} />
+                      actions={tabActions} />
 
         {datas["hydra:view"] && 
           <Pagination   paginationButtons={PAGINATION_BUTTONS.map(({ key, title }) => ({key, title, }))}

@@ -44,10 +44,10 @@ export const getNestedValue = (obj, path) => {
      
    }
 
-   export const orderedDescDataByDate = (data, params) => {
+   export const orderedDescDataByDate = (data, params, max) => {
        
     if( data && Array.isArray(data)) {
          const sortedData = data.sort( (a,b)=> new Date(b[params] - new Date(a[params])))
-         return sortedData 
+         return sortedData.slice(0,max) 
       }
    }
