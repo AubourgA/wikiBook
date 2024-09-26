@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import { useSelector, useDispatch } from "react-redux";
 import { useEffect, useState } from "react";
 import { useDebounce } from "../../../hooks/useDebounce";
@@ -118,3 +119,22 @@ export default function AdminEntity({
   </div>
  );
 }
+
+
+AdminEntity.propTypes = {
+  entityType: PropTypes.string.isRequired, 
+  sliceSelector: PropTypes.func.isRequired, 
+  columns: PropTypes.arrayOf(             
+    PropTypes.shape({
+      Header: PropTypes.string.isRequired, 
+      key: PropTypes.string.isRequired, 
+    })
+  ),
+  apiEndpoint: PropTypes.string.isRequired, 
+  createPath: PropTypes.string,  
+  updatePath: PropTypes.string,  
+  viewPath: PropTypes.string,    
+  entityName: PropTypes.string,           
+  customAction: PropTypes.func,             
+  getFetchData: PropTypes.func,   
+};

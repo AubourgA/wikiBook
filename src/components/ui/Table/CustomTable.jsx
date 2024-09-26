@@ -24,8 +24,6 @@ const CustomTable = ({ data, columns, actions }) => {
                 {columns.map((column) => (
                   <td key={column.key} className="text-center px-4 py-2">
                     {column.render
-                      // ? column.render(item[column.key])
-                      // : item[column.key]
                       ? column.render(getNestedValue(item, column.key))
                       : getNestedValue(item, column.key)
                       }
@@ -112,7 +110,7 @@ CustomTable.propTypes = {
       onClick: PropTypes.func.isRequired,  
       style: PropTypes.string  
     })
-  )  // Tableau d'actions, optionnel
+  )  
 };
 
 export default CustomTable;

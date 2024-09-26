@@ -85,7 +85,7 @@ export const adminGestion =
     }
 
 
-//pour exemple
+
 export const statCards = (users, books, loans) => [
     {
         id:1,
