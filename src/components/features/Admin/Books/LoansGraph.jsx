@@ -1,4 +1,4 @@
-// import { Bar} from 'react-chartjs-2'
+import PropTypes from 'prop-types';
 import { BarChart, Bar, XAxis, Tooltip  } from 'recharts';
 import { transformData } from '../../../../utils/counterDatas';
 
@@ -24,3 +24,15 @@ export default function LoansGraph( {data}) {
     </>
   )
 }
+
+LoansGraph.propTypes = {
+  data: PropTypes.arrayOf(
+    PropTypes.shape({
+      loans: PropTypes.arrayOf(
+        PropTypes.shape({
+          borrowDate: PropTypes.string.isRequired, 
+        })
+      ).isRequired,
+    })
+  ).isRequired,
+};

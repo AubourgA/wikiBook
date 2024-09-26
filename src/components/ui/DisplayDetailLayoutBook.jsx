@@ -1,4 +1,4 @@
-
+import PropTypes from 'prop-types';
 import Error from './Error/Error';
 import Loader from './Loader';
 
@@ -39,3 +39,7 @@ export default function DisplayDetailLayoutBook( {title}) {
  
   )
 }
+
+DisplayDetailLayoutBook.propTypes = {
+  title: PropTypes.string.isRequired, 
+};

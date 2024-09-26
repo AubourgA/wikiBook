@@ -1,4 +1,4 @@
-
+import PropTypes from 'prop-types';
 import { useEffect, useState } from 'react'
 import { API_ENDPOINTS, columnsBookCopies, createEditAction } from '../../../../Constants'
 import Button from '../../../ui/Forms/Button'
@@ -83,3 +83,15 @@ export default function BookCopiesInventory({data, id}) {
   )
 }
 
+
+BookCopiesInventory.propTypes = {
+  data: PropTypes.arrayOf(
+    PropTypes.shape({
+      id: PropTypes.number.isRequired, 
+      status: PropTypes.shape({
+        type: PropTypes.string.isRequired, 
+      }).isRequired, 
+    })
+  ).isRequired, 
+  id: PropTypes.number.isRequired, 
+};

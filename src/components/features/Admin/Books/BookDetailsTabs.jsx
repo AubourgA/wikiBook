@@ -3,6 +3,7 @@ import Button from '../../../ui/Forms/Button'
 import BookCopiesInventory from './BookCopiesInventory'
 import LoansGraph from './LoansGraph'
 import BookCopiesUsers from './BookCopiesUsers'
+import PropTypes from 'prop-types';
 
 export default function BookDetailsTabs({data,id}) {
     const [selectedTab, setSelectedTab] = useState(1)
@@ -56,3 +57,14 @@ export default function BookDetailsTabs({data,id}) {
     </div>
   )
 }
+
+
+BookDetailsTabs.propTypes = {
+  data: PropTypes.shape({
+    bookCopies: PropTypes.arrayOf(PropTypes.shape({
+      id: PropTypes.number,
+      title: PropTypes.string,
+    })),
+  }), 
+  id: PropTypes.number 
+};
