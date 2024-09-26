@@ -54,12 +54,7 @@ export const orderedDescDataByDate = (data, params, max) => {
 export const filteredbookCopies = (data) => {
     const bookCopiesArray = [];
     if( data && Array.isArray(data)) {
-    data.forEach(item => {
-      console.log("item", item)
-      if (item.status.type != "Retiré")  bookCopiesArray.push(item );
-        
-      }
-    )
+    data.forEach(item =>  (item.status.type != "Retiré") &&  bookCopiesArray.push(item ))
     return bookCopiesArray.length;
   }
   };
