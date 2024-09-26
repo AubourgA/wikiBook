@@ -1,6 +1,6 @@
 import { FaTrash, FaEdit, FaEye  } from 'react-icons/fa';
 import { formatDate, formatDateISO} from '../utils/formalizerDate'
-import { filteredbookCopies } from '../utils/deepAccessValue';
+import { filteredbookCopies } from '../utils/filteredDatas';
 
 
 export const columnsBooks = [

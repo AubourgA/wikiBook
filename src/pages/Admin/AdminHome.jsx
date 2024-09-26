@@ -8,7 +8,7 @@ import CustomTable from '../../components/ui/Table/CustomTable'
 import useFetch from '../../hooks/useFetch';
 
 import Loader from '../../components/ui/Loader';
-import { filteredUserbyRoleAndDate, orderedDescDataByDate } from '../../utils/deepAccessValue';
+import { filteredUserbyRoleAndDate, orderedDescDataByDate } from '../../utils/filteredDatas';
 
 export default function AdminHome( ) {
  

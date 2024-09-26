@@ -7,7 +7,7 @@ import { useNavigate } from 'react-router-dom'
 import { createPortal } from 'react-dom'
 import ModalEditField from '../../../ui/Modal/ModalEditField'
 import { fetchAllGenericData, fetchEntity, updateEntity } from '../../../../api'
-import { filterDatasWithParameter } from '../../../../utils/deepAccessValue'
+import { filterDatasWithParameter } from '../../../../utils/filteredDatas'
 import Error from '../../../ui/Error/Error'
 
 
