@@ -13,6 +13,11 @@ jobs:
     - name: Checkout repository
       uses: actions/checkout@v2
 
+    - name: Create .env file from secrets
+      run: |
+        echo "VITE_BASE=${{ secrets.VITE_BASE }}" >> .env
+        echo "VITE_API=${{ secrets.VITE_API }}" >> .env
+        
     - name: Install dependencies
       run: |
         npm install
