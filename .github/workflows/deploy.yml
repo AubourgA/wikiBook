@@ -11,23 +11,25 @@ jobs:
     
     steps:
     - name: Checkout repository
-      uses: actions/checkout@v2
+      uses: actions/checkout@v3
+      with:
+        node-version: '20'
 
     - name: Create .env file from secrets
       run: |
         echo "VITE_BASE=${{ secrets.VITE_BASE }}" >> .env
         echo "VITE_API=${{ secrets.VITE_API }}" >> .env
-        
+
     - name: Install dependencies
       run: |
         npm install
         npm run build
 
     - name: Deploy to O2Switch via FTP
-      uses: SamKirkland/FTP-Deploy-Action@4.3.0
+      uses: SamKirkland/FTP-Deploy-Action@4.3.4
       with:
         server: ${{ secrets.FTP_SERVER }}  
         username: ${{ secrets.FTP_USERNAME }} 
         password: ${{ secrets.FTP_PASSWORD }} 
-        local-dir: dist/  
+        local-dir: ./dist/  
         server-dir: sites/wikibook.adrienaubourg.fr/ 
