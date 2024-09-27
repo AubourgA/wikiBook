@@ -1,5 +1,5 @@
-import {  FaHome , FaBook } from "react-icons/fa";
-import { GrConfigure } from "react-icons/gr";
+import {  FaHome , FaBook, FaUser } from "react-icons/fa";
+
 
 export const userMenus = [
     {
@@ -16,9 +16,9 @@ export const userMenus = [
     },
     {
         id:3,
-        title:"Parametres",
-        url:'/Account/parameters',
-        icon: GrConfigure,
+        title:"Profil",
+        url:'/Account/Profil',
+        icon: FaUser ,
     },
 
 ]

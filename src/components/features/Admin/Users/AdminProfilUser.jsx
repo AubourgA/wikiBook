@@ -1,5 +1,5 @@
 import { formatDateISO } from '../../../../utils/formalizerDate';
-
+import { GiPositionMarker } from "react-icons/gi";
 
 export default function AdminProfilUser( {data}) {
 
@@ -22,7 +22,7 @@ export default function AdminProfilUser( {data}) {
                 </div>
                 <div className="bg-gray-100 p-4">
                 <h3 className="text-lg font-semibold text-gray-800">Adresse</h3>
-                <p className="mt-2">{data.city}</p>
+                <p className="mt-2 flex place-items-center"><GiPositionMarker className='text-red-400'/> {data.city}</p>
                 </div>
          </section>
        

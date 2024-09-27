@@ -37,6 +37,8 @@ import AccountHome from '../pages/UserAccount/AccountHome'
 import AccountLoans from '../pages/UserAccount/AccountLoans';
 import AdminUsers from '../pages/Admin/AdminUsers';
 import AdminUserDetailsLayout from '../components/features/Admin/Users/AdminUserDetailsLayout';
+import AdminStats from '../pages/Admin/AdminStats';
+import AccountProfil from '../pages/UserAccount/AccountProfil';
 
 const router = createBrowserRouter([
   {
@@ -108,7 +110,7 @@ const router = createBrowserRouter([
           { path: "/Dashboard/Loans", element: <AdminLoans /> },
           { path: "/Dashboard/Users", element: <AdminUsers /> },
           { path: "/Dashboard/Users/Details/:id", element: <AdminUserDetailsLayout /> },
-
+          { path: "/Dashboard/Stats", element: <AdminStats /> },
         ],
       },
       {
@@ -120,7 +122,8 @@ const router = createBrowserRouter([
         ),
         children: [
           { path: "/Account/Home",  element : (<AccountHome />)},
-          { path: "/Account/Emprunt",  element : (<AccountLoans />)}
+          { path: "/Account/Emprunt",  element : (<AccountLoans />)},
+          { path: "/Account/Profil",  element : (<AccountProfil />)},
       ]
       },
     ],
