@@ -11,10 +11,9 @@ export function createEntitySlice({ name, endpoint }) {
   };
 
   const getData = createAsyncThunk(
-    `${name}/fetchData`,
-    async ({ endpoint, search = "", filter="", entityType }, { rejectWithValue }) => {
-        const url = `${endpoint}`
-        
+      `${name}/fetchData`,
+      async ({ endpoint, search = "", filter="", entityType }, { rejectWithValue }) => {
+      const url = `${endpoint}`   
       try {
         const response = await fetchEntityByParams(url, search,filter, entityType);
         return response;
@@ -25,8 +24,8 @@ export function createEntitySlice({ name, endpoint }) {
   );
 
   const deleteEntityThunk = createAsyncThunk(
-    `${name}/deleteEntity`,
-    async (id, { rejectWithValue }) => {
+     `${name}/deleteEntity`,
+      async (id, { rejectWithValue }) => {
       try {
         await deleteEntity(id, endpoint);
         return id;

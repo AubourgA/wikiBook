@@ -31,12 +31,8 @@ export default function DisplayDetailLayoutBook( {title}) {
             <Title level={1} text1={title} />
           </div>
           <BookDetails  data={book} user={user}/>
-          {
-            user?.roles.includes('ROLE_ADMIN') && <BookDetailsTabs data={book} id={book.id} />
-          }
+          { user?.roles.includes('ROLE_ADMIN') && <BookDetailsTabs data={book} id={book.id} /> }
      </section>
-     
- 
   )
 }
 

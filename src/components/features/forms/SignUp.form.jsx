@@ -17,7 +17,6 @@ export default function SignUpForm( {value, onFormData : handleFormData, onSubmi
 
 
     <div className='flex flex-col pt-5 pb-2'>
-     
        <InputForm type="text"
                   label="Nom"
                   id="name" 
@@ -31,6 +30,7 @@ export default function SignUpForm( {value, onFormData : handleFormData, onSubmi
                             styleType="error bg-red-300"
                             styleMessage="text-red-500"/>)}
     </div>
+
     <div className='flex flex-col py-2'>
         <InputForm  type="text"
                     label="Prénom"
@@ -72,8 +72,8 @@ export default function SignUpForm( {value, onFormData : handleFormData, onSubmi
                             styleType="error bg-red-300"
                             styleMessage="text-red-500"/>)}
     </div>
+
     <div className='flex flex-col py-2'>
-     
       <InputForm type="email"
                   label="Email"
                   id="email" 
@@ -86,6 +86,7 @@ export default function SignUpForm( {value, onFormData : handleFormData, onSubmi
                             styleType="error bg-red-300"
                             styleMessage="text-red-500"/>)}
     </div>
+
     <div className='flex flex-col py-2'>
       <InputForm type="password"
                   label="Password"
@@ -104,8 +105,6 @@ export default function SignUpForm( {value, onFormData : handleFormData, onSubmi
               type="submit" 
               category="forms"
               className="justify-center rounded-xl p-2 bg-primary100 w-full mt-2 text-light" />
-   
-    
 </form>
 
   )

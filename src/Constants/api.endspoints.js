@@ -4,6 +4,7 @@ export const URL_API = `${import.meta.env.VITE_API}`;
 
 export const API_ENDPOINTS = {
     BASE : `${URL_BASE}`, 
+    AUTH: `${URL_BASE}/auth`,
     BOOKS: `${URL_API}/books`,
     BOOKCOPIES : `${URL_API}/book_copies`,
     AUTHORS : `${URL_API}/authors`,
@@ -15,7 +16,5 @@ export const API_ENDPOINTS = {
     STATUS : `${URL_API}/statuses`,
     USERS:  `${URL_API}/users`,
     MAILER:`${URL_API}/send-email`,
-    AUTH: `${URL_BASE}/auth`,
     CURRENTUSER :`${URL_API}/me`,
- 
   };

@@ -108,10 +108,6 @@ export default function NationnalitiesForm() {
       }
     }
 
-
-
- console.log(formData)
-
     return (
     <form onSubmit={handleSubmit}>
       {updateError && (<Error title="Erreur :"  message={updateError} />)}

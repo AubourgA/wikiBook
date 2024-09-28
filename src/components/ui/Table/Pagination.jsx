@@ -7,14 +7,11 @@ const Pagination = ({ paginationButtons, onPageChange, page }) => {
       {paginationButtons.map(
         ({ key, title:Icon }) =>
           page[key] && (
-            <Button
-              key={key}
-              title= {<Icon />}
-              category="paginate"
-              type="button"
-              onButtonClick={() => onPageChange(page[key])}
-            />
-          )
+            <Button  key={key}
+                    title= {<Icon />}
+                    category="paginate"
+                    type="button"
+                    onButtonClick={() => onPageChange(page[key])} /> )
       )}
     </div>
   );

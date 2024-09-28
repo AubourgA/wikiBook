@@ -33,14 +33,12 @@ const CustomTable = ({ data, columns, actions }) => {
                   <td>
                     <div className="flex justify-center">
                       {actions.map((action, index) => (
-                        <Button
-                          key={index}
-                          onButtonClick={() => action.onClick(item)}
-                          type="button"
-                          icon={action.icon}
-                          category="action"
-                          custom={action.style}
-                        />
+                        <Button  key={index}
+                                onButtonClick={() => action.onClick(item)}
+                                type="button"
+                                icon={action.icon}
+                                category="action"
+                                custom={action.style}  />
                       ))}
                     </div>
                   </td>
@@ -52,35 +50,27 @@ const CustomTable = ({ data, columns, actions }) => {
       </div>
       <div className="md:hidden">
         {data.map((item) => (
-          <div
-            key={item.id}
-            className="bg-white shadow-md rounded-lg mb-4 p-4 border"
-          >
+          <div   key={item.id} className="bg-white shadow-md rounded-lg mb-4 p-4 border" >
             {columns.map((column) => (
               <div key={column.key} className="flex justify-between py-2">
                 <span className="font-semibold">{column.header}</span>
                 <span>
                   {column.render
-                    // ? column.render(item[column.key])
-                    // : item[column.key]
                     ? column.render(getNestedValue(item, column.key))
-                    : getNestedValue(item, column.key)
-                    }
+                    : getNestedValue(item, column.key) }
                 </span>
               </div>
             ))}
             {actions && (
               <div className="flex justify-end space-x-2 pt-2">
                 {actions.map((action, index) => (
-                  <Button
-                    key={index}
-                    onButtonClick={() => action.onClick(item)}
-                    type="button"
-                    icon={action.icon}
-                    category="action"
-                    custom={action.style}
-                  />
-                ))}
+                  <Button  key={index}
+                          onButtonClick={() => action.onClick(item)}
+                          type="button"
+                          icon={action.icon}
+                          category="action"
+                          custom={action.style} /> ))
+                  }
               </div>
             )}
           </div>
@@ -94,7 +84,6 @@ CustomTable.propTypes = {
   data: PropTypes.arrayOf(
     PropTypes.shape({
       id: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired, 
-    
     })
   ).isRequired, 
   columns: PropTypes.arrayOf(

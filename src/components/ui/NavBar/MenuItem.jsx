@@ -18,9 +18,9 @@ const MenuItem = ({ item }) => (
 
 MenuItem.propTypes = {
   item: PropTypes.shape({
-    url: PropTypes.string.isRequired,    // URL de l'élément, obligatoire
-    title: PropTypes.string.isRequired,  // Titre de l'élément, obligatoire
-    icon: PropTypes.elementType.isRequired // Icône de l'élément, doit être un composant React, obligatoire
+    url: PropTypes.string.isRequired,    
+    title: PropTypes.string.isRequired,  
+    icon: PropTypes.elementType.isRequired 
   }).isRequired
 };
 

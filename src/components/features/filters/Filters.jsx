@@ -12,14 +12,12 @@ import Button from "../../ui/Forms/Button";
 function Filters({ values, onFilterChange, onApplyFilters, onResetFilters }) {
   const [selectedFilter, setSelectedFilter] = useState();
 
-  const handleFilterClick = (filter) =>
-    setSelectedFilter(selectedFilter === filter ? null : filter);
+  const handleFilterClick = (filter) => setSelectedFilter(selectedFilter === filter ? null : filter);
 
   const handleInputClick = (e) => e.stopPropagation();
 
   const handleInputFilter = () => (e) => {
     const { name, value } = e.target;
-  
     onFilterChange(name, value);
   };
 
@@ -30,28 +28,23 @@ function Filters({ values, onFilterChange, onApplyFilters, onResetFilters }) {
         <TbFilterSearch />
       </div>
 
-      <SideFilters
-        selectedFilter={selectedFilter}
-        values={values}
-        onFilterClick={handleFilterClick}
-        onInputClick={handleInputClick}
-        onFilterChange={handleInputFilter}
-      />
+      <SideFilters  selectedFilter={selectedFilter}
+                    values={values}
+                    onFilterClick={handleFilterClick}
+                    onInputClick={handleInputClick}
+                    onFilterChange={handleInputFilter} />
 
-      <Button
-      type="button"
-        title="Reset"
-        category='filter-secondary'
-        icon={GrPowerReset}
-        onButtonClick={onResetFilters}
-      />
-      <Button
-      type="button"
-        title="Appliquer"
-        category='filter-primary'
-        icon={CiSearch}
-        onButtonClick={onApplyFilters}
-      />
+      <Button type="button"
+              title="Reset"
+              category='filter-secondary'
+              icon={GrPowerReset}
+              onButtonClick={onResetFilters}/>
+
+      <Button  type="button"
+              title="Appliquer"
+              category='filter-primary'
+              icon={CiSearch}
+              onButtonClick={onApplyFilters} />
     </aside>
   );
 }

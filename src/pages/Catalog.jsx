@@ -85,11 +85,7 @@ const handleResetFilters = async () => {
   }
 };
 
-const handleDetailBook = (id) => {
-  navigate(`/Catalogs/${id}`)
-}
-
-
+const handleDetailBook = (id) => navigate(`/Catalogs/${id}`)
 
 const handleAddBook = async (id) => {
 
@@ -114,7 +110,6 @@ const handlePaginationClick = async (path) => {
     try {
       const booksData = await getEntityPublic(fullUrl);
       setBooks(booksData);
-      console.log(books)
     } catch (error) {
       setError(error);
     } finally {

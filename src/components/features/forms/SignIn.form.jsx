@@ -19,13 +19,13 @@ export default function SignIn({onSubmit : handleLogin, datas, onChange : handle
             <div className='flex flex-col pt-5 pb-2'>
          
                 <InputForm label="Email"
-                    type="email"
-                    id="email"
-                    name="email"
-                    placeholder="Indiquer votre email"
-                    value={datas.email}
-                    onChange={handleCredential}
-                    className="text-sm p-2 rounded-xl" />
+                            type="email"
+                            id="email"
+                            name="email"
+                            placeholder="Indiquer votre email"
+                            value={datas.email}
+                            onChange={handleCredential}
+                            className="text-sm p-2 rounded-xl" />
             {errors?.email && <MessageForm type="ERROR"
                                             message={errors.email}
                                             styleType="error bg-red-300"
@@ -34,13 +34,13 @@ export default function SignIn({onSubmit : handleLogin, datas, onChange : handle
             <div className='flex flex-col py-2'>
          
                      <InputForm label="Password"
-                    type="password"
-                    id="password"
-                    name="password"
-                    placeholder="Indiquer votre password"
-                    value={datas.password}
-                    onChange={handleCredential}
-                    className="text-sm p-2 rounded-xl" />
+                                type="password"
+                                id="password"
+                                name="password"
+                                placeholder="Indiquer votre password"
+                                value={datas.password}
+                                onChange={handleCredential}
+                                className="text-sm p-2 rounded-xl" />
            {errors?.password && <MessageForm type="ERROR"
                                             message={errors.password}
                                             styleType="error bg-red-300"
@@ -48,8 +48,8 @@ export default function SignIn({onSubmit : handleLogin, datas, onChange : handle
             </div>
 
             <Button title="Se Connecter"
-                        category="forms"
-                        type="submit"  />
+                    category="forms"
+                    type="submit"  />
            
            
 </form>

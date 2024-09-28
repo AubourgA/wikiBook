@@ -24,16 +24,15 @@ export default function Footer({ text }) {
 
         <Article datas={About} title="A PROPOS" />
 
-        <Article
-          datas={Social}
-          title="SUIVEZ NOUS"
-          className="flex justify-center gap-4 my-2"
-          classNameLi="md:text-2xl hover:bg-light rounded-full hover:text-dark transition duration-300 p-2"
-          renderItem={({ icon: Icon, url }) => (
-            <Link to={url}>
-              <Icon />
-            </Link>
-          )}
+        <Article  datas={Social}
+                  title="SUIVEZ NOUS"
+                  className="flex justify-center gap-4 my-2"
+                  classNameLi="md:text-2xl hover:bg-light rounded-full hover:text-dark transition duration-300 p-2"
+                  renderItem={({ icon: Icon, url }) => (
+                    <Link to={url}>
+                      <Icon />
+                    </Link>
+                  )}
         />
       </section>
     </footer>

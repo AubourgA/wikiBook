@@ -22,25 +22,21 @@ export default function NavBar() {
     <nav className="fixed top-0 z-20 w-full px-2 bg-primary50 py-2 font-Secondary shadow-md">
       <div className="container mx-auto flex items-center justify-between flex-wrap">
         <Image img={logo} text="logo" className="w-[64px]" />
-        <Button
-          type="button"
-          category="nav"
-          title={isOpenNav ? <FaTimes size={25} /> : <RxHamburgerMenu size={25} />}
-          onButtonClick={handleOpenNav}
-        />
+        <Button  type="button"
+                category="nav"
+                title={isOpenNav ? <FaTimes size={25} /> : <RxHamburgerMenu size={25} />}
+                onButtonClick={handleOpenNav} />
         <ul className={`${isOpenNav ? "flex flex-col w-full items-center transition-all duration-300" : "hidden"} transition-all duration-300 ease-in-out md:flex md:flex-row gap-2`}>
           {itemNavs.map((item) => (
             <NavItem key={item.id} item={item} onClick={handleCloseNav}  />
           ))}
         </ul>
-        <AuthButtons
-          isLogged={isLogged}
-          user={user}
-          logout={logout}
-          navigate={navigate}
-          handleCloseNav={handleCloseNav}
-          isOpenNav={isOpenNav}
-        />
+        <AuthButtons   isLogged={isLogged}
+                        user={user}
+                        logout={logout}
+                        navigate={navigate}
+                        handleCloseNav={handleCloseNav}
+                        isOpenNav={isOpenNav} />
       </div>
     </nav>
   );

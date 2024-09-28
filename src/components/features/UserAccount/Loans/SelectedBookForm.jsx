@@ -34,12 +34,18 @@ const options = item.bookCopies
 
             <form onSubmit={handleSubmit} className='flex items-center justify-between gap-2'>
                 <div className='flex gap-2'>
-                  <Image img="https://covers.openlibrary.org/b/isbn/9780385533225-S.jpg"/>
-                    <div>
-                      
-                    <p className='font-bold'>{item.title}</p>
-                    <SelectForm key={item.id} name="langue" id="langue" onChange={handleChange} options={options} value={formData.langue} valueKey="value" labelKey="label"/>
-                    </div>
+                        <Image img="https://covers.openlibrary.org/b/isbn/9780385533225-S.jpg"/>
+                        <div>   
+                            <p className='font-bold'>{item.title}</p>
+                            <SelectForm key={item.id} 
+                                        name="langue" 
+                                        id="langue" 
+                                        onChange={handleChange} 
+                                        options={options} 
+                                        value={formData.langue} 
+                                        valueKey="value" 
+                                        labelKey="label"/>
+                        </div>
                 </div>
                 <Button title="VALIDER ?" category="validate" custom="text-sm"  type='submit'  />
             </form>

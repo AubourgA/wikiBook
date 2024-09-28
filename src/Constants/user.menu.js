@@ -20,5 +20,4 @@ export const userMenus = [
         url:'/Account/Profil',
         icon: FaUser ,
     },
-
 ]

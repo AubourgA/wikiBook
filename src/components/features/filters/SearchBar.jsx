@@ -12,16 +12,14 @@ export default function SearchBar({
 }) {
   return (
     <div className="flex items-center focus-within:shadow-lg   bg-light px-2 rounded-lg ">
-      <InputForm
-        id={id}
-        type={type}
-        value={value}
-        name={name}
-        onChange={handleInput}
-        pattern={pattern}
-        placeholder={placeholder}
-        customClass="bg-transparent border-none focus:border-blue-100 focus:outline-none focus:ring-0 "
-      />
+      <InputForm  id={id}
+                  type={type}
+                  value={value}
+                  name={name}
+                  onChange={handleInput}
+                  pattern={pattern}
+                  placeholder={placeholder}
+                  customClass="bg-transparent border-none focus:border-blue-100 focus:outline-none focus:ring-0 " />
 
       <GoSearch />
     </div>
