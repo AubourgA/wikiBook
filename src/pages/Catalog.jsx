@@ -10,7 +10,6 @@ import {  fetchEntityById, getEntityPublic } from '../api';
 import { API_ENDPOINTS } from '../Constants/api.endspoints';
 import { INITIAL_FILTERS_VALUE, PAGINATION_BUTTONS } from '../Constants';
 import Error from '../components/ui/Error/Error';
-// import Button from '../components/ui/Button';
 import Title from '../components/ui/Title';
 import Pagination from '../components/ui/Table/Pagination';
 import {useBookContext} from '../hooks/useBookContext';
@@ -54,12 +53,15 @@ const handleInputFilter = (name, value) => {
       ...prev,
       [name] : value
   }))
+  
 }
+
 
 
 const handleResultFilter = async () => {
   const queryParams = buildQueryParams(filters);
   const apiUrl = `${API_ENDPOINTS.BOOKS}?${queryParams}`;
+  console.log(apiUrl)
   setIsLoading(true);
   try {
     const booksData = await getEntityPublic(apiUrl);

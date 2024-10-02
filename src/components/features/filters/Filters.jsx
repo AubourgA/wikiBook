@@ -21,6 +21,7 @@ function Filters({ values, onFilterChange, onApplyFilters, onResetFilters }) {
     onFilterChange(name, value);
   };
 
+ 
   return (
     <aside className="flex flex-col gap-4">
       <div className="flex justify-between items-center bg-dark text-light p-2 rounded">

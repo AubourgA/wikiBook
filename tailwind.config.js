@@ -20,8 +20,10 @@ export default {
         dark : "#003060",
         light: "#ffffff",
         error: "#842029",
-        
       },
+      gridTemplateColumns: {
+        'auto-fill-175': 'repeat(auto-fill, minmax(175px, 1fr))',
+      }
     },
   },
   plugins: [],

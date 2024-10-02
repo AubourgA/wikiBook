@@ -8,15 +8,15 @@ const useFetch = (endpoint, id, initialState = {}) => {
   const [error, setError] = useState(null);
   const { user } = useContext(AuthContext);
 
-  // Déterminez la fonction de récupération des données en fonction du rôle
   const fetchFunction = user?.roles.includes("ROLE_ADMIN") ? fetchEntity : getEntityPublic;
  
   useEffect(() => {
+    if(!endpoint) return
+
     const fetchData = async () => {
       setIsLoading(true);
    
       try {
-        // Construire l'URL complète si un ID est fourni
         const fullUrl = id ? `${endpoint}/${id}` : endpoint;
         const result = await fetchFunction(fullUrl);
         setData(result);
@@ -26,9 +26,8 @@ const useFetch = (endpoint, id, initialState = {}) => {
         setIsLoading(false);
       }
     };
-
     fetchData();
-  }, [endpoint, id, user, fetchFunction]); // Ajoutez fetchFunction comme dépendance
+  }, [endpoint, id, user, fetchFunction]); 
 
   return { data, isLoading, error };
 };

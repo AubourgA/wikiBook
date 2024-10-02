@@ -35,10 +35,10 @@ import BookCopiesForm from '../components/features/Admin/BookCopies/BookCopiesFo
 
 import AccountHome from '../pages/UserAccount/AccountHome'
 import AccountLoans from '../pages/UserAccount/AccountLoans';
+import AccountProfil from '../pages/UserAccount/AccountProfil';
 import AdminUsers from '../pages/Admin/AdminUsers';
 import AdminUserDetailsLayout from '../components/features/Admin/Users/AdminUserDetailsLayout';
 import AdminStats from '../pages/Admin/AdminStats';
-import AccountProfil from '../pages/UserAccount/AccountProfil';
 
 const router = createBrowserRouter([
   {

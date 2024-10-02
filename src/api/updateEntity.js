@@ -32,9 +32,10 @@ export const updateEntity = async (id, endpoint, data) => {
         data, 
         { headers: {  'Content-Type': 'application/merge-patch+json',   }, }
       );
+      
       return response.data;  
     } catch (error) {
-      console.error('Failed to update book', error);
+      console.error('Failed to update', error);
       throw error;  
     }
   };
