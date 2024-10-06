@@ -3,7 +3,8 @@ import { sendEmail } from '../api';
 import { INITIAL_CONTACT_VALUE } from '../Constants/initialize.state';
 import { validateContactForm } from '../utils/checkDataForms';
 import ContactForm from '../components/features/forms/Contact.form';
-
+import Image from '../components/ui/Image'
+import contact from '../assets/images/contact.png'
 
 export default function Contact() {
 
@@ -28,11 +29,12 @@ export default function Contact() {
 
   return (
     <section className='flex justify-center  items-center bg-primary50/25 h-screen'>
-        <div className='grid  grid-cols-1 grid-rows-1 max-w-sm md:max-w-5xl gap-2 shadow-xl bg-primary50 rounded  sm:grid-cols-2'>
+        <div className='grid  grid-cols-1 grid-rows-1 max-w-sm md:grid-cols-2 md:max-w-5xl gap-2 shadow-xl bg-primary50 rounded  '>
             <ContactForm onSubmit={handleSubmitContact}
                          datas={formData}
                          onChange={handleChange}
                          errors={errors} />
+            <Image img={contact} alt="contact"/>
         </div>
     </section>
 

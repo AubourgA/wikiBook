@@ -5,7 +5,7 @@ import { AuthContext } from '../Context/AuthContext';
 import SignIn from '../components/features/forms/SignIn.form';
 import Image from '../components/ui/Image'
 import { validateLoginForm } from '../utils/checkDataForms';
-
+import imageLogin from '../assets/images/login.png'
 
 const INITIAL_CREDENTIAL = {
   email :"",
@@ -60,9 +60,8 @@ export default function Login() {
 
   return (
     <section className='flex justify-center  items-center bg-primary50/25 py-20'>
-        <div className='grid grid-cols-1 grid-rows-1 p-8 max-w-sm md:max-w-5xl gap-2 shadow-xl bg-primary50 rounded  sm:grid-cols-2'>
+        <div className='grid grid-cols-1 grid-rows-1 p-8 max-w-sm md:max-w-5xl gap-2 shadow-xl bg-primary50 rounded  md:grid-cols-2'>
           <div>
-    
             <SignIn onSubmit={handleLogin}
                   onChange={handleCredential} datas={credentials} errors={errors} />
             <div className='flex flex-col place-items-center p-2'>
@@ -70,11 +69,8 @@ export default function Login() {
                 <Link to="/Subscribe" className='text-sm border border-primary100 rounded px-4 py-1 text-primary100'>Créer un compte</Link>
             </div>
           </div>
-          {/* Imge a metre ici*/}
-        <Image />
-
+         <Image img={imageLogin} text="photo login" className='w-[75%] m-auto'/>
         </div>
-    
 </section>
   )
 }
