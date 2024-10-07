@@ -37,11 +37,16 @@ export default function Login() {
 
          const loggedInUser = await login(credentials)
          
-          if(!loggedInUser) setErrors({ general: 'Connexion échouée. Veuillez vérifier vos identifiants.' });
+          if(!loggedInUser)  {
+            setErrors({ general: 'Connexion échouée. Veuillez vérifier vos identifiants.' });
+            return;
+          }
 
-          if(!loggedInUser.roles.includes('ROLE_ADMIN'))  navigate('/Account/Home')
-        
-          navigate('/Dashboard/Home');
+          if (loggedInUser.roles.includes('ROLE_ADMIN')) {
+            navigate('/Dashboard/Home'); 
+          } else {
+            navigate('/Account/Home');
+          }
        
        } catch (error) {
         console.error('Erreur de connexion', error);
