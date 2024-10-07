@@ -13,13 +13,6 @@ export default function HeroBannner() {
             <p className="font-secondary text-xl italic">
               {heroSection.surTitle}
             </p>
-            {/* <h1 className="font-primary leading-10 text-4xl md:text-6xl py-4 text-dark">
-           
-              <span className="text-primary75 font-bold">
-                {heroSection.title}
-              </span>
-              , {heroSection.extraTitle}
-            </h1> */}
             <Title  level={1}
                     text1={`${heroSection.title}, `}
                     text2={`${heroSection.extraTitle}`}

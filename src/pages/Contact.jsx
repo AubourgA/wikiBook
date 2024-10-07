@@ -4,7 +4,7 @@ import { INITIAL_CONTACT_VALUE } from '../Constants/initialize.state';
 import { validateContactForm } from '../utils/checkDataForms';
 import ContactForm from '../components/features/forms/Contact.form';
 import Image from '../components/ui/Image'
-import contact from '../assets/images/contact.png'
+import contact from '../assets/images/contact.webp'
 
 export default function Contact() {
 

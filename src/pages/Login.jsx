@@ -5,7 +5,7 @@ import { AuthContext } from '../Context/AuthContext';
 import SignIn from '../components/features/forms/SignIn.form';
 import Image from '../components/ui/Image'
 import { validateLoginForm } from '../utils/checkDataForms';
-import imageLogin from '../assets/images/login.png'
+import imageLogin from '../assets/images/login.webp'
 
 const INITIAL_CREDENTIAL = {
   email :"",

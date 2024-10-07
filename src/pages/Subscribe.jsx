@@ -5,7 +5,7 @@ import { useNavigate } from 'react-router-dom';
 import { checkValidationSignUp } from '../utils/checkDataForms';
 import {INITIAL_SIGN_IN_VALUE, INITIAL_VALIDATION_VALUE} from '../Constants'
 import Image from '../components/ui/Image'
-import subPic from '../assets/images/subscribe.png'
+import subPic from '../assets/images/subscribe.webp'
 
 export default function Subscribe() {
 

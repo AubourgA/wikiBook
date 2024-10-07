@@ -1,4 +1,4 @@
-import imgHero from "../assets/images/header.jpg"
+import imgHero from "../assets/images/header.webp"
 
 import art from "../assets/miniatures/art.png"
 import literature from "../assets/miniatures/literature.png"
