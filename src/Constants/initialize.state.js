@@ -1,4 +1,7 @@
-
+export const INITIAL_CREDENTIAL = {
+  email :"",
+  password :""
+}
 
 export const INITIAL_SIGN_IN_VALUE = {
     name: "",

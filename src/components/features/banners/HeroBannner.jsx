@@ -1,3 +1,4 @@
+import {motion} from "framer-motion";
 import { Link } from "react-router-dom";
 import { heroSection } from "../../../Constants";
 import Image from "../../ui/Image";
@@ -7,9 +8,11 @@ export default function HeroBannner() {
   return (
     <section className="h-screen flex items-center bg-primary50">
       <div className="container mx-auto  flex justify-center ">
-        <div className="grid grid-cols-1 px-10 sm:grid-cols-2  md:p-0  place-items-center min-h-[600px]">
+        <motion.div className="grid grid-cols-1 px-10 sm:grid-cols-2  md:p-0  place-items-center min-h-[600px]">
         
-          <div>
+          <motion.div initial={{ x:-100, opacity:0}}
+                      animate={{x:0, opacity:1}}
+                      transition={ {duration: 0.5}}>
             <p className="font-secondary text-xl italic">
               {heroSection.surTitle}
             </p>
@@ -29,13 +32,15 @@ export default function HeroBannner() {
             >
               Réserver un livre
             </Link>
-          </div>
-          <div>
+          </motion.div>
+          <motion.div initial={{ x:100, opacity:0}}
+                      animate={{x:0, opacity:1}}
+                      transition={ {duration: 0.5, delay:0.25}} >
             <Image img={heroSection.urlImg}
                   text="image biblio"
                   className="w-50 md:w-30"/>
-          </div>
-        </div>
+          </motion.div>
+        </motion.div>
       </div>
     </section>
   );

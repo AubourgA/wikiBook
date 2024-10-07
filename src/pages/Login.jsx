@@ -6,11 +6,7 @@ import SignIn from '../components/features/forms/SignIn.form';
 import Image from '../components/ui/Image'
 import { validateLoginForm } from '../utils/checkDataForms';
 import imageLogin from '../assets/images/login.webp'
-
-const INITIAL_CREDENTIAL = {
-  email :"",
-  password :""
-}
+import { INITIAL_CREDENTIAL } from '../Constants';
 
 
 export default function Login() {
@@ -41,16 +37,12 @@ export default function Login() {
 
          const loggedInUser = await login(credentials)
          
-         if(loggedInUser) {
-  
-              if (loggedInUser.roles.includes('ROLE_ADMIN')) {
-                navigate('/Dashboard/Home');
-              } else {
-                navigate('/Account/Home');
-              }
-         } else {
-          setErrors({ general: 'Connexion échouée. Veuillez vérifier vos identifiants.' });
-         }
+          if(!loggedInUser) setErrors({ general: 'Connexion échouée. Veuillez vérifier vos identifiants.' });
+
+          if(!loggedInUser.roles.includes('ROLE_ADMIN'))  navigate('/Account/Home')
+        
+          navigate('/Dashboard/Home');
+       
        } catch (error) {
         console.error('Erreur de connexion', error);
         setErrors({ general: 'Une erreur est survenue lors de la connexion.' });
