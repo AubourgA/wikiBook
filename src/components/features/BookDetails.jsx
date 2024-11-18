@@ -14,7 +14,7 @@ export default function BookDetails({data, user}) {
       <div className='bg-light grid  grid-cols-1 sm:grid-cols-[250px_1fr] gap-2 mt-2 p-4'>
         <div className='flex place-content-center'>
           <div className='relative'>
-            <Image img="https://placehold.co/250x250"  />
+            <Image img={`${import.meta.env.VITE_BASE}/${data.contentUrl}`}  />
             <p className='absolute top-1 left-1 bg-black/55 text-light text-sm px-2'>{data.genre.name}</p>
           </div>
         </div>

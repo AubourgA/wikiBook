@@ -17,7 +17,7 @@ export default function UserBookPreferences() {
     if (savedFilters) {
       const parsedFilters = JSON.parse(savedFilters);
       const queryParams = buildQueryParams(parsedFilters);
-      console.log(queryParams);
+ 
       setURL(`${API_ENDPOINTS.BOOKS}?${queryParams}`);
     }
   }, []);

@@ -141,11 +141,11 @@ const handlePaginationClick = async (path) => {
                 <p className='border-b-2 border-primary50 '>Résultat de la rercherche : <span>{ books["hydra:totalItems"]} livre(s) trouvé(s)</span></p>
 
                 <div className='flex justify-center flex-wrap gap-5 p-1 pt-5'>
-                    { books && books["hydra:member"].map( ({id, title, YearPublished, bookCopies}) => (  
+                    { books && books["hydra:member"].map( ({id, title, YearPublished, bookCopies, contentUrl}) => (  
                        
                        <Card key={id}>
                                
-                                <Card.Header pic="https://covers.openlibrary.org/b/isbn/9780385533225-L.jpg" className=""/>
+                                <Card.Header pic={`${import.meta.env.VITE_BASE}/${contentUrl}`} />
                              
                                 <Card.Content className='flex flex-col px-4 pt-4 h-full'>
                                     <Card.Badge  type={ hasBookCopyWithStatus(bookCopies, "En Stock") ? "Disponible" : "Loué"} 

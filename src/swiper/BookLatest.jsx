@@ -35,10 +35,10 @@ export default function BookLatest( ) {
                           }
                       })} >
         { lastBooks && 
-                lastBooks["hydra:member"].map( ({id, title, YearPublished, ISBN}) => (  
+                lastBooks["hydra:member"].map( ({id, title, YearPublished, contentUrl}) => (  
                     <swiper-slide key={id} >
                              <Card key={id}>
-                                <Card.Header pic={`https://covers.openlibrary.org/b/isbn/${ISBN}-L.jpg`} />
+                                <Card.Header pic={`${import.meta.env.VITE_BASE}/${contentUrl}`} />
                                 <Card.Content className='flex flex-col px-4 pt-4 h-full'>
                                 <Card.Title  className='text md:text-md lg:text-lg  font-semibold pb-2'text1={title} level={4} />
                                     <Card.Description>Année : {YearPublished}</Card.Description>

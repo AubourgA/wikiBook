@@ -19,7 +19,7 @@ const BookForm = () => {
   const [authors, setAuthors] = useState([]);
   const [genres, setGenres] = useState([]);
   const [editors, setEditors] = useState([]);
-
+  const [imageFile, setImageFile] = useState(null);
 
   const navigate = useNavigate();
 
@@ -62,8 +62,13 @@ const BookForm = () => {
   
 
   const handleChange = () => (e) => {
-    const { name, type, value, checked } = e.target;
+    const { name, type, value, checked, files } = e.target;
     let finalValue;
+
+    if (type === "file") {
+      setImageFile(files[0]); 
+      return;
+    }
 
     switch (type) {
       case "checkbox":
@@ -93,9 +98,18 @@ const BookForm = () => {
       return;
     }
 
+  const formDataToSend = new FormData();
+ 
+  Object.entries(formData).forEach(([key, value]) => {
+    formDataToSend.append(key, value);
+  });
+
+  
+  if (imageFile) formDataToSend.append("imageFile", imageFile); 
+
     try {
       if (isCreateMode) {
-        await createEntity(API_ENDPOINTS.BOOKS, formData)
+        await createEntity(API_ENDPOINTS.BOOKS, formDataToSend,true)
         navigate("/Dashboard/Books");
       } else {
       
@@ -190,7 +204,12 @@ const BookForm = () => {
           labelKey="name" />
         {errors.editor && <MessageForm type="ERROR" message={errors.editor} />}
 
-      
+        {isCreateMode &&  <InputForm id="imageFile"
+                                      name="imageFile"
+                                      label="Image de couverture"
+                                      type="file"
+                                      onChange={handleChange}
+                                      accept="image/*" />}
   
        <SwitchInput   id="isOnLine"
                       name="isOnLine"
