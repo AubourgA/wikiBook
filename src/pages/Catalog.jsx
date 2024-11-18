@@ -8,13 +8,10 @@ import Loader from '../components/ui/Loader'
 import { buildQueryParams } from "../utils/QueryBuilder"
 import {  fetchEntityById, getEntityPublic } from '../api';
 import { API_ENDPOINTS } from '../Constants/api.endspoints';
-import { INITIAL_FILTERS_VALUE, 
-  // PAGINATION_BUTTONS
- } 
-  from '../Constants';
+import { INITIAL_FILTERS_VALUE, PAGINATION_BUTTONS }   from '../Constants';
 import Error from '../components/ui/Error/Error';
 import Title from '../components/ui/Title';
-// import Pagination from '../components/ui/Table/Pagination';
+import Pagination from '../components/ui/Table/Pagination';
 import {useBookContext} from '../hooks/useBookContext';
 import { hasBookCopyWithStatus } from '../utils/checkAvailableBooks';
 import useCurrentUser from '../hooks/useCurrentUser'
@@ -101,27 +98,27 @@ const handleAddBook = async (id) => {
    
     reserveBooks(book);
     navigate('/Account/Emprunt')
-    //appeler notification
+
   } catch (error) {
     console.error('Erreur lors de la réservation du livre :', error);
   }
 }
 
 
-// const handlePaginationClick = async (path) => {
-//   if (path) {
-//     const fullUrl = new URL(path, API_ENDPOINTS.BASE).toString();
-//     setIsLoading(true);
-//     try {
-//       const booksData = await getEntityPublic(fullUrl);
-//       setBooks(booksData);
-//     } catch (error) {
-//       setError(error);
-//     } finally {
-//       setIsLoading(false);
-//     }
-//   }
-// };
+const handlePaginationClick = async (path) => {
+  if (path) {
+    const fullUrl = new URL(path, API_ENDPOINTS.BASE).toString();
+    setIsLoading(true);
+    try {
+      const booksData = await getEntityPublic(fullUrl);
+      setBooks(booksData);
+    } catch (error) {
+      setError(error);
+    } finally {
+      setIsLoading(false);
+    }
+  }
+};
 
   if (isLoading)  return <Loader />;
   
@@ -141,10 +138,10 @@ const handleAddBook = async (id) => {
                     onResetFilters={handleResetFilters} />
 
             <section>
-                <p className='border-b-2 border-primary50 '>Résultat de la rercherche : <span>{ books["hydra:totalItems"]} livre(s) trouvé(s)</span></p>
+                <p className='border-b-2 border-primary50 '>Résultat de la rercherche : <span>{ books?.["hydra:totalItems"]} livre(s) trouvé(s)</span></p>
 
                 <div className='flex justify-center flex-wrap gap-5 p-1 pt-5'>
-                    { books && books["hydra:member"].map( ({id, title, YearPublished, bookCopies, contentUrl}) => (  
+                    { books && books?.["hydra:member"].map( ({id, title, YearPublished, bookCopies, contentUrl}) => (  
                        
                        <Card key={id}>
                                
@@ -162,9 +159,9 @@ const handleAddBook = async (id) => {
                         )
                     }
                 </div>
-                 {/* <Pagination paginationButtons={PAGINATION_BUTTONS.map(({ key, title }) => ({key,title }))}
+                 <Pagination paginationButtons={PAGINATION_BUTTONS.map(({ key, title }) => ({key,title }))}
                              onPageChange={handlePaginationClick}
-                             page={books['hydra:view']}/> */}
+                             page={books['hydra:view']}/>
             </section>
           </div>
       </div>    
