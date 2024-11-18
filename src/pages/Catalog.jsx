@@ -8,7 +8,7 @@ import Loader from '../components/ui/Loader'
 import { buildQueryParams } from "../utils/QueryBuilder"
 import {  fetchEntityById, getEntityPublic } from '../api';
 import { API_ENDPOINTS } from '../Constants/api.endspoints';
-import { INITIAL_FILTERS_VALUE, PAGINATION_BUTTONS }   from '../Constants';
+import { INITIAL_FILTERS_VALUE, PAGINATION_BUTTONS } from '../Constants';
 import Error from '../components/ui/Error/Error';
 import Title from '../components/ui/Title';
 import Pagination from '../components/ui/Table/Pagination';
@@ -61,7 +61,7 @@ const handleInputFilter = (name, value) => {
 const handleResultFilter = async () => {
   const queryParams = buildQueryParams(filters);
   const apiUrl = `${API_ENDPOINTS.BOOKS}?${queryParams}`;
- 
+  console.log(apiUrl)
   setIsLoading(true);
   try {
     const booksData = await getEntityPublic(apiUrl);
@@ -98,7 +98,7 @@ const handleAddBook = async (id) => {
    
     reserveBooks(book);
     navigate('/Account/Emprunt')
-
+    //appeler notification
   } catch (error) {
     console.error('Erreur lors de la réservation du livre :', error);
   }
@@ -138,14 +138,14 @@ const handlePaginationClick = async (path) => {
                     onResetFilters={handleResetFilters} />
 
             <section>
-                <p className='border-b-2 border-primary50 '>Résultat de la rercherche : <span>{ books?.["hydra:totalItems"]} livre(s) trouvé(s)</span></p>
+                <p className='border-b-2 border-primary50 '>Résultat de la rercherche : <span>{ books["hydra:totalItems"]} livre(s) trouvé(s)</span></p>
 
                 <div className='flex justify-center flex-wrap gap-5 p-1 pt-5'>
-                    { books && books?.["hydra:member"].map( ({id, title, YearPublished, bookCopies, contentUrl}) => (  
+                    { books && books["hydra:member"].map( ({id, title, YearPublished, bookCopies, contentUrl}) => (  
                        
                        <Card key={id}>
                                
-                                <Card.Header pic={`${import.meta.env.VITE_BASE}${contentUrl}`} />
+                               <Card.Header pic={`${import.meta.env.VITE_BASE}/${contentUrl}`} />
                              
                                 <Card.Content className='flex flex-col px-4 pt-4 h-full'>
                                     <Card.Badge  type={ hasBookCopyWithStatus(bookCopies, "En Stock") ? "Disponible" : "Loué"} 
