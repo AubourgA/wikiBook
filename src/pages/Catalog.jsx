@@ -145,7 +145,7 @@ const handlePaginationClick = async (path) => {
                        
                        <Card key={id}>
                                
-                                <Card.Header pic={`${import.meta.env.VITE_BASE}/${contentUrl}`} />
+                                <Card.Header pic={`${import.meta.env.VITE_BASE}${contentUrl}`} />
                              
                                 <Card.Content className='flex flex-col px-4 pt-4 h-full'>
                                     <Card.Badge  type={ hasBookCopyWithStatus(bookCopies, "En Stock") ? "Disponible" : "Loué"} 
