@@ -16,7 +16,7 @@ export default function ReservedBooks( {user}) {
           .map(book => {    
             if (!book.bookCopies || !Array.isArray(book.bookCopies)) return null;
             
-            const availableCopies = book.bookCopies.filter(copy => copy.status && copy.status.type !== "Emprunté" );
+            const availableCopies = book.bookCopies.filter(copy => copy.status && copy.status.type !== "Emprunte" );
       
             if (availableCopies.length === 0) return null;
            
@@ -41,7 +41,7 @@ export default function ReservedBooks( {user}) {
                     console.log("succes", response)
                     clearReservedBooks()
                   })
-          .catch(error => console.error('resrvarion faile',error))
+          .catch(error => console.error('reservation failed',error))
     }
    
   return (

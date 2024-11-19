@@ -31,7 +31,6 @@ export default function BookCopiesInventory({data, id}) {
 
 
   const filtredStatus = filterDatasWithParameter(status, "type", "Emprunte")
- console.log(filtredStatus)
   const handleAddCopy = () => navigate(`/Dashboard/Books/Detail/${id}/New`);
 
   const handleEdit = (bookCopy) =>{

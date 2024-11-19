@@ -34,7 +34,7 @@ const options = item.bookCopies
 
             <form onSubmit={handleSubmit} className='flex items-center justify-between gap-2'>
                 <div className='flex gap-2'>
-                        <Image img="https://covers.openlibrary.org/b/isbn/9780385533225-S.jpg"/>
+                        <Image img={`${import.meta.env.VITE_BASE}${item.contentUrl}`} text="cover"/>
                         <div>   
                             <p className='font-bold'>{item.title}</p>
                             <SelectForm key={item.id} 
