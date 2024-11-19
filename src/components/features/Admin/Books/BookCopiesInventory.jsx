@@ -24,14 +24,14 @@ export default function BookCopiesInventory({data, id}) {
 
   useEffect( ()=> {
     const fetchListStatus = async () => {
-      await fetchAllGenericData(API_ENDPOINTS.BASE, (endpoint)=> fetchEntity(endpoint ? endpoint : API_ENDPOINTS.STATUS), setStatus, "Erreur lors du chargement des nationalité");
+      await fetchAllGenericData(API_ENDPOINTS.BASE, (endpoint)=> fetchEntity(endpoint ? endpoint : API_ENDPOINTS.STATUS), setStatus, "Erreur lors du chargement des status");
     }
     fetchListStatus()
   },[])
 
 
   const filtredStatus = filterDatasWithParameter(status, "type", "Emprunte")
-
+ console.log(filtredStatus)
   const handleAddCopy = () => navigate(`/Dashboard/Books/Detail/${id}/New`);
 
   const handleEdit = (bookCopy) =>{
