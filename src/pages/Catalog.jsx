@@ -159,9 +159,11 @@ const handlePaginationClick = async (path) => {
                         )
                     }
                 </div>
-                 <Pagination paginationButtons={PAGINATION_BUTTONS.map(({ key, title }) => ({key,title }))}
-                             onPageChange={handlePaginationClick}
-                             page={books['hydra:view']}/>
+                { books && books['hydra:view'] &&
+                  <Pagination paginationButtons={PAGINATION_BUTTONS.map(({ key, title }) => ({key,title }))}
+                              onPageChange={handlePaginationClick}
+                              page={books['hydra:view']}/>
+                }
             </section>
           </div>
       </div>    
