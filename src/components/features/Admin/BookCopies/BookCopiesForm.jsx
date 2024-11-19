@@ -40,7 +40,7 @@ export default function BookCopiesForm() {
             finalValue = checked;
             break;
           case "number":
-            finalValue = parseInt(value, 10) || parseInt(value,13);
+            finalValue = parseInt(value);
             break;
           case "text":
           default:

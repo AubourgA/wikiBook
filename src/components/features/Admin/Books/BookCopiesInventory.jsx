@@ -30,7 +30,7 @@ export default function BookCopiesInventory({data, id}) {
   },[])
 
 
-  const filtredStatus = filterDatasWithParameter(status, "type", "Emprunté")
+  const filtredStatus = filterDatasWithParameter(status, "type", "Emprunte")
 
   const handleAddCopy = () => navigate(`/Dashboard/Books/Detail/${id}/New`);
 
@@ -50,7 +50,7 @@ export default function BookCopiesInventory({data, id}) {
           const currentBookCopy = data.find(bookCopy => bookCopy.id === bookCopyId)
           console.log(currentBookCopy)
 
-        if( currentBookCopy?.status.type === "Emprunté") {
+        if( currentBookCopy?.status.type === "Emprunte") {
           setError("Impossible de changer le status : le livre est acutellement emprunté")
           setShowModal(false)
           return
