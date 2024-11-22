@@ -59,23 +59,19 @@ export const Infos = [
 ]
 
 export const About = [
+ 
     {
         id:1,
-        title : "Conditions Générales de Ventes",
-        url : "/cgu"
-    },
-    {
-        id:3,
         title : "Politiques de Confidentialité",
         url : "/privacy"
     },
     {
-        id:4,
+        id:2,
         title : "Mentions Légales",
-        url : "/legacy"
+        url : "/mentions-legales"
     },
     {
-        id:5,
+        id:3,
         title : "Nous contacter",
         url : "/Contact"
     },

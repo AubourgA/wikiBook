@@ -11,6 +11,8 @@ import BookCover from "./BookCover";
 
 export default function UserBookPreferences() {
   const [url, setURL] = useState(null);
+  
+  const { data, isLoading,  error } = useFetch(url ? url : null);
 
   useEffect(() => {
     const savedFilters = Cookies.get("filters");
@@ -19,10 +21,10 @@ export default function UserBookPreferences() {
       const queryParams = buildQueryParams(parsedFilters);
  
       setURL(`${API_ENDPOINTS.BOOKS}?${queryParams}`);
+ 
     }
   }, []);
 
-  const { data, isLoading, error } = useFetch(url ? url : null);
 
   return (
     <div>

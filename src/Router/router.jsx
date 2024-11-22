@@ -39,6 +39,7 @@ import AccountProfil from '../pages/UserAccount/AccountProfil';
 import AdminUsers from '../pages/Admin/AdminUsers';
 import AdminUserDetailsLayout from '../components/features/Admin/Users/AdminUserDetailsLayout';
 import AdminStats from '../pages/Admin/AdminStats';
+import MentionLegales from '../pages/laws/MentionLegales';
 
 const router = createBrowserRouter([
   {
@@ -126,6 +127,9 @@ const router = createBrowserRouter([
           { path: "/Account/Profil",  element : (<AccountProfil />)},
       ]
       },
+      {
+        path: "/mentions-legales", element : (<MentionLegales />),
+      }
     ],
   },
 ]);

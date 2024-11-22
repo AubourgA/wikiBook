@@ -34,7 +34,7 @@ const useFetch = (endpoint, id, initialState = {}) => {
     fetchData();
   }, [endpoint, id, user, fetchFunction]); 
 
-  return { data, isLoading, error };
+  return { data, isLoading, setIsLoading, error };
 };
 
 export default useFetch;
