@@ -23,7 +23,7 @@ export default function UserBookPreferences() {
   }, []);
 
   const { data, isLoading, error } = useFetch(url ? url : null);
-  console.log(data);
+
   return (
     <div>
       <Title level={3} text1="Une selection selon vos préférences" />
@@ -34,15 +34,11 @@ export default function UserBookPreferences() {
       )}
 
       <div className="grid grid-cols-auto-fill-175">
-        {!isLoading &&
-          !error &&
-          data &&
-          data["hydra:member"].slice(0, 5).map(({ id, title }) => (
-           
+        {!isLoading && !error && data && data["hydra:member"].slice(0, 5).map(({ id, title }) => (
             <BookCover key={id} title={title} id={id} />
           ))}
 
-        {data && data["hydra:totalItems"] === 0 && (
+        {!isLoading && !error && data && data["hydra:totalItems"] === 0 && (
           <p>Aucun élément correspond à vos préférences</p>
         )}
 

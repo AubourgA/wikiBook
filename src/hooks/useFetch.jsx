@@ -11,12 +11,17 @@ const useFetch = (endpoint, id, initialState = {}) => {
   const fetchFunction = user?.roles.includes("ROLE_ADMIN") ? fetchEntity : getEntityPublic;
  
   useEffect(() => {
-    if(!endpoint) return
+    if (!endpoint) {
+      setData(null);
+      setIsLoading(false);
+      setError(null);
+      return;
+    }
 
     const fetchData = async () => {
-      setIsLoading(true);
-   
+      
       try {
+        setIsLoading(true);
         const fullUrl = id ? `${endpoint}/${id}` : endpoint;
         const result = await fetchFunction(fullUrl);
         setData(result);
