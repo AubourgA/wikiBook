@@ -27,7 +27,7 @@ export const sendEmail = async ( lastname, firstname, email, message,url = API_E
     });
   
     if (response.ok) {
-      console.log('Email sent!');
+      return Promise.resolve('Email sent!');
     } else {
       const error = await response.json();
       console.error('Error:', error);
