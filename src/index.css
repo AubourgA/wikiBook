@@ -43,3 +43,7 @@
 .error {
     @apply text-red-500 text-sm mt-1
 }
+
+.success {
+    @apply text-green-500 text-sm mt-1
+}
