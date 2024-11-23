@@ -19,7 +19,7 @@ export default function Contact() {
     setFormData({ ...formData, [name]: value });
   };
 
-  const handleSubmitContact = () => (e) => {
+  const handleSubmitContact = () => async (e) => {
     e.preventDefault();
     const validationErrors = validateContactForm(formData);
     setErrors(validationErrors);
@@ -27,7 +27,7 @@ export default function Contact() {
     if (Object.keys(validationErrors).length === 0) {
       try{
 
-        sendEmail(formData.lastname, formData.firstname, formData.email, formData.message)
+        await sendEmail(formData.lastname, formData.firstname, formData.email, formData.message)
         setFormData(INITIAL_CONTACT_VALUE)
         setStatusSendEmail('success')
       } catch (error) {
